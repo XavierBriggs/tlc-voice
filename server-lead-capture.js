@@ -50,11 +50,11 @@ const WS_URL = `wss://${DOMAIN}/ws`;
 
 // OpenAI Configuration
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
+const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4.1-nano";
 
 // Voice Agent Configuration for Lead Capture
 const WELCOME_GREETING = process.env.WELCOME_GREETING || 
-  "Hi there! This is TLC's virtual assistant calling about manufactured home financing. Is now a good time to chat for a few minutes?";
+  "Hi there! This is TLC's virtual assistant thank you for calling about manufactured home financing. Is now a good time to chat for a few minutes?";
 
 // TTS/STT Configuration
 const TTS_PROVIDER = process.env.TTS_PROVIDER || "google";
@@ -165,7 +165,7 @@ async function streamAIResponseWithTools(state, ws, turnMetrics) {
           tokenBuffer.includes("!") ||
           tokenBuffer.includes("?") ||
           tokenBuffer.includes(",") ||
-          tokenBuffer.length > 15
+          tokenBuffer.length > 8
         ) {
           if (!turnMetrics.firstTokenSentAt) {
             turnMetrics.firstTokenSentAt = Date.now();
