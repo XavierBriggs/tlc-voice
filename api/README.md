@@ -76,6 +76,17 @@ await client.logEvent(leadId, {
 const events = await client.getEvents(leadId);
 ```
 
+**Voice Event Types:**
+| Event | Description |
+|-------|-------------|
+| `voice_call_started` | Call connected |
+| `partial_lead_created` | Lead created with minimum fields (contact info only) |
+| `voice_intake_completed` | All required fields collected, prequalified |
+| `voice_call_ended` | Call ended |
+| `voice_transfer_requested` | Caller requested transfer |
+
+> 💡 **partial_lead_created** distinguishes leads created mid-call from completed intakes. Useful for analytics on drop-off rates.
+
 ### Dealer Attribution
 
 ```javascript

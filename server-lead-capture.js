@@ -106,7 +106,7 @@ async function streamAIResponseWithTools(state, ws, turnMetrics) {
       messages: conversation,
       stream: true,
       max_tokens: 500,
-      temperature: 0.7,
+      temperature: 0,
     };
     
     // Add tools if available for this phase
@@ -531,30 +531,10 @@ fastify.register(async function (fastify) {
               },
             });
             
-            // Log call start event to Hestia
-            if (hestiaClient) {
-              try {
-                const leadResult = await hestiaClient.createLead(state);
-                if (leadResult?.lead_id) {
-                  state.leadId = leadResult.lead_id;
-                  sessions.get(callSid).state = state;
-                  
-                  await hestiaClient.logEvent(leadResult.lead_id, {
-                    event_type: 'voice_call_started',
-                    actor_type: 'system',
-                    payload_json: {
-                      call_sid: callSid,
-                      from: message.from,
-                      to: message.to,
-                      entrypoint: attribution.entrypoint,
-                      dealer_id: attribution.dealer_id,
-                    },
-                  });
-                }
-              } catch (e) {
-                console.error("[HESTIA] Error creating lead:", e);
-              }
-            }
+            // NOTE: Lead creation is deferred until minimum fields are collected
+            // (consent, name, phone, email, preferred_contact)
+            // This happens in syncLeadToHestia() after collect_preferred_contact
+            // The voice_call_started event will be logged along with partial_lead_created
             break;
           }
           

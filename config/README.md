@@ -69,13 +69,15 @@ const question = getNextQuestion(state);
 | Phase | Questions |
 |-------|-----------|
 | `consent_check` | `interested_in_financing`, `contact_consent` |
-| `contact_info` | `full_name`, `phone_number`, `preferred_contact`, `email_address` |
+| `contact_info` | `full_name`, `phone_number`, `email_address`, `preferred_contact` |
 | `property_location` | `property_zip`, `property_state` |
 | `land_situation` | `land_ownership`, `land_status_followup`, `land_value` |
 | `home_basics` | `home_type`, `is_new_purchase` |
 | `timeline` | `timeline` |
 | `financial_snapshot` | `credit_band`, `monthly_income`, `recent_bankruptcy` |
 | `optional_questions` | `home_price`, `site_work`, `best_time_to_contact`, `additional_notes` |
+
+> 📧 **Note**: Email is now always collected (before asking for contact preference). This ensures we have complete contact info for every lead.
 
 ---
 

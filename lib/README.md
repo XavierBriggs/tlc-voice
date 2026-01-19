@@ -47,8 +47,16 @@ OPTIONAL_QUESTIONS → PREQUALIFIED
 | `createSessionState(callSid, metadata)` | Initialize new session |
 | `setFieldValue(state, field, value)` | Store collected data |
 | `advancePhase(state)` | Move to next phase |
-| `isPrequalificationReady(state)` | Check if requirements met |
+| `isMinimumLeadReady(state)` | Check if minimum fields collected for partial lead |
+| `isPrequalificationReady(state)` | Check if all requirements met |
 | `buildLeadPayload(state)` | Generate Hestia API payload |
+
+**Constants:**
+| Constant | Description |
+|----------|-------------|
+| `MINIMUM_LEAD_FIELDS` | Fields needed for partial lead: consent, name, phone, email, preferred contact |
+| `REQUIRED_FIELDS` | All fields needed for prequalification |
+| `OPTIONAL_FIELDS` | Fields that add value but aren't required |
 
 ---
 
@@ -100,6 +108,32 @@ const { state, results, shouldEndCall } = await processToolCalls(
 ```
 Tool Call → Validate Args → Update State → Sync to Hestia → Return Result
 ```
+
+**Partial Lead Strategy:**
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  CONTACT_INFO Phase                                                  │
+│  name ✓ → phone ✓ → email ✓ → preferred_contact ✓                   │
+│                                        │                             │
+│                                        └──► POST /v2/leads:intake    │
+│                                        └──► Log: partial_lead_created│
+└─────────────────────────────────────────────────────────────────────┘
+                                         │
+                                         ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│  Subsequent Phases                                                   │
+│  Each field collection → PATCH /v2/leads/{id}                        │
+└─────────────────────────────────────────────────────────────────────┘
+                                         │
+                                         ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│  PREQUALIFIED                                                        │
+│  └──► POST /v2/leads/{id}/status (prequalified)                     │
+│  └──► POST /v2/leads/{id}/route (dealer assignment)                 │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+> 💡 Lead creation waits until all minimum fields are collected. If call drops after contact info, we still have a contactable lead.
 
 ---
 

@@ -5,7 +5,7 @@
  * defines the questions to ask, their order, and validation rules.
  */
 
-import { PHASES } from '../lib/state-machine.js';
+import { PHASES } from './phases.js';
 
 // =============================================================================
 // QUESTION DEFINITIONS
@@ -63,31 +63,29 @@ export const QUESTIONS = {
     followUp: 'Could you repeat that number for me slowly?',
   },
   
-  preferred_contact: {
-    id: 'preferred_contact',
-    phase: PHASES.CONTACT_INFO,
-    required: false,
-    field: 'preferred_contact_method',
-    question: 'Do you prefer we contact you by phone or email?',
-    spoken: 'Do you prefer we contact you by phone or email?',
-    validResponses: ['phone', 'email'],
-    followUp: 'Would phone or email work better for you?',
-    triggersQuestion: {
-      email: 'email_address',
-    },
-  },
-  
   email_address: {
     id: 'email_address',
     phase: PHASES.CONTACT_INFO,
-    required: false,
+    required: true,
     field: 'email',
     question: 'What is your email address?',
     spoken: 'What is your email address?',
     validResponses: ['valid email address'],
     followUp: 'Could you spell that out for me?',
     confirmationTemplate: 'Let me read that back: {value}. Is that correct?',
-    condition: (state) => state.collectedData.applicant.preferred_contact_method === 'email',
+    // Email is always collected regardless of preferred contact method
+  },
+  
+  preferred_contact: {
+    id: 'preferred_contact',
+    phase: PHASES.CONTACT_INFO,
+    required: true,
+    field: 'preferred_contact_method',
+    question: 'Do you prefer we contact you by phone or email?',
+    spoken: 'Do you prefer we contact you by phone or email?',
+    validResponses: ['phone', 'email'],
+    followUp: 'Would phone or email work better for you?',
+    // No longer triggers email_address since email is always collected before this
   },
   
   // ===========================================================================
@@ -162,7 +160,7 @@ export const QUESTIONS = {
   land_value: {
     id: 'land_value',
     phase: PHASES.LAND_SITUATION,
-    required: false,
+    required: true,
     field: 'land_value_band',
     question: 'Do you have a rough idea what the land is worth?',
     spoken: 'Do you have a rough idea what the land is worth? Under twenty five thousand, twenty five to fifty thousand, fifty to one hundred thousand, one hundred to two hundred thousand, or over two hundred thousand?',
@@ -353,7 +351,7 @@ export const QUESTIONS = {
   best_time_to_contact: {
     id: 'best_time_to_contact',
     phase: PHASES.OPTIONAL_QUESTIONS,
-    required: false,
+    required: true,
     field: 'best_time_to_contact',
     question: 'What is the best time for a loan officer to reach you?',
     spoken: 'What is the best time for a loan officer to reach you? Morning, afternoon, evening, or weekends?',
@@ -425,7 +423,7 @@ export const QUESTIONS = {
 
 export const PHASE_QUESTIONS = {
   [PHASES.CONSENT_CHECK]: ['interested_in_financing', 'contact_consent'],
-  [PHASES.CONTACT_INFO]: ['full_name', 'phone_number', 'preferred_contact', 'email_address'],
+  [PHASES.CONTACT_INFO]: ['full_name', 'phone_number', 'email_address', 'preferred_contact'],
   [PHASES.PROPERTY_LOCATION]: ['property_zip', 'property_state'],
   [PHASES.LAND_SITUATION]: ['land_ownership', 'land_status_followup', 'land_value'],
   [PHASES.HOME_BASICS]: ['home_type', 'is_new_purchase'],

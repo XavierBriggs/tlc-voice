@@ -86,14 +86,22 @@ hestia-voice/
 └─────────────┘   └──────────┘   └─────────┘              └─────────┘
 ```
 
-**Required for Prequalification:**
+**Minimum for Partial Lead (collected first):**
+- ✅ Consent
 - ✅ Full name
-- ✅ Phone number  
+- ✅ Phone number
+- ✅ Email
+- ✅ Preferred contact method
+
+**Additional for Prequalification:**
 - ✅ Property ZIP & state
-- ✅ Land status
+- ✅ Land status & value
 - ✅ Home type
 - ✅ Timeline
-- ✅ Consent
+- ✅ Credit band
+- ✅ Best time to contact
+
+> 💡 **Partial Lead Strategy**: A lead is created in Hestia after collecting contact info. This ensures we capture contactable leads even if the call drops early. Subsequent questions PATCH the existing lead.
 
 ## 🔧 Function Calling
 

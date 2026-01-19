@@ -109,16 +109,32 @@ test('isPrequalificationReady returns false when fields missing', () => {
 test('isPrequalificationReady returns true when all required fields collected', () => {
   const state = createSessionState('CA123', {});
   
-  // Set all required fields
-  setFieldValue(state, 'full_name', 'John Doe');
-  setFieldValue(state, 'phone_e164', '+15551234567');
-  setFieldValue(state, 'property_zip', '63110');
-  setFieldValue(state, 'property_state', 'MO');
-  setFieldValue(state, 'land_status', 'own');
-  setFieldValue(state, 'home_type', 'manufactured');
-  setFieldValue(state, 'timeline', '0_3_months');
+  // Set all required fields (consent + contact info + property + financials)
+  // Consent fields
   setFieldValue(state, 'contact_consent', true);
   setFieldValue(state, 'tcpa_disclosure_ack', true);
+  
+  // Contact info fields (now includes email and preferred_contact_method as required)
+  setFieldValue(state, 'full_name', 'John Doe');
+  setFieldValue(state, 'phone_e164', '+15551234567');
+  setFieldValue(state, 'email', 'john@example.com');
+  setFieldValue(state, 'preferred_contact_method', 'phone');
+  
+  // Property location
+  setFieldValue(state, 'property_zip', '63110');
+  setFieldValue(state, 'property_state', 'MO');
+  
+  // Land and home
+  setFieldValue(state, 'land_status', 'own');
+  setFieldValue(state, 'land_value_band', '50k_100k');
+  setFieldValue(state, 'home_type', 'manufactured');
+  setFieldValue(state, 'timeline', '0_3_months');
+  
+  // Financial (credit_band_self_reported is required)
+  setFieldValue(state, 'credit_band_self_reported', '680_719');
+  
+  // Optional questions (best_time_to_contact is now required)
+  setFieldValue(state, 'best_time_to_contact', 'morning');
   
   assertTrue(isPrequalificationReady(state));
 });
