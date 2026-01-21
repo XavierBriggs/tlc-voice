@@ -1,5 +1,5 @@
 // test-firestore.js
-import { createHestiaClient } from './api/hestia-client.js';
+import { createHestiaClient } from '../api/hestia-client.js';
 
 const client = createHestiaClient({ mode: 'firestore', verbose: true });
 
