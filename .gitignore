@@ -2,3 +2,6 @@
 __pycache__/
 *.pyc
 out_audio/
+node_modules/
+
+hestia-service-account.json

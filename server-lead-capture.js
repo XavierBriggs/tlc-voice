@@ -690,20 +690,15 @@ fastify.register(async function (fastify) {
               },
             });
             
-            // Route lead if prequalified
+            // Set status to prequalified - Cloud Function handles routing
             if (state.prequalified) {
-              hestiaClient.routeLead(state.leadId).then(result => {
-                if (result.success) {
-                  console.log(`[HESTIA] Lead ${state.leadId} routed to dealer ${result.assigned_dealer_id}`);
-                  
-                  // Attempt delivery
-                  hestiaClient.deliverLead(state.leadId).then(deliveryResult => {
-                    if (deliveryResult.success) {
-                      console.log(`[HESTIA] Lead ${state.leadId} delivered successfully`);
-                    }
-                  });
-                }
-              });
+              hestiaClient.setStatus(state.leadId, 'prequalified')
+                .then(() => {
+                  console.log(`[HESTIA] Lead ${state.leadId} status set to prequalified - Cloud Function will handle routing`);
+                })
+                .catch(err => {
+                  console.error(`[HESTIA] Failed to set prequalified status:`, err);
+                });
             }
           }
         }

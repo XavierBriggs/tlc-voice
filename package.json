@@ -12,11 +12,12 @@
     "test": "node tests/conversation-flow.test.js"
   },
   "dependencies": {
-    "fastify": "^5.0.0",
-    "@fastify/websocket": "^11.0.0",
     "@fastify/formbody": "^8.0.0",
-    "openai": "^4.0.0",
+    "@fastify/websocket": "^11.0.0",
     "dotenv": "^16.0.0",
+    "fastify": "^5.0.0",
+    "firebase-admin": "^13.6.0",
+    "openai": "^4.0.0",
     "twilio": "^5.0.0"
   },
   "engines": {
