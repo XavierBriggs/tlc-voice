@@ -72,15 +72,18 @@ Short and non sensitive. Works for both web and voice.
     `"property_zip": "63110",`  
     `"property_state": "MO",`  
     `"land_status": "own",`  
+    `"land_value_raw": 75000,`  
     `"land_value_band": "50k_100k",`  
     `"home_type": "manufactured",`  
     `"is_new_home_purchase": true,`  
     `"home_price_estimate_usd": 125000,`  
     `"site_work_needed": ["foundation", "utilities", "deck"],`  
     `"site_work_budget_estimate_usd": 20000,`  
+    `"timeline_raw": "April",`  
     `"timeline": "0_3_months"`  
   `},`  
   `"financial_snapshot": {`  
+    `"credit_raw": 695,`  
     `"credit_band_self_reported": "680_719",`  
     `"monthly_income_estimate_usd": 5500,`  
     `"has_recent_bankruptcy": false`  
@@ -332,12 +335,14 @@ Columns
 • `property_zip text not null`  
 • `property_state text not null`  
 • `land_status text not null`  
-• `land_value_band text null`  
+• `land_value_raw integer null` — Raw dollar amount provided by applicant (e.g., 75000)  
+• `land_value_band text null` — Computed band from raw value (e.g., "50k\_100k")  
 • `home_type text not null`  
 • `is_new_home_purchase boolean not null`  
 • `home_price_estimate_usd integer null`  
 • `site_work_budget_estimate_usd integer null`  
-• `timeline text not null`  
+• `timeline_raw text null` — Raw timeline input (e.g., "April", "next month", "end of year")  
+• `timeline text not null` — Computed band from raw value (e.g., "0\_3\_months")  
 • `notes_free_text text null`
 
 Indexes  
@@ -368,7 +373,8 @@ Self reported and non sensitive.
 
 Columns  
 • `lead_id text primary key references leads(lead_id)`  
-• `credit_band_self_reported text null`  
+• `credit_raw integer null` — Raw credit score provided by applicant (e.g., 695)  
+• `credit_band_self_reported text null` — Computed band from raw value (e.g., "680\_719")  
 • `monthly_income_estimate_usd integer null`  
 • `has_recent_bankruptcy boolean null`
 

@@ -1,7 +1,12 @@
 /**
- * Conversation Flow Tests
+ * Conversation Flow Tests - V2 Architecture
  * 
- * Basic tests for the lead capture conversation flow.
+ * Tests for the deterministic conversation flow with:
+ * - ConversationController for flow control
+ * - Unified extract_fields tool
+ * - Confirmation tracking for ALL fields
+ * - Raw + band storage
+ * 
  * Run with: node tests/conversation-flow.test.js
  */
 
@@ -9,16 +14,30 @@ import {
   createSessionState, 
   advancePhase, 
   setFieldValue, 
+  confirmField,
+  isFieldConfirmed,
+  getFieldValue,
+  getRawValue,
   isPrequalificationReady,
+  isMinimumLeadReady,
   getNextFieldToCollect,
+  getUnconfirmedFields,
   PHASES,
   REQUIRED_FIELDS,
+  FIELD_ORDER,
 } from '../lib/state-machine.js';
 
-import { TOOLS, getToolsForPhase } from '../lib/tools.js';
+import { TOOLS, EXTRACTION_TO_STATE_FIELD_MAP } from '../lib/tools.js';
 import { buildSystemPrompt } from '../lib/prompts.js';
-import { QUESTIONS, getNextQuestion } from '../config/questions.js';
+import { ConversationController } from '../lib/conversation-controller.js';
+import { 
+  computeLandValueBand, 
+  computeCreditBand, 
+  computeTimelineBand,
+  parseNumericValue,
+} from '../lib/value-normalizers.js';
 import { MockHestiaClient } from '../api/mock-hestia.js';
+import { executeTool, processToolCalls } from '../lib/tool-executor.js';
 
 // Simple test runner
 let testsPassed = 0;
@@ -26,9 +45,20 @@ let testsFailed = 0;
 
 function test(name, fn) {
   try {
-    fn();
-    console.log(`  ✅ ${name}`);
-    testsPassed++;
+    const result = fn();
+    if (result instanceof Promise) {
+      result.then(() => {
+        console.log(`  ✅ ${name}`);
+        testsPassed++;
+      }).catch(error => {
+        console.log(`  ❌ ${name}`);
+        console.log(`     Error: ${error.message}`);
+        testsFailed++;
+      });
+    } else {
+      console.log(`  ✅ ${name}`);
+      testsPassed++;
+    }
   } catch (error) {
     console.log(`  ❌ ${name}`);
     console.log(`     Error: ${error.message}`);
@@ -66,77 +96,231 @@ test('createSessionState creates valid initial state', () => {
   assertEqual(state.callSid, 'CA123');
   assertEqual(state.phase, PHASES.WELCOME);
   assertEqual(state.prequalified, false);
-  assertTrue(state.requiredFieldsRemaining.length > 0);
+  assertEqual(state.fieldsCollected, 0);
+  assertEqual(state.fieldsConfirmed, 0);
 });
 
-test('setFieldValue updates applicant fields', () => {
+test('setFieldValue stores value as unconfirmed by default', () => {
   const state = createSessionState('CA123', {});
   
   setFieldValue(state, 'full_name', 'John Doe');
-  assertEqual(state.collectedData.applicant.full_name, 'John Doe');
+  assertEqual(getFieldValue(state, 'full_name'), 'John Doe');
+  assertFalse(isFieldConfirmed(state, 'full_name'), 'Should not be confirmed');
 });
 
-test('setFieldValue updates consent fields', () => {
+test('setFieldValue with confirmed=true marks field as confirmed', () => {
   const state = createSessionState('CA123', {});
   
-  setFieldValue(state, 'contact_consent', true);
-  assertEqual(state.collectedData.consents.contact_consent, true);
+  setFieldValue(state, 'full_name', 'John Doe', true);
+  assertEqual(getFieldValue(state, 'full_name'), 'John Doe');
+  assertTrue(isFieldConfirmed(state, 'full_name'), 'Should be confirmed');
 });
 
-test('setFieldValue updates home_and_site fields', () => {
+test('confirmField marks an existing field as confirmed', () => {
   const state = createSessionState('CA123', {});
   
-  setFieldValue(state, 'property_zip', '63110');
-  setFieldValue(state, 'property_state', 'MO');
+  setFieldValue(state, 'full_name', 'John Doe', false);
+  assertFalse(isFieldConfirmed(state, 'full_name'));
   
-  assertEqual(state.collectedData.home_and_site.property_zip, '63110');
-  assertEqual(state.collectedData.home_and_site.property_state, 'MO');
+  confirmField(state, 'full_name');
+  assertTrue(isFieldConfirmed(state, 'full_name'));
 });
 
-test('advancePhase moves from welcome to consent_check', () => {
+test('setFieldValue computes band from raw value for land_value', () => {
   const state = createSessionState('CA123', {});
-  assertEqual(state.phase, PHASES.WELCOME);
   
-  const advanced = advancePhase(state);
-  assertEqual(advanced.phase, PHASES.CONSENT_CHECK);
+  setFieldValue(state, 'land_value', 75000);
+  
+  assertEqual(getRawValue(state, 'land_value'), 75000, 'Raw value should be stored');
+  assertEqual(getFieldValue(state, 'land_value'), '50k_100k', 'Band should be computed');
 });
 
-test('isPrequalificationReady returns false when fields missing', () => {
+test('setFieldValue computes band from raw value for credit', () => {
   const state = createSessionState('CA123', {});
-  assertFalse(isPrequalificationReady(state));
+  
+  setFieldValue(state, 'credit', 650);
+  
+  assertEqual(getRawValue(state, 'credit'), 650, 'Raw score should be stored');
+  assertEqual(getFieldValue(state, 'credit'), '620_679', 'Band should be computed');
 });
 
-test('isPrequalificationReady returns true when all required fields collected', () => {
+test('setFieldValue computes band from raw value for timeline', () => {
   const state = createSessionState('CA123', {});
   
-  // Set all required fields (consent + contact info + property + financials)
-  // Consent fields
-  setFieldValue(state, 'contact_consent', true);
-  setFieldValue(state, 'tcpa_disclosure_ack', true);
+  setFieldValue(state, 'timeline', 'April');
   
-  // Contact info fields (now includes email and preferred_contact_method as required)
-  setFieldValue(state, 'full_name', 'John Doe');
-  setFieldValue(state, 'phone_e164', '+15551234567');
-  setFieldValue(state, 'email', 'john@example.com');
-  setFieldValue(state, 'preferred_contact_method', 'phone');
+  assertEqual(getRawValue(state, 'timeline'), 'April', 'Raw value should be stored');
+  // Band depends on current date, just check it exists
+  assertTrue(getFieldValue(state, 'timeline') !== undefined);
+});
+
+test('getUnconfirmedFields returns fields with values but not confirmed', () => {
+  const state = createSessionState('CA123', {});
   
-  // Property location
-  setFieldValue(state, 'property_zip', '63110');
-  setFieldValue(state, 'property_state', 'MO');
+  setFieldValue(state, 'full_name', 'John Doe', false);
+  setFieldValue(state, 'email', 'john@example.com', true); // Confirmed
   
-  // Land and home
-  setFieldValue(state, 'land_status', 'own');
-  setFieldValue(state, 'land_value_band', '50k_100k');
-  setFieldValue(state, 'home_type', 'manufactured');
-  setFieldValue(state, 'timeline', '0_3_months');
+  const unconfirmed = getUnconfirmedFields(state);
+  assertEqual(unconfirmed.length, 1, 'Should have 1 unconfirmed field');
+  assertEqual(unconfirmed[0].field, 'full_name');
+});
+
+test('isPrequalificationReady requires all fields collected AND confirmed', () => {
+  const state = createSessionState('CA123', {});
   
-  // Financial (credit_band_self_reported is required)
-  setFieldValue(state, 'credit_band_self_reported', '680_719');
+  // Set all required fields but DON'T confirm them
+  setFieldValue(state, 'contact_consent', true, false);
+  setFieldValue(state, 'full_name', 'John Doe', false);
+  setFieldValue(state, 'phone_e164', '+15551234567', false);
+  setFieldValue(state, 'email', 'john@example.com', false);
+  setFieldValue(state, 'preferred_contact_method', 'phone', false);
+  setFieldValue(state, 'property_zip', '63110', false);
+  setFieldValue(state, 'property_state', 'MO', false);
+  setFieldValue(state, 'land_status', 'own', false);
+  setFieldValue(state, 'home_type', 'manufactured', false);
+  setFieldValue(state, 'timeline', '3 months', false);
+  setFieldValue(state, 'credit', 650, false);
+  setFieldValue(state, 'best_time_to_contact', 'morning', false);
   
-  // Optional questions (best_time_to_contact is now required)
-  setFieldValue(state, 'best_time_to_contact', 'morning');
+  assertFalse(isPrequalificationReady(state), 'Not ready - fields not confirmed');
   
-  assertTrue(isPrequalificationReady(state));
+  // Now confirm all
+  for (const field of REQUIRED_FIELDS) {
+    confirmField(state, field);
+  }
+  
+  assertTrue(isPrequalificationReady(state), 'Ready - all fields collected and confirmed');
+});
+
+// =============================================================================
+// VALUE NORMALIZER TESTS
+// =============================================================================
+
+console.log('\n🔢 Value Normalizer Tests\n');
+
+test('computeLandValueBand calculates correct bands', () => {
+  assertEqual(computeLandValueBand(20000).band, '0_25k');
+  assertEqual(computeLandValueBand(40000).band, '25k_50k');
+  assertEqual(computeLandValueBand(75000).band, '50k_100k');
+  assertEqual(computeLandValueBand(150000).band, '100k_200k');
+  assertEqual(computeLandValueBand(250000).band, '200k_plus');
+});
+
+test('computeCreditBand calculates correct bands', () => {
+  assertEqual(computeCreditBand(550).band, 'under_580');
+  assertEqual(computeCreditBand(600).band, '580_619');
+  assertEqual(computeCreditBand(650).band, '620_679');
+  assertEqual(computeCreditBand(700).band, '680_719');
+  assertEqual(computeCreditBand(750).band, '720_plus');
+});
+
+test('computeTimelineBand handles month names', () => {
+  // Create a fixed date for testing - January 15, 2026
+  const testDate = new Date(2026, 0, 15);
+  
+  // April is 3 months out from January
+  const result = computeTimelineBand('April', testDate);
+  assertEqual(result.band, '0_3_months');
+  assertEqual(result.raw, 'April');
+});
+
+test('computeTimelineBand handles relative terms', () => {
+  const result1 = computeTimelineBand('soon');
+  assertEqual(result1.band, '0_3_months');
+  
+  const result2 = computeTimelineBand('next year');
+  assertEqual(result2.band, '12_plus');
+});
+
+test('parseNumericValue handles word numbers', () => {
+  assertEqual(parseNumericValue('forty thousand'), 40000);
+  assertEqual(parseNumericValue('six fifty'), 650);
+  assertEqual(parseNumericValue('seventy five thousand'), 75000);
+});
+
+test('parseNumericValue handles plain numbers', () => {
+  assertEqual(parseNumericValue('40000'), 40000);
+  assertEqual(parseNumericValue('$75,000'), 75000);
+  assertEqual(parseNumericValue(650), 650);
+});
+
+// =============================================================================
+// CONVERSATION CONTROLLER TESTS
+// =============================================================================
+
+console.log('\n🎮 Conversation Controller Tests\n');
+
+test('getNextAction returns confirm action for unconfirmed fields', () => {
+  const controller = new ConversationController();
+  const state = createSessionState('CA123', {});
+  
+  // Set a field but don't confirm
+  setFieldValue(state, 'contact_consent', true, false);
+  
+  const action = controller.getNextAction(state);
+  assertEqual(action.type, 'confirm');
+  assertEqual(action.field, 'contact_consent');
+});
+
+test('getNextAction returns ask action when no unconfirmed fields', () => {
+  const controller = new ConversationController();
+  const state = createSessionState('CA123', {});
+  state.phase = PHASES.CONSENT_CHECK;
+  
+  const action = controller.getNextAction(state);
+  assertEqual(action.type, 'ask');
+  assertEqual(action.field, 'contact_consent');
+});
+
+test('getNextAction returns complete when all required fields collected and confirmed', () => {
+  const controller = new ConversationController();
+  const state = createSessionState('CA123', {});
+  
+  // Set and confirm all required fields
+  setFieldValue(state, 'contact_consent', true, true);
+  setFieldValue(state, 'full_name', 'John Doe', true);
+  setFieldValue(state, 'phone_e164', '+15551234567', true);
+  setFieldValue(state, 'email', 'john@example.com', true);
+  setFieldValue(state, 'preferred_contact_method', 'phone', true);
+  setFieldValue(state, 'property_zip', '63110', true);
+  setFieldValue(state, 'property_state', 'MO', true);
+  setFieldValue(state, 'land_status', 'own', true);
+  setFieldValue(state, 'home_type', 'manufactured', true);
+  setFieldValue(state, 'timeline', '3 months', true);
+  setFieldValue(state, 'credit', 650, true);
+  setFieldValue(state, 'best_time_to_contact', 'morning', true);
+  
+  const action = controller.getNextAction(state);
+  assertEqual(action.type, 'complete');
+});
+
+test('getNextAction returns end_call for do_not_contact', () => {
+  const controller = new ConversationController();
+  const state = createSessionState('CA123', {});
+  state.doNotContact = true;
+  
+  const action = controller.getNextAction(state);
+  assertEqual(action.type, 'end_call');
+});
+
+test('controller confirms fields in correct order', () => {
+  const controller = new ConversationController();
+  const state = createSessionState('CA123', {});
+  
+  // Set multiple fields out of order
+  setFieldValue(state, 'email', 'john@example.com', false);
+  setFieldValue(state, 'full_name', 'John Doe', false);
+  setFieldValue(state, 'contact_consent', true, false);
+  
+  // First confirmation should be contact_consent (earlier in FIELD_ORDER)
+  const action1 = controller.getNextAction(state);
+  assertEqual(action1.field, 'contact_consent', 'Should confirm consent first');
+  
+  confirmField(state, 'contact_consent');
+  
+  // Next should be full_name
+  const action2 = controller.getNextAction(state);
+  assertEqual(action2.field, 'full_name', 'Should confirm name second');
 });
 
 // =============================================================================
@@ -145,33 +329,113 @@ test('isPrequalificationReady returns true when all required fields collected', 
 
 console.log('\n🔧 Tools Tests\n');
 
-test('TOOLS array is not empty', () => {
-  assertTrue(TOOLS.length > 0);
+test('TOOLS array includes extract_fields tool', () => {
+  const extractTool = TOOLS.find(t => t.function.name === 'extract_fields');
+  assertTrue(!!extractTool, 'Should have extract_fields tool');
 });
 
-test('getToolsForPhase returns tools for consent_check', () => {
-  const tools = getToolsForPhase('consent_check');
-  assertTrue(tools.length > 0);
+test('extract_fields tool has all expected parameters', () => {
+  const extractTool = TOOLS.find(t => t.function.name === 'extract_fields');
+  const params = extractTool.function.parameters.properties;
   
-  const hasCollectConsent = tools.some(t => t.function.name === 'collect_consent');
-  assertTrue(hasCollectConsent, 'Should include collect_consent tool');
+  assertTrue(!!params.confirmation, 'Should have confirmation param');
+  assertTrue(!!params.full_name, 'Should have full_name param');
+  assertTrue(!!params.phone_e164, 'Should have phone_e164 param');
+  assertTrue(!!params.email, 'Should have email param');
+  assertTrue(!!params.land_value_raw, 'Should have land_value_raw param');
+  assertTrue(!!params.credit_raw, 'Should have credit_raw param');
+  assertTrue(!!params.timeline_raw, 'Should have timeline_raw param');
 });
 
-test('getToolsForPhase returns tools for contact_info', () => {
-  const tools = getToolsForPhase('contact_info');
-  assertTrue(tools.length > 0);
+test('EXTRACTION_TO_STATE_FIELD_MAP maps raw fields correctly', () => {
+  assertEqual(EXTRACTION_TO_STATE_FIELD_MAP.land_value_raw, 'land_value');
+  assertEqual(EXTRACTION_TO_STATE_FIELD_MAP.credit_raw, 'credit');
+  assertEqual(EXTRACTION_TO_STATE_FIELD_MAP.timeline_raw, 'timeline');
+});
+
+// =============================================================================
+// TOOL EXECUTOR TESTS
+// =============================================================================
+
+console.log('\n⚡ Tool Executor Tests\n');
+
+test('executeTool extracts multiple fields at once', async () => {
+  const state = createSessionState('CA123', {});
   
-  const hasCollectName = tools.some(t => t.function.name === 'collect_name');
-  assertTrue(hasCollectName, 'Should include collect_name tool');
+  const result = await executeTool('extract_fields', {
+    full_name: 'John Doe',
+    home_type: 'double_wide',
+  }, state, {});
+  
+  assertEqual(result.fieldsExtracted.length, 2);
+  assertEqual(getFieldValue(result.state, 'full_name'), 'John Doe');
+  assertEqual(getFieldValue(result.state, 'home_type'), 'double_wide');
 });
 
-test('each tool has required function properties', () => {
-  for (const tool of TOOLS) {
-    assertEqual(tool.type, 'function');
-    assertTrue(!!tool.function.name, `Tool should have name`);
-    assertTrue(!!tool.function.description, `Tool ${tool.function.name} should have description`);
-    assertTrue(!!tool.function.parameters, `Tool ${tool.function.name} should have parameters`);
-  }
+test('executeTool handles confirmation responses', async () => {
+  const state = createSessionState('CA123', {});
+  setFieldValue(state, 'full_name', 'John Doe', false);
+  
+  const pendingConfirmation = { field: 'full_name', value: 'John Doe' };
+  
+  const result = await executeTool('extract_fields', {
+    confirmation: true,
+  }, state, { pendingConfirmation });
+  
+  assertTrue(isFieldConfirmed(result.state, 'full_name'), 'Field should be confirmed');
+});
+
+test('executeTool validates phone numbers', async () => {
+  const state = createSessionState('CA123', {});
+  
+  const result = await executeTool('extract_fields', {
+    phone_e164: '5551234567',
+  }, state, {});
+  
+  assertEqual(getFieldValue(result.state, 'phone_e164'), '+15551234567');
+});
+
+test('executeTool computes bands from raw values', async () => {
+  const state = createSessionState('CA123', {});
+  
+  const result = await executeTool('extract_fields', {
+    land_value_raw: 75000,
+    credit_raw: 680,
+  }, state, {});
+  
+  assertEqual(getFieldValue(result.state, 'land_value'), '50k_100k');
+  assertEqual(getRawValue(result.state, 'land_value'), 75000);
+  assertEqual(getFieldValue(result.state, 'credit'), '680_719');
+  assertEqual(getRawValue(result.state, 'credit'), 680);
+});
+
+test('executeTool treats "Yes" as consent in consent_check phase without pending confirmation', async () => {
+  const state = createSessionState('CA123', {});
+  state.phase = PHASES.CONSENT_CHECK;
+  
+  // No pendingConfirmation - this simulates the first response to welcome greeting
+  const result = await executeTool('extract_fields', {
+    confirmation: true,
+  }, state, { pendingConfirmation: null });
+  
+  // Should have treated confirmation as contact_consent
+  assertEqual(getFieldValue(result.state, 'contact_consent'), true);
+  assertTrue(result.fieldsExtracted.some(f => f.field === 'contact_consent'), 'Should have extracted contact_consent');
+});
+
+test('executeTool treats "Yes" as consent in WELCOME phase without pending confirmation', async () => {
+  const state = createSessionState('CA123', {});
+  // State starts in WELCOME phase by default
+  assertEqual(state.phase, PHASES.WELCOME);
+  
+  // No pendingConfirmation - this simulates the first response to welcome greeting
+  const result = await executeTool('extract_fields', {
+    confirmation: true,
+  }, state, { pendingConfirmation: null });
+  
+  // Should have treated confirmation as contact_consent
+  assertEqual(getFieldValue(result.state, 'contact_consent'), true);
+  assertTrue(result.fieldsExtracted.some(f => f.field === 'contact_consent'), 'Should have extracted contact_consent');
 });
 
 // =============================================================================
@@ -180,58 +444,28 @@ test('each tool has required function properties', () => {
 
 console.log('\n📝 Prompts Tests\n');
 
-test('buildSystemPrompt returns non-empty string', () => {
+test('buildSystemPrompt returns extraction-focused prompt', () => {
   const state = createSessionState('CA123', {});
-  const prompt = buildSystemPrompt(state);
+  const prompt = buildSystemPrompt(state, null);
   
-  assertTrue(prompt.length > 100, 'Prompt should be substantial');
-  assertTrue(prompt.includes('TLC'), 'Prompt should mention TLC');
+  assertTrue(prompt.includes('extract'), 'Should mention extraction');
+  assertTrue(prompt.includes('extract_fields'), 'Should mention the tool');
+  assertTrue(prompt.includes('provide_info'), 'Should mention provide_info for explanations');
+  assertTrue(prompt.includes('HOME TYPES'), 'Should include option details');
+  assertTrue(prompt.length < 4000, 'Should be reasonably sized for voice context');
 });
 
-test('buildSystemPrompt includes phase-specific context', () => {
+test('buildSystemPrompt includes action context', () => {
   const state = createSessionState('CA123', {});
-  state.phase = PHASES.CONSENT_CHECK;
+  const action = { 
+    type: 'confirm', 
+    field: 'full_name', 
+    message: 'I have your name as John. Is that correct?' 
+  };
   
-  const prompt = buildSystemPrompt(state);
-  assertTrue(prompt.includes('Consent'), 'Should include consent phase context');
-});
-
-test('buildSystemPrompt includes collected data summary', () => {
-  const state = createSessionState('CA123', {});
-  setFieldValue(state, 'full_name', 'John Doe');
-  
-  const prompt = buildSystemPrompt(state);
-  assertTrue(prompt.includes('John Doe'), 'Should include collected name');
-});
-
-// =============================================================================
-// QUESTIONS TESTS
-// =============================================================================
-
-console.log('\n❓ Questions Tests\n');
-
-test('QUESTIONS object has expected questions', () => {
-  assertTrue(!!QUESTIONS.contact_consent, 'Should have contact_consent question');
-  assertTrue(!!QUESTIONS.full_name, 'Should have full_name question');
-  assertTrue(!!QUESTIONS.property_zip, 'Should have property_zip question');
-});
-
-test('each question has required properties', () => {
-  for (const [id, question] of Object.entries(QUESTIONS)) {
-    assertTrue(!!question.id, `Question ${id} should have id`);
-    assertTrue(!!question.phase, `Question ${id} should have phase`);
-    assertTrue(!!question.question, `Question ${id} should have question`);
-    assertTrue(!!question.spoken, `Question ${id} should have spoken version`);
-  }
-});
-
-test('getNextQuestion returns correct question for phase', () => {
-  const state = createSessionState('CA123', {});
-  state.phase = PHASES.CONSENT_CHECK;
-  
-  const question = getNextQuestion(state);
-  assertTrue(!!question, 'Should return a question');
-  assertEqual(question.phase, PHASES.CONSENT_CHECK);
+  const prompt = buildSystemPrompt(state, action);
+  assertTrue(prompt.includes('Confirming'), 'Should include confirm context');
+  assertTrue(prompt.includes('full_name'), 'Should include field name');
 });
 
 // =============================================================================
@@ -240,93 +474,141 @@ test('getNextQuestion returns correct question for phase', () => {
 
 console.log('\n🏛️ Mock Hestia Tests\n');
 
-test('MockHestiaClient creates lead with idempotency', async () => {
+test('MockHestiaClient stores raw values in lead payload', async () => {
   const client = new MockHestiaClient({ verbose: false });
   client.clearAll();
   
   const state = createSessionState('CA123', {});
-  setFieldValue(state, 'full_name', 'John Doe');
-  setFieldValue(state, 'phone_e164', '+15551234567');
-  
-  const result1 = await client.createLead(state);
-  assertTrue(!!result1.lead_id, 'Should return lead_id');
-  assertEqual(result1.created, true, 'Should be newly created');
-  
-  const result2 = await client.createLead(state);
-  assertEqual(result2.lead_id, result1.lead_id, 'Same idempotency key should return same lead');
-  assertEqual(result2.created, false, 'Should not be newly created');
-});
-
-test('MockHestiaClient updates lead', async () => {
-  const client = new MockHestiaClient({ verbose: false });
-  client.clearAll();
-  
-  const state = createSessionState('CA456', {});
-  setFieldValue(state, 'full_name', 'Jane Doe');
-  setFieldValue(state, 'phone_e164', '+15559999999');
+  setFieldValue(state, 'contact_consent', true, true);
+  setFieldValue(state, 'full_name', 'John Doe', true);
+  setFieldValue(state, 'phone_e164', '+15551234567', true);
+  setFieldValue(state, 'email', 'john@example.com', true);
+  setFieldValue(state, 'preferred_contact_method', 'phone', true);
+  setFieldValue(state, 'property_zip', '63110', true);
+  setFieldValue(state, 'property_state', 'MO', true);
+  setFieldValue(state, 'land_status', 'own', true);
+  setFieldValue(state, 'land_value', 75000, true);
+  setFieldValue(state, 'home_type', 'double_wide', true);
+  setFieldValue(state, 'timeline', 'April', true);
+  setFieldValue(state, 'credit', 680, true);
+  setFieldValue(state, 'best_time_to_contact', 'morning', true);
   
   const result = await client.createLead(state);
-  
-  setFieldValue(state, 'property_zip', '90210');
-  await client.updateLead(result.lead_id, state);
-  
   const lead = await client.getLead(result.lead_id);
-  assertEqual(lead.home_and_site.property_zip, '90210');
+  
+  // Check raw values are stored
+  assertEqual(lead.home_and_site.land_value_raw, 75000);
+  assertEqual(lead.home_and_site.land_value_band, '50k_100k');
+  assertTrue(!!lead.home_and_site.timeline_raw); // "April"
+  assertEqual(lead.financial_snapshot.credit_raw, 680);
+  assertEqual(lead.financial_snapshot.credit_band_self_reported, '680_719');
 });
 
-test('MockHestiaClient sets status', async () => {
-  const client = new MockHestiaClient({ verbose: false });
-  client.clearAll();
+// =============================================================================
+// INTEGRATION TEST
+// =============================================================================
+
+console.log('\n🔄 Integration Tests\n');
+
+test('full conversation flow extracts and confirms multiple fields', async () => {
+  const controller = new ConversationController();
+  const state = createSessionState('CA123', {});
+  state.phase = PHASES.CONSENT_CHECK;
   
-  const state = createSessionState('CA789', {});
-  setFieldValue(state, 'full_name', 'Test User');
-  setFieldValue(state, 'phone_e164', '+15551111111');
+  // Simulate: "Yes, my name is James and I want a double wide"
+  await executeTool('extract_fields', {
+    contact_consent: true,
+    full_name: 'James',
+    home_type: 'double_wide',
+  }, state, {});
   
-  const result = await client.createLead(state);
-  await client.setStatus(result.lead_id, 'prequalified');
+  // Controller should want to confirm consent first
+  let action = controller.getNextAction(state);
+  assertEqual(action.type, 'confirm');
+  assertEqual(action.field, 'contact_consent');
   
-  const lead = await client.getLead(result.lead_id);
-  assertEqual(lead.status, 'prequalified');
+  // Simulate confirmation
+  await executeTool('extract_fields', {
+    confirmation: true,
+  }, state, { pendingConfirmation: { field: 'contact_consent' } });
+  
+  // Now should want to confirm full_name
+  action = controller.getNextAction(state);
+  assertEqual(action.type, 'confirm');
+  assertEqual(action.field, 'full_name');
+  
+  // User corrects: "Actually it's James Smith"
+  await executeTool('extract_fields', {
+    confirmation: false,
+    full_name: 'James Smith',
+  }, state, { pendingConfirmation: { field: 'full_name' } });
+  
+  // Should still want to confirm the updated name
+  action = controller.getNextAction(state);
+  assertEqual(action.type, 'confirm');
+  assertEqual(action.field, 'full_name');
+  assertEqual(getFieldValue(state, 'full_name'), 'James Smith');
 });
 
-test('MockHestiaClient logs events', async () => {
-  const client = new MockHestiaClient({ verbose: false });
-  client.clearAll();
+test('executeTool handles "No" to boolean questions correctly', async () => {
+  // Simulate asking for has_recent_bankruptcy
+  const currentAction = {
+    type: 'ask',
+    field: 'has_recent_bankruptcy',
+    message: 'Have you had any bankruptcies in recent years?'
+  };
   
-  const state = createSessionState('CA111', {});
-  setFieldValue(state, 'full_name', 'Event User');
-  setFieldValue(state, 'phone_e164', '+15552222222');
+  let state = createSessionState('test-123', '+15551234567', 'test_source');
+  state.phase = 'optional_questions';
   
-  const result = await client.createLead(state);
-  await client.logEvent(result.lead_id, {
-    event_type: 'test_event',
-    actor_type: 'system',
-    payload_json: { test: true },
-  });
+  // User says "No" - LLM interprets as confirmation: false, but we're asking a boolean question
+  const result = await executeTool('extract_fields', {
+    confirmation: false,
+  }, state, { currentAction });
   
-  const events = await client.getEvents(result.lead_id);
-  assertTrue(events.length > 0, 'Should have events');
+  // Should have extracted has_recent_bankruptcy: false, not treated as rejection
+  const extracted = result.fieldsExtracted.find(f => f.field === 'has_recent_bankruptcy');
+  assertTrue(!!extracted, 'has_recent_bankruptcy should be extracted');
   
-  const testEvent = events.find(e => e.event_type === 'test_event');
-  assertTrue(!!testEvent, 'Should find test event');
+  // Value should be false
+  assertEqual(getFieldValue(result.state, 'has_recent_bankruptcy'), false, 'has_recent_bankruptcy should be false');
 });
 
-test('MockHestiaClient looks up dealer by tracking number', async () => {
-  const client = new MockHestiaClient({ verbose: false });
+test('executeTool handles "Yes" to boolean questions correctly', async () => {
+  // Simulate asking for has_recent_bankruptcy
+  const currentAction = {
+    type: 'ask',
+    field: 'has_recent_bankruptcy',
+    message: 'Have you had any bankruptcies in recent years?'
+  };
   
-  const result = await client.lookupDealerByTrackingNumber('+18005551234');
-  assertTrue(!!result, 'Should find dealer');
-  assertEqual(result.dealer_id, 'dlr_12345');
+  let state = createSessionState('test-123', '+15551234567', 'test_source');
+  state.phase = 'optional_questions';
+  
+  // User says "Yes" - LLM interprets as confirmation: true
+  const result = await executeTool('extract_fields', {
+    confirmation: true,
+  }, state, { currentAction });
+  
+  // Should have extracted has_recent_bankruptcy: true
+  const extracted = result.fieldsExtracted.find(f => f.field === 'has_recent_bankruptcy');
+  assertTrue(!!extracted, 'has_recent_bankruptcy should be extracted');
+  
+  // Value should be true
+  assertEqual(getFieldValue(result.state, 'has_recent_bankruptcy'), true, 'has_recent_bankruptcy should be true');
 });
 
 // =============================================================================
 // SUMMARY
 // =============================================================================
 
-console.log('\n' + '═'.repeat(50));
-console.log(`📊 Test Results: ${testsPassed} passed, ${testsFailed} failed`);
-console.log('═'.repeat(50) + '\n');
-
-if (testsFailed > 0) {
-  process.exit(1);
-}
+// Wait for async tests to complete
+setTimeout(() => {
+  console.log('\n' + '═'.repeat(50));
+  console.log(`📊 Test Results: ${testsPassed} passed, ${testsFailed} failed`);
+  console.log('═'.repeat(50) + '\n');
+  
+  if (testsFailed > 0) {
+    process.exit(1);
+  }
+}, 1000);

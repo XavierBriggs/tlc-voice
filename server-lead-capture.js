@@ -1,12 +1,8 @@
 /**
  * TLC Lead Capture Voice Agent Server
  * 
- * Enhanced ConversationRelay server for manufactured home financing lead capture.
- * Integrates:
- * - Conversation state machine for guided flow
- * - OpenAI function calling for structured data extraction
- * - Hestia API integration for lead management
- * - Extended metrics for lead capture analytics
+ * Deterministic conversation flow with LLM-powered extraction.
+ * Uses ConversationController for flow control, LLM only for data extraction.
  */
 
 import Fastify from "fastify";
@@ -15,18 +11,21 @@ import fastifyFormBody from "@fastify/formbody";
 import OpenAI from "openai";
 import dotenv from "dotenv";
 
-// Lead capture modules
+// Core modules
 import { 
   createSessionState, 
   advancePhase, 
   handleInterruption as handleStateInterruption,
   getSessionSummary,
+  setFieldValue,
+  confirmField,
   PHASES,
 } from "./lib/state-machine.js";
-import { TOOLS, getToolsForPhase } from "./lib/tools.js";
+import { TOOLS } from "./lib/tools.js";
 import { processToolCalls } from "./lib/tool-executor.js";
 import { buildSystemPrompt, getWelcomeGreeting, getClosingMessage } from "./lib/prompts.js";
-import { determineAttribution, buildSourceFromCall } from "./lib/attribution.js";
+import { ConversationController } from "./lib/conversation-controller.js";
+import { determineAttribution } from "./lib/attribution.js";
 import { createHestiaClient } from "./api/hestia-client.js";
 import { 
   createTurnMetrics, 
@@ -48,27 +47,22 @@ const HOST = process.env.HOST || "localhost";
 const DOMAIN = process.env.NGROK_URL || process.env.DOMAIN || "localhost:8080";
 const WS_URL = `wss://${DOMAIN}/ws`;
 
-// OpenAI Configuration
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4.1-nano";
 
-// Voice Agent Configuration for Lead Capture
 const WELCOME_GREETING = process.env.WELCOME_GREETING || 
-  "Hi there! This is TLC's virtual assistant thank you for calling about manufactured home financing. Is now a good time to chat for a few minutes?";
+  "Hey there! This is TLC's virtual assistant - we help folks get financing for manufactured homes. Do you have a couple minutes to chat?";
 
-// TTS/STT Configuration
 const TTS_PROVIDER = process.env.TTS_PROVIDER || "google";
 const TTS_VOICE = process.env.TTS_VOICE || "en-US-Journey-F";
 const TTS_LANGUAGE = process.env.TTS_LANGUAGE || "en-US";
 const STT_PROVIDER = process.env.STT_PROVIDER || "deepgram";
 const STT_LANGUAGE = process.env.STT_LANGUAGE || "en-US";
 
-// Speech hints for manufactured home terminology
 const SPEECH_HINTS = process.env.SPEECH_HINTS || 
   "manufactured,modular,single wide,double wide,mobile home,HUD,septic,foundation,TLC,prequalified,prequalification";
 
-// Hestia API Configuration
-const HESTIA_MODE = process.env.HESTIA_MODE || "mock"; // 'mock' or 'live'
+const HESTIA_MODE = process.env.HESTIA_MODE || "mock";
 
 // =============================================================================
 // INITIALIZATION
@@ -77,175 +71,23 @@ const HESTIA_MODE = process.env.HESTIA_MODE || "mock"; // 'mock' or 'live'
 const sessions = new Map();
 const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
 const hestiaClient = createHestiaClient({ mode: HESTIA_MODE, verbose: true });
+const controller = new ConversationController();
 
 // =============================================================================
-// OPENAI INTEGRATION WITH FUNCTION CALLING
+// CONVERSATION FLOW
 // =============================================================================
 
 /**
- * Get AI response with streaming and function calling support
- */
-async function streamAIResponseWithTools(state, ws, turnMetrics) {
-  try {
-    // Build the dynamic system prompt based on current state
-    const systemPrompt = buildSystemPrompt(state);
-    
-    // Build conversation with system prompt and history
-    const conversation = [
-      { role: "system", content: systemPrompt },
-      ...state.collectedData._conversationHistory || [],
-    ];
-    
-    // Get tools relevant to current phase
-    const phaseTools = getToolsForPhase(state.phase);
-    
-    turnMetrics.llmRequestStartedAt = Date.now();
-    
-    const requestParams = {
-      model: OPENAI_MODEL,
-      messages: conversation,
-      stream: true,
-      max_tokens: 500,
-      temperature: 0,
-    };
-    
-    // Add tools if available for this phase
-    if (phaseTools.length > 0) {
-      requestParams.tools = phaseTools;
-      requestParams.tool_choice = "auto";
-    }
-    
-    const stream = await openai.chat.completions.create(requestParams);
-    
-    let fullResponse = "";
-    let tokenBuffer = "";
-    let isFirstToken = true;
-    let toolCalls = [];
-    let currentToolCall = null;
-    
-    for await (const chunk of stream) {
-      const delta = chunk.choices[0]?.delta;
-      const finishReason = chunk.choices[0]?.finish_reason;
-      
-      // Handle tool calls
-      if (delta?.tool_calls) {
-        for (const toolCallDelta of delta.tool_calls) {
-          if (toolCallDelta.index !== undefined) {
-            if (!toolCalls[toolCallDelta.index]) {
-              toolCalls[toolCallDelta.index] = {
-                id: toolCallDelta.id || '',
-                type: 'function',
-                function: { name: '', arguments: '' },
-              };
-            }
-            if (toolCallDelta.function?.name) {
-              toolCalls[toolCallDelta.index].function.name += toolCallDelta.function.name;
-            }
-            if (toolCallDelta.function?.arguments) {
-              toolCalls[toolCallDelta.index].function.arguments += toolCallDelta.function.arguments;
-            }
-          }
-        }
-      }
-      
-      // Handle content streaming
-      if (delta?.content) {
-        if (isFirstToken) {
-          turnMetrics.llmFirstTokenAt = Date.now();
-          isFirstToken = false;
-        }
-        
-        fullResponse += delta.content;
-        tokenBuffer += delta.content;
-        turnMetrics.totalTokens++;
-        
-        // Stream at natural boundaries for low latency
-        if (
-          tokenBuffer.includes(".") ||
-          tokenBuffer.includes("!") ||
-          tokenBuffer.includes("?") ||
-          tokenBuffer.includes(",") ||
-          tokenBuffer.length > 8
-        ) {
-          if (!turnMetrics.firstTokenSentAt) {
-            turnMetrics.firstTokenSentAt = Date.now();
-          }
-          
-          ws.send(JSON.stringify({
-            type: "text",
-            token: tokenBuffer,
-            last: false,
-          }));
-          
-          tokenBuffer = "";
-        }
-      }
-      
-      // Handle finish
-      if (finishReason === "stop" || finishReason === "tool_calls") {
-        turnMetrics.llmCompleteAt = Date.now();
-        
-        // If there are tool calls, process them
-        if (toolCalls.length > 0 && finishReason === "tool_calls") {
-          turnMetrics.toolCalls = toolCalls.map(tc => tc.function.name);
-          return { 
-            type: "tool_calls", 
-            toolCalls, 
-            response: fullResponse,
-            tokenBuffer,
-          };
-        }
-        
-        // Send remaining buffer
-        if (tokenBuffer.length > 0) {
-          if (!turnMetrics.firstTokenSentAt) {
-            turnMetrics.firstTokenSentAt = Date.now();
-          }
-          ws.send(JSON.stringify({
-            type: "text",
-            token: tokenBuffer,
-            last: true,
-          }));
-        } else {
-          ws.send(JSON.stringify({
-            type: "text",
-            token: "",
-            last: true,
-          }));
-        }
-      }
-    }
-    
-    return { type: "complete", response: fullResponse };
-    
-  } catch (error) {
-    console.error("[ERROR] OpenAI streaming error:", error);
-    turnMetrics.llmCompleteAt = Date.now();
-    turnMetrics.error = error.message;
-    
-    ws.send(JSON.stringify({
-      type: "text",
-      token: "I'm sorry, I encountered an error. Could you please repeat that?",
-      last: true,
-    }));
-    
-    return { type: "error", error: error.message };
-  }
-}
-
-/**
- * Process a conversation turn with tool calling loop
+ * Process a conversation turn using the deterministic controller
  */
 async function processConversationTurn(userMessage, state, ws, turnMetrics) {
-  // Initialize conversation history if not exists
+  // Initialize conversation history if needed
   if (!state.collectedData._conversationHistory) {
     state.collectedData._conversationHistory = [];
   }
   
-  // IMPORTANT: Advance phase at START of turn if current phase is complete
-  // This ensures we don't get stuck in phases with no tools (like welcome)
-  state = advancePhase(state);
-  console.log(`[PHASE] Current phase: ${state.phase}`);
+  // Get the pending confirmation if any
+  const pendingConfirmation = state._pendingConfirmation || null;
   
   // Add user message to history
   state.collectedData._conversationHistory.push({
@@ -253,65 +95,43 @@ async function processConversationTurn(userMessage, state, ws, turnMetrics) {
     content: userMessage,
   });
   
-  // Track questions asked
   state.questionsAsked++;
   
-  let result = await streamAIResponseWithTools(state, ws, turnMetrics);
-  let loopCount = 0;
-  const maxLoops = 5; // Prevent infinite tool call loops
+  // Step 1: Get what the controller says we should do
+  let nextAction = controller.getNextAction(state);
   
-  // Tool calling loop
-  while (result.type === "tool_calls" && loopCount < maxLoops) {
-    loopCount++;
-    console.log(`[TOOL-LOOP] Processing ${result.toolCalls.length} tool calls (loop ${loopCount})`);
+  // Step 2: Call LLM to extract data from user message
+  const systemPrompt = buildSystemPrompt(state, nextAction);
+  
+  const extractionResult = await extractWithLLM(
+    systemPrompt, 
+    state.collectedData._conversationHistory,
+    turnMetrics
+  );
+  
+  // Step 3: Process any tool calls (extractions)
+  let infoResponse = null;
+  let rejectedField = null;
+  
+  if (extractionResult.toolCalls && extractionResult.toolCalls.length > 0) {
+    const toolResult = await processToolCalls(
+      extractionResult.toolCalls,
+      state,
+      { hestiaClient, pendingConfirmation, currentAction: nextAction }
+    );
     
-    // Process tool calls
-    const { state: newState, results, responseHint, shouldEndCall } = 
-      await processToolCalls(result.toolCalls, state, hestiaClient);
+    state = toolResult.state;
+    infoResponse = toolResult.infoResponse;
+    rejectedField = toolResult.rejectedField;
     
-    state = newState;
+    // Track extracted fields
+    turnMetrics.fieldsCollected = toolResult.fieldsExtracted.map(f => f.field);
     
-    // Track fields collected
-    for (const tc of result.toolCalls) {
-      turnMetrics.fieldsCollected.push(tc.function.name);
-    }
-    
-    // Add tool results to conversation
-    state.collectedData._conversationHistory.push({
-      role: "assistant",
-      content: result.response || null,
-      tool_calls: result.toolCalls,
-    });
-    
-    // Add tool results
-    for (const toolResult of results) {
-      state.collectedData._conversationHistory.push({
-        role: "tool",
-        tool_call_id: toolResult.tool_call_id,
-        content: toolResult.output,
-      });
-    }
-    
-    // Handle end of call
-    if (shouldEndCall) {
+    // Handle end call
+    if (toolResult.shouldEndCall) {
       const closingMessage = getClosingMessage(state);
+      sendMessage(ws, closingMessage, true);
       
-      // Send any buffered content first
-      if (result.tokenBuffer) {
-        ws.send(JSON.stringify({
-          type: "text",
-          token: result.tokenBuffer + " " + closingMessage,
-          last: true,
-        }));
-      } else {
-        ws.send(JSON.stringify({
-          type: "text",
-          token: closingMessage,
-          last: true,
-        }));
-      }
-      
-      // Schedule call end
       setTimeout(() => {
         ws.send(JSON.stringify({ type: "end" }));
       }, 5000);
@@ -319,22 +139,179 @@ async function processConversationTurn(userMessage, state, ws, turnMetrics) {
       return { state, ended: true };
     }
     
-    // Advance phase if needed
-    state = advancePhase(state);
-    
-    // Get next response (may trigger more tool calls)
-    result = await streamAIResponseWithTools(state, ws, turnMetrics);
-  }
-  
-  // Add final response to history
-  if (result.response) {
+    // Add tool results to conversation history
     state.collectedData._conversationHistory.push({
       role: "assistant",
-      content: result.response,
+      content: null,
+      tool_calls: extractionResult.toolCalls,
+    });
+    
+    for (const result of toolResult.results) {
+      state.collectedData._conversationHistory.push({
+        role: "tool",
+        tool_call_id: result.tool_call_id,
+        content: result.output,
+      });
+    }
+  }
+  
+  // Step 4: Advance phase if needed
+  state = advancePhase(state);
+  
+  // Step 5: Get the NEXT action after processing
+  nextAction = controller.getNextAction(state);
+  
+  // Step 6: Send the appropriate message(s)
+  
+  // 6a: If there's an info response (user asked a question), speak it first
+  if (infoResponse) {
+    sendMessage(ws, infoResponse, false);
+    
+    // Add to conversation history
+    state.collectedData._conversationHistory.push({
+      role: "assistant",
+      content: infoResponse,
+    });
+    
+    // Small pause, then continue with the question
+  }
+  
+  // 6b: If user rejected a confirmation, send an apology
+  if (rejectedField) {
+    const apology = "Oh, sorry about that! Let me get that right.";
+    sendMessage(ws, apology, false);
+    
+    state.collectedData._conversationHistory.push({
+      role: "assistant",
+      content: apology,
     });
   }
   
+  // 6c: Handle completion
+  if (nextAction.type === 'complete') {
+    // Prequalification complete!
+    sendMessage(ws, nextAction.message, true);
+    
+    // Mark prequalified and sync
+    state.prequalified = true;
+    state.prequalifiedAt = Date.now();
+    state.phase = PHASES.PREQUALIFIED;
+    
+    if (hestiaClient && state.leadId) {
+      await hestiaClient.setStatus(state.leadId, 'prequalified');
+      await hestiaClient.logEvent(state.leadId, {
+        event_type: 'voice_intake_completed',
+        actor_type: 'ai',
+        payload_json: {
+          prequalified: true,
+          fieldsCollected: state.fieldsCollected,
+          fieldsConfirmed: state.fieldsConfirmed,
+          duration_ms: Date.now() - state.startTime,
+        },
+      });
+      
+      // Trigger routing
+      try {
+        const routeResult = await hestiaClient.routeLead(state.leadId);
+        if (routeResult?.success) {
+          state.routed = true;
+          state.assignedDealerId = routeResult.assigned_dealer_id;
+        }
+      } catch (e) {
+        console.error('[HESTIA] Routing error:', e);
+      }
+    }
+    
+    setTimeout(() => {
+      ws.send(JSON.stringify({ type: "end" }));
+    }, 5000);
+    
+    return { state, ended: true };
+  }
+  
+  // 6d: Handle end call
+  if (nextAction.type === 'end_call') {
+    sendMessage(ws, nextAction.message, true);
+    
+    setTimeout(() => {
+      ws.send(JSON.stringify({ type: "end" }));
+    }, 3000);
+    
+    return { state, ended: true };
+  }
+  
+  // 6e: For 'confirm' or 'ask' actions, send the message
+  sendMessage(ws, nextAction.message, true);
+  
+  // Track pending confirmation for next turn
+  if (nextAction.type === 'confirm') {
+    state._pendingConfirmation = {
+      field: nextAction.field,
+      value: nextAction.value,
+    };
+  } else {
+    state._pendingConfirmation = null;
+  }
+  
+  // Add assistant message to history
+  state.collectedData._conversationHistory.push({
+    role: "assistant",
+    content: nextAction.message,
+  });
+  
   return { state, ended: false };
+}
+
+/**
+ * Extract data from user message using LLM
+ */
+async function extractWithLLM(systemPrompt, conversationHistory, turnMetrics) {
+  turnMetrics.llmRequestStartedAt = Date.now();
+  
+  try {
+    const response = await openai.chat.completions.create({
+      model: OPENAI_MODEL,
+      messages: [
+        { role: "system", content: systemPrompt },
+        ...conversationHistory,
+      ],
+      tools: TOOLS,
+      tool_choice: "required",  // Force LLM to always call a tool
+      temperature: 0.3,  // Slight temperature for more natural responses
+      max_tokens: 300,
+    });
+    
+    turnMetrics.llmCompleteAt = Date.now();
+    turnMetrics.totalTokens = response.usage?.total_tokens || 0;
+    
+    const message = response.choices[0]?.message;
+    
+    return {
+      content: message?.content || null,
+      toolCalls: message?.tool_calls || [],
+    };
+  } catch (error) {
+    console.error("[LLM] Extraction error:", error);
+    turnMetrics.llmCompleteAt = Date.now();
+    turnMetrics.error = error.message;
+    
+    return {
+      content: null,
+      toolCalls: [],
+      error: error.message,
+    };
+  }
+}
+
+/**
+ * Send a text message to the WebSocket
+ */
+function sendMessage(ws, text, isLast = false) {
+  ws.send(JSON.stringify({
+    type: "text",
+    token: text,
+    last: isLast,
+  }));
 }
 
 // =============================================================================
@@ -345,39 +322,18 @@ function handleInterrupt(callSid, utteranceUntilInterrupt, durationMs) {
   const sessionData = sessions.get(callSid);
   if (!sessionData) return;
   
-  // Track interruption in metrics
   sessionData.metrics.interruptions++;
-  
-  // Update state machine
   handleStateInterruption(sessionData.state, utteranceUntilInterrupt);
   
-  // Mark current turn as interrupted
   const currentTurn = sessionData.metrics.turns[sessionData.metrics.turns.length - 1];
   if (currentTurn) {
     currentTurn.interrupted = true;
     currentTurn.interruptedAt = Date.now();
     currentTurn.utteranceUntilInterrupt = utteranceUntilInterrupt;
-    currentTurn.durationUntilInterruptMs = durationMs;
-  }
-  
-  // Truncate conversation history
-  const history = sessionData.state.collectedData._conversationHistory;
-  if (history && history.length > 0) {
-    const lastAssistantIndex = history.findLastIndex(msg => msg.role === "assistant");
-    if (lastAssistantIndex !== -1 && history[lastAssistantIndex].content) {
-      const content = history[lastAssistantIndex].content;
-      const interruptPos = content.indexOf(utteranceUntilInterrupt);
-      if (interruptPos !== -1) {
-        history[lastAssistantIndex].content = content.substring(
-          0, 
-          interruptPos + utteranceUntilInterrupt.length
-        );
-      }
-    }
   }
   
   sessions.set(callSid, sessionData);
-  console.log(`[INTERRUPT] Gracefully handled. Phase: ${sessionData.state.phase}`);
+  console.log(`[INTERRUPT] Handled. Phase: ${sessionData.state.phase}`);
 }
 
 // =============================================================================
@@ -392,59 +348,45 @@ fastify.register(fastifyFormBody);
 // HTTP ROUTES
 // =============================================================================
 
-fastify.get("/health", async (request, reply) => {
-  return {
-    status: "ok",
-    mode: "lead_capture",
-    timestamp: new Date().toISOString(),
-    hestiaMode: HESTIA_MODE,
-    activeSessions: sessions.size,
-  };
-});
+fastify.get("/health", async () => ({
+  status: "ok",
+  mode: "lead_capture_v2",
+  timestamp: new Date().toISOString(),
+  hestiaMode: HESTIA_MODE,
+  activeSessions: sessions.size,
+}));
 
-fastify.get("/metrics", async (request, reply) => {
-  // Get aggregate metrics
+fastify.get("/metrics", async () => {
   const aggregates = getAggregateMetrics();
-  
-  // Get active session metrics
   const activeSessions = [];
+  
   for (const [callSid, sessionData] of sessions) {
-    const { state, metrics, metadata } = sessionData;
-    const duration = Date.now() - (metadata?.startTime || state?.startTime || Date.now());
-    
+    const { state, metrics } = sessionData;
     activeSessions.push({
       callSid,
       phase: state?.phase,
       prequalified: state?.prequalified || false,
       fieldsCollected: state?.fieldsCollected || 0,
-      questionsAsked: state?.questionsAsked || 0,
-      duration: Math.round(duration / 1000),
+      fieldsConfirmed: state?.fieldsConfirmed || 0,
       turns: metrics?.turns?.length || 0,
-      entrypoint: state?.collectedData?.source?.entrypoint,
     });
   }
   
-  return {
-    ...aggregates,
-    active_sessions: activeSessions,
-  };
+  return { ...aggregates, active_sessions: activeSessions };
 });
 
-// Debug endpoint for Hestia data
-fastify.get("/debug/leads", async (request, reply) => {
+fastify.get("/debug/leads", async () => {
   if (HESTIA_MODE !== "mock") {
     return { error: "Only available in mock mode" };
   }
-  
   return {
     leads: hestiaClient.getAllLeads(),
     stats: hestiaClient.getStats(),
   };
 });
 
-// TwiML endpoint
 fastify.all("/twiml", async (request, reply) => {
-  console.log("[TWIML] Generating lead capture TwiML response");
+  console.log("[TWIML] Generating TwiML response");
   
   const twiml = `<?xml version="1.0" encoding="UTF-8"?>
 <Response>
@@ -477,35 +419,26 @@ fastify.all("/voice", async (request, reply) => {
 
 fastify.register(async function (fastify) {
   fastify.get("/ws", { websocket: true }, (ws, request) => {
-    console.log("[WS] New WebSocket connection established");
+    console.log("[WS] New connection");
     
     ws.on("message", async (data) => {
       try {
         const message = JSON.parse(data.toString());
         
         switch (message.type) {
-          // =================================================================
-          // SETUP - Initialize session with state machine
-          // =================================================================
           case "setup": {
             const callSid = message.callSid;
             console.log("\n" + "═".repeat(60));
-            console.log("📞 NEW LEAD CAPTURE CALL");
+            console.log("📞 NEW LEAD CAPTURE CALL (V2)");
             console.log("═".repeat(60));
-            console.log(`   CallSid:    ${callSid}`);
-            console.log(`   From:       ${message.from}`);
-            console.log(`   To:         ${message.to}`);
-            console.log(`   Direction:  ${message.direction}`);
+            console.log(`   CallSid: ${callSid}`);
+            console.log(`   From:    ${message.from}`);
+            console.log(`   To:      ${message.to}`);
             
-            // Determine attribution from dialed number
             const attribution = await determineAttribution(message.to, hestiaClient);
-            console.log(`   Entrypoint: ${attribution.entrypoint}`);
-            if (attribution.dealer_id) {
-              console.log(`   Dealer:     ${attribution.dealer_id}`);
-            }
+            console.log(`   Entry:   ${attribution.entrypoint}`);
             console.log("═".repeat(60) + "\n");
             
-            // Create session state
             const state = createSessionState(callSid, {
               from: message.from,
               to: message.to,
@@ -530,33 +463,23 @@ fastify.register(async function (fastify) {
                 errors: [],
               },
             });
-            
-            // NOTE: Lead creation is deferred until minimum fields are collected
-            // (consent, name, phone, email, preferred_contact)
-            // This happens in syncLeadToHestia() after collect_preferred_contact
-            // The voice_call_started event will be logged along with partial_lead_created
             break;
           }
           
-          // =================================================================
-          // PROMPT - Process user speech with tool calling
-          // =================================================================
           case "prompt": {
             const promptTime = Date.now();
-            console.log(`[PROMPT] User said: "${message.voicePrompt}"`);
+            console.log(`[PROMPT] "${message.voicePrompt}"`);
             
             const sessionData = sessions.get(ws.callSid);
             if (!sessionData) {
-              console.error("[ERROR] No session found for callSid:", ws.callSid);
+              console.error("[ERROR] No session for:", ws.callSid);
               break;
             }
             
-            // Create turn metrics
             const turnMetrics = createTurnMetrics();
             turnMetrics.promptReceivedAt = promptTime;
             turnMetrics.userInput = message.voicePrompt;
             
-            // Process the conversation turn
             const { state: newState, ended } = await processConversationTurn(
               message.voicePrompt,
               sessionData.state,
@@ -566,86 +489,40 @@ fastify.register(async function (fastify) {
             
             sessionData.state = newState;
             
-            // Calculate and log latency
             const latencyResults = calculateTurnLatency(turnMetrics);
             turnMetrics.latency = latencyResults;
             logTurnMetrics(ws.callSid, turnMetrics, latencyResults);
             
-            // Store turn metrics
             sessionData.metrics.turns.push(turnMetrics);
             sessions.set(ws.callSid, sessionData);
             
-            // Log state summary
             const summary = getSessionSummary(newState);
-            console.log(`[STATE] Phase: ${summary.phase}, Fields: ${summary.fieldsCollected}, Prequalified: ${summary.prequalified}`);
+            console.log(`[STATE] Phase: ${summary.phase}, Collected: ${summary.fieldsCollected}, Confirmed: ${summary.fieldsConfirmed}, Prequalified: ${summary.prequalified}`);
             break;
           }
           
-          // =================================================================
-          // INTERRUPT - Handle graceful abort
-          // =================================================================
           case "interrupt": {
-            console.log(`[INTERRUPT] User interrupted at: "${message.utteranceUntilInterrupt}"`);
-            console.log(`[INTERRUPT] Duration: ${message.durationUntilInterruptMs}ms`);
-            handleInterrupt(
-              ws.callSid,
-              message.utteranceUntilInterrupt,
-              message.durationUntilInterruptMs
-            );
+            console.log(`[INTERRUPT] "${message.utteranceUntilInterrupt}"`);
+            handleInterrupt(ws.callSid, message.utteranceUntilInterrupt, message.durationUntilInterruptMs);
             break;
           }
           
-          // =================================================================
-          // DTMF - Handle keypad input
-          // =================================================================
           case "dtmf": {
-            console.log(`[DTMF] User pressed: ${message.digit}`);
-            
+            console.log(`[DTMF] ${message.digit}`);
             const sessionData = sessions.get(ws.callSid);
             
-            // 0 = End call
             if (message.digit === "0") {
               const closingMessage = sessionData?.state 
                 ? getClosingMessage(sessionData.state)
                 : "Thank you for calling. Goodbye!";
-              
-              ws.send(JSON.stringify({
-                type: "text",
-                token: closingMessage,
-                last: true,
-              }));
-              
-              setTimeout(() => {
-                ws.send(JSON.stringify({ type: "end" }));
-              }, 4000);
-            }
-            
-            // 9 = Transfer to agent (placeholder)
-            if (message.digit === "9") {
-              ws.send(JSON.stringify({
-                type: "text",
-                token: "I'll transfer you to a loan officer now. Please hold.",
-                last: true,
-              }));
-              
-              // Log transfer event
-              if (sessionData?.state?.leadId && hestiaClient) {
-                hestiaClient.logEvent(sessionData.state.leadId, {
-                  event_type: 'voice_transfer_requested',
-                  actor_type: 'applicant',
-                  payload_json: { method: 'dtmf' },
-                });
-              }
+              sendMessage(ws, closingMessage, true);
+              setTimeout(() => ws.send(JSON.stringify({ type: "end" })), 4000);
             }
             break;
           }
           
-          // =================================================================
-          // ERROR - Log errors
-          // =================================================================
           case "error": {
-            console.error("[ERROR] ConversationRelay error:", message.description);
-            
+            console.error("[ERROR]", message.description);
             const sessionData = sessions.get(ws.callSid);
             if (sessionData) {
               sessionData.metrics.errors.push({
@@ -657,48 +534,38 @@ fastify.register(async function (fastify) {
           }
           
           default:
-            console.log("[UNKNOWN] Unknown message type:", message.type);
+            console.log("[UNKNOWN]", message.type);
         }
       } catch (error) {
-        console.error("[ERROR] Error processing message:", error);
+        console.error("[ERROR] Message processing:", error);
       }
     });
     
     ws.on("close", () => {
-      console.log("[WS] Connection closed for call:", ws.callSid);
+      console.log("[WS] Closed:", ws.callSid);
       
       if (ws.callSid) {
         const sessionData = sessions.get(ws.callSid);
         if (sessionData) {
-          // Log session summary with lead metrics
           logSessionSummary(ws.callSid, sessionData);
           
-          // Final Hestia sync
           if (sessionData.state?.leadId && hestiaClient) {
             const state = sessionData.state;
             
-            // Log call end event
             hestiaClient.logEvent(state.leadId, {
               event_type: 'voice_call_ended',
               actor_type: 'system',
               payload_json: {
                 final_phase: state.phase,
                 prequalified: state.prequalified,
-                fields_collected: state.fieldsCollected,
-                questions_asked: state.questionsAsked,
+                fieldsCollected: state.fieldsCollected,
+                fieldsConfirmed: state.fieldsConfirmed,
                 duration_ms: Date.now() - state.startTime,
               },
             });
             
-            // Set status to prequalified - Cloud Function handles routing
-            if (state.prequalified) {
-              hestiaClient.setStatus(state.leadId, 'prequalified')
-                .then(() => {
-                  console.log(`[HESTIA] Lead ${state.leadId} status set to prequalified - Cloud Function will handle routing`);
-                })
-                .catch(err => {
-                  console.error(`[HESTIA] Failed to set prequalified status:`, err);
-                });
+            if (state.prequalified && !state.routed) {
+              hestiaClient.setStatus(state.leadId, 'prequalified').catch(console.error);
             }
           }
         }
@@ -708,7 +575,7 @@ fastify.register(async function (fastify) {
     });
     
     ws.on("error", (error) => {
-      console.error("[WS] WebSocket error:", error);
+      console.error("[WS] Error:", error);
     });
   });
 });
@@ -718,38 +585,26 @@ fastify.register(async function (fastify) {
 // =============================================================================
 
 const start = async () => {
-  try {
-    if (!OPENAI_API_KEY) {
-      console.error("❌ OPENAI_API_KEY is required. Set it in your .env file.");
-      process.exit(1);
-    }
-    
-    await fastify.listen({ port: PORT, host: "0.0.0.0" });
-    
-    console.log("\n" + "═".repeat(60));
-    console.log("🏠 TLC Lead Capture Voice Agent Started!");
-    console.log("═".repeat(60));
-    console.log(`\n📡 Server running at:`);
-    console.log(`   Local:     http://${HOST}:${PORT}`);
-    console.log(`   WebSocket: ws://${HOST}:${PORT}/ws`);
-    console.log(`   Metrics:   http://${HOST}:${PORT}/metrics`);
-    console.log(`\n🔗 Configure your Twilio phone number webhook to:`);
-    console.log(`   https://${DOMAIN}/twiml`);
-    console.log(`\n⚙️  Configuration:`);
-    console.log(`   Mode:         Lead Capture`);
-    console.log(`   Hestia:       ${HESTIA_MODE}`);
-    console.log(`   LLM:          ${OPENAI_MODEL}`);
-    console.log(`   TTS:          ${TTS_PROVIDER} / ${TTS_VOICE}`);
-    console.log(`   STT:          ${STT_PROVIDER}`);
-    console.log(`\n📊 Latency Targets:`);
-    console.log(`   LLM TTFT:     ${LATENCY_TARGETS.llmTTFT.target}ms (upper: ${LATENCY_TARGETS.llmTTFT.upperLimit}ms)`);
-    console.log(`   Platform Gap: ${LATENCY_TARGETS.platformTurnGap.target}ms`);
-    console.log("\n" + "═".repeat(60) + "\n");
-    
-  } catch (err) {
-    console.error("Failed to start server:", err);
+  if (!OPENAI_API_KEY) {
+    console.error("❌ OPENAI_API_KEY required");
     process.exit(1);
   }
+  
+  await fastify.listen({ port: PORT, host: "0.0.0.0" });
+  
+  console.log("\n" + "═".repeat(60));
+  console.log("🏠 TLC Lead Capture V2 - Deterministic Flow");
+  console.log("═".repeat(60));
+  console.log(`\n📡 Server: http://${HOST}:${PORT}`);
+  console.log(`   WebSocket: ws://${HOST}:${PORT}/ws`);
+  console.log(`   Metrics: http://${HOST}:${PORT}/metrics`);
+  console.log(`\n🔗 Webhook: https://${DOMAIN}/twiml`);
+  console.log(`\n⚙️  Config:`);
+  console.log(`   Hestia: ${HESTIA_MODE}`);
+  console.log(`   LLM: ${OPENAI_MODEL}`);
+  console.log(`   TTS: ${TTS_PROVIDER}/${TTS_VOICE}`);
+  console.log(`   STT: ${STT_PROVIDER}`);
+  console.log("\n" + "═".repeat(60) + "\n");
 };
 
 start();
