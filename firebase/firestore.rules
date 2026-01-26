@@ -1,86 +1,173 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    
+
+    // ==========================================================================
+    // HELPER FUNCTIONS
+    // ==========================================================================
+
+    // Check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Get user document data
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    // Check if user is active
+    function isActiveUser() {
+      return isAuthenticated() && getUserData().active == true;
+    }
+
+    // Check if user has specific role
+    function hasRole(role) {
+      return isActiveUser() && getUserData().role == role;
+    }
+
+    // Check if user is admin
+    function isAdmin() {
+      return hasRole('admin');
+    }
+
+    // Check if user is loan officer
+    function isLoanOfficer() {
+      return hasRole('loan_officer');
+    }
+
+    // Check if user is dealer
+    function isDealer() {
+      return hasRole('dealer');
+    }
+
+    // Check if user is TLC staff (LO or admin)
+    function isTLCStaff() {
+      return isLoanOfficer() || isAdmin();
+    }
+
+    // Check if user owns a lead
+    function ownsLead(lead) {
+      return lead.human.owner_user_id == request.auth.uid;
+    }
+
+    // Check if lead is unclaimed
+    function isUnclaimed(lead) {
+      return lead.human.state == 'unclaimed' && lead.human.owner_user_id == null;
+    }
+
     // ==========================================================================
     // LEADS COLLECTION
-    // All access through Cloud Functions using Admin SDK
     // ==========================================================================
     match /leads/{leadId} {
-      allow read, write: if false;
+      // TLC staff can read all leads
+      // Dealers can read only their assigned leads
+      allow read: if isTLCStaff() ||
+        (isDealer() && resource.data.assignment.assigned_dealer_id == getUserData().dealer_id);
+
+      // TLC staff can update leads they own OR unclaimed leads (for claiming)
+      // Admins can update any lead
+      allow update: if isTLCStaff() && (
+        ownsLead(resource.data) ||
+        isUnclaimed(resource.data) ||
+        isAdmin()
+      );
+
+      // Create and delete only through Cloud Functions (Admin SDK)
+      allow create, delete: if false;
     }
-    
+
     // ==========================================================================
     // DEALERS COLLECTION
-    // Read by functions, write by admin
     // ==========================================================================
     match /dealers/{dealerId} {
-      allow read, write: if false;
-      
-      // Dealer locations subcollection
+      // TLC staff can read all dealers
+      // Dealers can read their own dealer record
+      allow read: if isTLCStaff() ||
+        (isDealer() && getUserData().dealer_id == dealerId);
+
+      // Only admins can modify dealers
+      allow write: if isAdmin();
+
+      // Subcollections follow same rules
       match /locations/{locationId} {
-        allow read, write: if false;
+        allow read: if isTLCStaff() ||
+          (isDealer() && getUserData().dealer_id == dealerId);
+        allow write: if isAdmin();
       }
-      
-      // Dealer contacts subcollection
+
       match /contacts/{contactId} {
-        allow read, write: if false;
+        allow read: if isTLCStaff() ||
+          (isDealer() && getUserData().dealer_id == dealerId);
+        allow write: if isAdmin();
       }
     }
-    
-    // ==========================================================================
-    // DEALER NUMBERS COLLECTION
-    // Maps phone numbers to dealers for attribution
-    // ==========================================================================
-    match /dealerNumbers/{phoneE164} {
-      allow read, write: if false;
-    }
-    
-    // ==========================================================================
-    // ZIP COVERAGE COLLECTION
-    // Maps state+zip to dealer candidates for geo routing
-    // ==========================================================================
-    match /zipCoverage/{stateZip} {
-      allow read, write: if false;
-    }
-    
-    // ==========================================================================
-    // DEALER ATTRIBUTION KEYS COLLECTION
-    // Optional mapping for dealer link attribution
-    // ==========================================================================
-    match /dealerAttributionKeys/{keyId} {
-      allow read, write: if false;
-    }
-    
-    // ==========================================================================
-    // DEALER CAPACITY COLLECTION
-    // Optional per-dealer caps and counters
-    // ==========================================================================
-    match /dealerCapacity/{dealerId} {
-      allow read, write: if false;
-    }
-    
+
     // ==========================================================================
     // USERS COLLECTION
-    // Internal TLC users (loan officers, ops, admin)
     // ==========================================================================
     match /users/{userId} {
-      allow read, write: if false;
+      // Users can read their own document
+      // Admins can read all user documents
+      // TLC staff can read all users (for reassignment dropdowns)
+      allow read: if isAuthenticated() && (
+        request.auth.uid == userId || isTLCStaff()
+      );
+
+      // Users can update their own preferences only
+      // Admins can update any user
+      allow update: if isAuthenticated() && (
+        (request.auth.uid == userId &&
+         request.resource.data.diff(resource.data).affectedKeys().hasOnly(['preferences', 'updated_at'])) ||
+        isAdmin()
+      );
+
+      // Only admins can create/delete users
+      allow create, delete: if isAdmin();
     }
-    
+
     // ==========================================================================
     // LEAD EVENTS COLLECTION
-    // Append-only audit log
     // ==========================================================================
     match /leadEvents/{eventId} {
-      allow read, write: if false;
+      // TLC staff can read events for any lead
+      allow read: if isTLCStaff();
+
+      // TLC staff can create events (for logging actions)
+      allow create: if isTLCStaff();
+
+      // Events are append-only - no updates or deletes
+      allow update, delete: if false;
     }
-    
+
     // ==========================================================================
-    // MAIL COLLECTION
-    // Used by Trigger Email extension
+    // REFERENCE COLLECTIONS (Read-only for CRM)
+    // ==========================================================================
+    match /dealerNumbers/{phoneE164} {
+      allow read: if isTLCStaff();
+      allow write: if isAdmin();
+    }
+
+    match /zipCoverage/{stateZip} {
+      allow read: if isTLCStaff();
+      allow write: if isAdmin();
+    }
+
+    match /dealerAttributionKeys/{keyId} {
+      allow read: if isTLCStaff();
+      allow write: if isAdmin();
+    }
+
+    match /dealerCapacity/{dealerId} {
+      allow read: if isTLCStaff();
+      allow write: if isAdmin();
+    }
+
+    // ==========================================================================
+    // MAIL COLLECTION (Trigger Email extension)
     // ==========================================================================
     match /mail/{mailId} {
+      // Only Cloud Functions (Admin SDK) can access
       allow read, write: if false;
     }
   }

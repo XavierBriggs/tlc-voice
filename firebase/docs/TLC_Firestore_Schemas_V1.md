@@ -137,6 +137,10 @@ export const ENUMS = {
   human_state: [
     "unclaimed",
     "claimed",
+    "contact_attempted",
+    "contacted",
+    "qualified",
+    "application_sent",
     "in_progress",
     "closed"
   ],
@@ -145,9 +149,39 @@ export const ENUMS = {
     "converted",
     "no_answer",
     "not_interested",
+    "not_qualified",
     "duplicate",
     "invalid",
     "do_not_contact"
+  ],
+
+  locked_reason: [
+    "dealer_phone",
+    "dealer_link",
+    "signed_token"
+  ],
+
+  dealer_status: [
+    "active",
+    "paused",
+    "inactive"
+  ],
+
+  dealer_tier: [
+    "top50",
+    "standard"
+  ],
+
+  crm_provider: [
+    "hubspot",
+    "internal"
+  ],
+
+  crm_sync_status: [
+    "pending",
+    "synced",
+    "failed",
+    "skipped"
   ]
 };
 ```
@@ -318,6 +352,13 @@ export const ENUMS = {
     "first_contacted_at": null,
     "last_contact_attempt_at": null,
     "contact_attempts": 0,
+    "max_contact_attempts": 5,
+
+    "qualified_at": null,
+    "qualification_notes": null,
+
+    "application_sent_at": null,
+    "application_method": null,
 
     "outcome": null,
     "outcome_notes": null,
@@ -328,6 +369,17 @@ export const ENUMS = {
   "flags": {
     "test_lead": false,
     "duplicate_of_lead_id": null
+  },
+
+  "crm": {
+    "provider": null,
+    "hubspot_contact_id": null,
+    "hubspot_deal_id": null,
+    "synced_at": null,
+    "sync_status": "pending",
+    "sync_attempts": 0,
+    "last_sync_attempt_at": null,
+    "last_error": null
   }
 }
 ```
@@ -562,3 +614,4 @@ Document id example: `TX_78701`
 1. Lead has been routed when `assignment.routed_at` is non null.
 2. Lead has been delivered when `delivery.delivered_at` is non null.
 3. Lead has been claimed when `human.claimed_at` is non null.
+4. Lead has been synced to CRM when `crm.synced_at` is non null.

@@ -292,56 +292,120 @@ The delivery object represents notifications to TLC and the dealer.
 
 # 9) human explanation
 
-The human object tracks loan officer ownership and outcomes.
+The human object tracks loan officer ownership, workflow progression, and outcomes.
 
-1. `human.state`  
-   Human workflow state.
+1. `human.state`
+   Human workflow state representing the loan officer pipeline stage.
 
    Meanings:
-   1. `unclaimed` No owner assigned.
-   2. `claimed` A loan officer claimed the lead.
-   3. `in_progress` The lead is actively being worked.
-   4. `closed` The lead is resolved.
+   1. `unclaimed` No owner assigned. Lead is in queue waiting to be claimed.
+   2. `claimed` A loan officer claimed the lead but has not attempted contact yet.
+   3. `contact_attempted` Loan officer tried to reach borrower but no successful connection yet.
+   4. `contacted` First successful conversation with borrower completed.
+   5. `qualified` Loan officer verified borrower meets lending criteria.
+   6. `application_sent` Application link or documents sent to borrower.
+   7. `in_progress` Application received and being processed.
+   8. `closed` The lead is resolved with a final outcome.
 
-2. `human.owner_user_id`  
+2. `human.owner_user_id`
    The internal user id that owns the lead.
 
-3. `human.owner_name`  
+3. `human.owner_name`
    Denormalized name for convenience in dashboards.
 
-4. `human.claimed_at`  
+4. `human.claimed_at`
    Timestamp of claim action.
 
-5. `human.last_touched_at`  
+5. `human.last_touched_at`
    Timestamp of last human interaction.
 
-6. `human.first_contacted_at`  
-   Timestamp of first outreach.
+6. `human.first_contacted_at`
+   Timestamp of first successful contact with borrower. Used to distinguish between contact_attempted and contacted states.
 
-7. `human.last_contact_attempt_at`  
+7. `human.last_contact_attempt_at`
    Timestamp of most recent outreach attempt.
 
-8. `human.contact_attempts`  
-   Count of outreach attempts.
+8. `human.contact_attempts`
+   Count of outreach attempts. Used with max_contact_attempts to determine when to move lead to no_answer outcome.
 
-9. `human.outcome`  
-   Final outcome when closed.
+9. `human.max_contact_attempts`
+   Threshold for contact attempts before suggesting no_answer outcome. Default is 5.
 
-10. `human.outcome_notes`  
-   Free form notes on outcome.
+10. `human.qualified_at`
+    Timestamp when loan officer marked borrower as qualified after verification.
 
-11. `human.next_follow_up_at`  
-   Optional scheduling hint for next outreach.
+11. `human.qualification_notes`
+    Notes from qualification call explaining why borrower qualifies or any conditions.
+
+12. `human.application_sent_at`
+    Timestamp when application was sent to borrower.
+
+13. `human.application_method`
+    How the application was sent. Values include email_link, portal_invite, or paper.
+
+14. `human.outcome`
+    Final outcome when closed.
+
+    Meanings:
+    1. `converted` Loan funded successfully.
+    2. `no_answer` Could not reach borrower after max attempts.
+    3. `not_interested` Borrower declined to proceed.
+    4. `not_qualified` Borrower did not meet lending criteria after verification.
+    5. `duplicate` Lead is a duplicate of another record.
+    6. `invalid` Bad data, fake lead, or test submission.
+    7. `do_not_contact` Borrower requested no further contact. Compliance flag.
+
+15. `human.outcome_notes`
+    Free form notes on outcome.
+
+16. `human.next_follow_up_at`
+    Optional scheduling hint for next outreach.
 
 ---
 
 # 10) flags explanation
 
-1. `flags.test_lead`  
+1. `flags.test_lead`
    True if generated for testing.
 
-2. `flags.duplicate_of_lead_id`  
+2. `flags.duplicate_of_lead_id`
    If deduplicated, points to canonical lead id.
+
+---
+
+# 10b) crm explanation
+
+The crm object tracks CRM integration status.
+
+1. `crm.provider`
+   Which CRM system this lead synced to. Values: `hubspot` or `internal`.
+
+2. `crm.hubspot_contact_id`
+   The HubSpot Contact record ID if synced to HubSpot.
+
+3. `crm.hubspot_deal_id`
+   The HubSpot Deal record ID if synced to HubSpot.
+
+4. `crm.synced_at`
+   Timestamp when CRM sync completed successfully. Processing marker.
+
+5. `crm.sync_status`
+   Current sync state.
+
+   Meanings:
+   1. `pending` Not yet synced.
+   2. `synced` Successfully synced to CRM.
+   3. `failed` Sync attempted but failed.
+   4. `skipped` Sync intentionally not performed.
+
+6. `crm.sync_attempts`
+   Number of sync attempts made.
+
+7. `crm.last_sync_attempt_at`
+   Timestamp of most recent sync attempt.
+
+8. `crm.last_error`
+   Error object if sync failed, with code and message.
 
 ---
 
@@ -368,6 +432,10 @@ The human object tracks loan officer ownership and outcomes.
 
 5. `tier`  
    Categorization such as top50 or standard.
+
+   Meanings:
+   1. `top50` High priority tier.
+   2. `standard` Default tier.
 
 6. `website_url`  
    Dealer website.

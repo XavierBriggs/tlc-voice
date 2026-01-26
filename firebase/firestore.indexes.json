@@ -57,27 +57,6 @@
         { "fieldPath": "state", "order": "ASCENDING" },
         { "fieldPath": "city", "order": "ASCENDING" }
       ]
-    },
-    {
-      "collectionGroup": "locations",
-      "queryScope": "COLLECTION_GROUP",
-      "fields": [
-        { "fieldPath": "is_primary", "order": "ASCENDING" }
-      ]
-    },
-    {
-      "collectionGroup": "contacts",
-      "queryScope": "COLLECTION_GROUP",
-      "fields": [
-        { "fieldPath": "is_primary", "order": "ASCENDING" }
-      ]
-    },
-    {
-      "collectionGroup": "contacts",
-      "queryScope": "COLLECTION_GROUP",
-      "fields": [
-        { "fieldPath": "email", "order": "ASCENDING" }
-      ]
     }
   ],
   "fieldOverrides": []
