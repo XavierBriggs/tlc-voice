@@ -1,0 +1,60 @@
+{
+  "$comment": "Example import file for dealer-manager.js import command",
+  
+  "dealers": [
+    {
+      "dealer_id": "dlr_example_austin",
+      "dealer_name": "Austin Mobile Homes",
+      "email": "leads@austinmobile.example.com",
+      "tier": "standard",
+      "website": "https://austinmobile.example.com",
+      "notes": "Primary Austin area dealer",
+      "delivery_enabled": true
+    },
+    {
+      "dealer_name": "Houston Home Center",
+      "email": "sales@houstonhomes.example.com",
+      "tier": "top50",
+      "website": "https://houstonhomes.example.com"
+    }
+  ],
+  
+  "numbers": [
+    {
+      "phone": "5125551001",
+      "dealer_id": "dlr_example_austin",
+      "label": "Website main"
+    },
+    {
+      "phone": "+1 512-555-1002",
+      "dealer_id": "dlr_example_austin",
+      "label": "Google Ads"
+    },
+    {
+      "phone": "7135552001",
+      "dealer_id": "dlr_houston_home_cent",
+      "label": "Main line"
+    }
+  ],
+  
+  "coverage": [
+    {
+      "dealer_id": "dlr_example_austin",
+      "state": "TX",
+      "zips": "78701-78759",
+      "priority": 10
+    },
+    {
+      "dealer_id": "dlr_example_austin",
+      "state": "TX",
+      "zips": "78660,78664,78681",
+      "priority": 20
+    },
+    {
+      "dealer_id": "dlr_houston_home_cent",
+      "state": "TX",
+      "zips": "77001-77099",
+      "priority": 10
+    }
+  ]
+}

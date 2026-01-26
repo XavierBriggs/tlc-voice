@@ -1,0 +1,28 @@
+{
+  "name": "tlc-firebase-scripts",
+  "description": "Firebase management scripts for TLC Voice",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "cli": "node cli.js",
+    "dealer": "node dealer-manager.js",
+    "normalize": "node cli.js normalize",
+    "missing-report": "node cli.js missing-report",
+    "coverage-generate": "node cli.js coverage-generate",
+    "coverage-seed": "node cli.js coverage-seed",
+    "dealers-seed": "node cli.js dealers-seed",
+    "normalize-dealers": "node cli.js normalize",
+    "report-missing-dealers": "node cli.js missing-report",
+    "generate-zip-coverage": "node cli.js coverage-generate",
+    "seed-dealers-normalized": "node cli.js dealers-seed",
+    "seed-zip-coverage-generated": "node cli.js coverage-seed",
+    "seed-all": "node seed-dealers.js && node seed-dealer-numbers.js && node seed-zip-coverage.js",
+    "seed-dealers": "node seed-dealers.js",
+    "seed-numbers": "node seed-dealer-numbers.js",
+    "seed-coverage": "node seed-zip-coverage.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.0.0"
+  },
+  "private": true
+}

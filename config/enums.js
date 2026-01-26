@@ -1,22 +1,61 @@
 /**
- * Valid enum values from Hestia API Schema V2
+ * Valid enum values from TLC Firestore Schemas V1
  * 
  * These ensure data collected by the voice agent matches
  * the expected values in the backend system.
  */
 
 export const ENUMS = {
-  // Source channel
-  channel: ['web', 'voice'],
+  // =============================================================================
+  // LEAD STATUS & SOURCE
+  // =============================================================================
 
-  // Source entrypoint
-  entrypoint: [
-    'dealer_link',
-    'dealer_phone',
-    'lender_global_site',
-    'lender_global_phone',
-    'unknown',
+  // Lead status - business state of the lead
+  lead_status: [
+    'new',           // Lead exists but intake has not begun
+    'collecting',    // Intake is in progress
+    'prequalified',  // Minimum required fields complete, ready for delivery
+    'ineligible',    // Lead failed an eligibility screen or rule
+    'do_not_contact', // Borrower did not consent to follow up
+    'closed',        // Lead is finished by a loan officer
   ],
+
+  // Source channel - where the lead originated
+  source_channel: [
+    'voice',
+    'web',
+    'app',
+  ],
+
+  // Source entrypoint - how the borrower entered TLC
+  entrypoint: [
+    'dealer_phone',  // Borrower called a dealer-assigned number
+    'dealer_link',   // Borrower came from a dealer website or referral link
+    'tlc_phone',     // Borrower called TLC global number
+    'tlc_site',      // Borrower used TLC direct website form
+    'unknown',       // System could not determine entrypoint
+  ],
+
+  // Locked reason - why a dealer was locked for attribution
+  locked_reason: [
+    'dealer_phone',   // Dealer-assigned phone number was dialed
+    'dealer_link',    // Dealer referral link provided dealer id
+    'signed_token',   // Dealer id came from a signed token
+  ],
+
+  // =============================================================================
+  // CONSENT
+  // =============================================================================
+
+  // Consent capture method - how consent was obtained
+  consent_capture_method: [
+    'voice_yes',
+    'web_checkbox',
+  ],
+
+  // =============================================================================
+  // APPLICANT
+  // =============================================================================
 
   // Preferred contact method
   preferred_contact_method: ['phone', 'email'],
@@ -30,6 +69,10 @@ export const ENUMS = {
     'weekday_evening',
     'weekend',
   ],
+
+  // =============================================================================
+  // HOME AND SITE
+  // =============================================================================
 
   // Land status
   land_status: [
@@ -83,6 +126,10 @@ export const ENUMS = {
     'not_sure',
   ],
 
+  // =============================================================================
+  // FINANCIAL SNAPSHOT
+  // =============================================================================
+
   // Credit band self reported
   credit_band_self_reported: [
     'under_580',
@@ -93,23 +140,75 @@ export const ENUMS = {
     'prefer_not_to_say',
   ],
 
-  // Lead status
-  lead_status: [
-    'new',
-    'prequalified',
-    'routed',
-    'contact_attempted',
-    'contacted',
-    'ineligible',
+  // =============================================================================
+  // ASSIGNMENT (Routing)
+  // =============================================================================
+
+  // Assignment type - how the assignment was chosen
+  assignment_type: [
+    'dealer_sourced',  // Dealer lock applied, dealer owns the lead
+    'geo_routed',      // Routed by zip coverage
+    'manual',          // Set by a human override
+  ],
+
+  // Assignment reason - more specific reason for audit
+  assignment_reason: [
+    'dealer_number',    // Dealer-assigned phone number caused lock
+    'referral_lock',    // Dealer referral link or key caused lock
+    'zip_match',        // Zip coverage map chose dealer
+    'fallback',         // No candidates, system fallback chosen
+    'manual_override',  // A human changed the assignment
+  ],
+
+  // =============================================================================
+  // DELIVERY
+  // =============================================================================
+
+  // Delivery status - notification automation state
+  delivery_status: [
+    'pending',    // Not yet delivered
+    'delivered',  // Notifications were sent
+    'failed',     // A delivery attempt failed
+    'skipped',    // Delivery intentionally not performed
+  ],
+
+  // =============================================================================
+  // HUMAN WORKFLOW
+  // =============================================================================
+
+  // Human state - loan officer workflow state
+  human_state: [
+    'unclaimed',    // No owner assigned
+    'claimed',      // A loan officer claimed the lead
+    'in_progress',  // The lead is actively being worked
+    'closed',       // The lead is resolved
+  ],
+
+  // Human outcome - final outcome when closed
+  human_outcome: [
+    'converted',
+    'no_answer',
+    'not_interested',
+    'duplicate',
+    'invalid',
     'do_not_contact',
   ],
 
-  // Dealer delivery status
-  dealer_delivery_status: [
-    'pending',
-    'delivered',
-    'failed',
-    'skipped',
+  // =============================================================================
+  // DEALER
+  // =============================================================================
+
+  // Dealer status
+  dealer_status: [
+    'active',    // Eligible for routing
+    'paused',    // Temporarily excluded from routing
+    'inactive',  // Not eligible for routing
+  ],
+
+  // Dealer tier
+  dealer_tier: [
+    'top50',
+    'standard',
   ],
 };
 

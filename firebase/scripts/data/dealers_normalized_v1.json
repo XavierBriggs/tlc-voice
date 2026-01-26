@@ -1,0 +1,5199 @@
+{
+  "meta": {
+    "generated_at": "2026-01-26T01:08:44.371Z",
+    "source_file": "/Users/xavierbriggs/development/tlc/hestia-voice/firebase/scripts/data/Dealers_Normalized_v1_data.csv",
+    "rows_used": 162
+  },
+  "dealers": [
+    {
+      "dealer_id": "dlr_regional_home_sales_cullman_al_35055",
+      "dealer_name": "Regional Home Sales",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "bmoye@regionalhomes.net"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_corky_s_homes_prattville_al_36066",
+      "dealer_name": "Corky's Homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "corkysloans@aol.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_jaco_sales_llc_montgomery_al_36110",
+      "dealer_name": "Jaco Sales LLC",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "ljmoore1973@gmail.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_timberline_homes_inc_tuscaloosa_al_35405",
+      "dealer_name": "Timberline Homes Inc",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "astronge@timberlinehomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_sanders_manufactured_housing_pensacola_al_32534",
+      "dealer_name": "Sanders Manufactured Housing",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "trent@sandershousing.com",
+          "jeff@sandershousing.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_sue_white_homes_fort_smith_ar_72903",
+      "dealer_name": "Sue White Homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "derekbladedellinger@gmail.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_el_dorado_homes_el_dorado_ar_71730",
+      "dealer_name": "El Dorado Homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "lword@eldohomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_wayne_frier_home_ctrs_live_oak_fl_32060",
+      "dealer_name": "Wayne Frier Home Ctrs",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "mfrier12@gmail.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_affordable_homes_crestview_crestview_fl_32536",
+      "dealer_name": "Affordable Homes - Crestview",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "affordablehomescrestview@gmail.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_all_star_manufactured_housing_inc_oca_fl_34480",
+      "dealer_name": "All Star Manufactured Housing, Inc",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "gdk63@aol.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_prestige_home_centers_oca_fl_34480",
+      "dealer_name": "Prestige Home Centers",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "ocala@prestigehomecenters.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_jacobsen_homes_plant_city_plant_city_fl_33565",
+      "dealer_name": "Jacobsen Homes - Plant City",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "tom@jacobsenplantcity.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_leecorp_homes_estero_fl_33928",
+      "dealer_name": "LeeCorp Homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "chris@leecorpinc.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_central_mobile_homes_labelle_fl_33935",
+      "dealer_name": "Central Mobile Homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "kenkinneyjr@gmail.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_quality_homes_jacksonville_fl_32221",
+      "dealer_name": "Quality Homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "katieseybert@thequalityhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_bob_s_family_housing_inc_dahlonega_ga_30533",
+      "dealer_name": "BOB'S FAMILY HOUSING, INC.",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "robert-bobshousing@windstream.net",
+          "andrew.bobshousing@gmail.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_hartwell_home_mart_hartwell_ga_30643",
+      "dealer_name": "Hartwell Home Mart",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "hartwellhomemart@ymail.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_jesup_housing_outlet_llc_jesup_ga_31545",
+      "dealer_name": "Jesup Housing Outlet, LLC",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "jesuphousing@bellsouth.net"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_brewer_quality_homes_bossier_city_la_71111",
+      "dealer_name": "Brewer Quality homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "donnie@brewerqualityhomes.com",
+          "mtilley@brewerhomecenter.com",
+          "cferguson@brewerhomecenter.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_clayton_new_iberia_new_iberia_la_70560",
+      "dealer_name": "Clayton - New Iberia",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "susan.leblanc@claytonhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_houma_houma_la_70360",
+      "dealer_name": "Clayton Homes - Houma",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "anthony.zeringue@claytonhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_fleur_de_lis_hammond_la_70403",
+      "dealer_name": "Fleur De Lis",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "fdlhomecenter@gmail.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_greg_tilley_s_bossier_mobile_homes_inc_bossier_city_la_71111",
+      "dealer_name": "Greg Tilley's Bossier Mobile Homes Inc",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "kevin@tilleyhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_gulf_south_homes_houma_la_70361",
+      "dealer_name": "Gulf South homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "stephanie@gulfsouthhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_jim_tatman_s_mobile_carencro_la_70520",
+      "dealer_name": "Jim Tatman's Mobile",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "jamiet@jimtatmans.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_hammond_mobile_homes_llc_hammond_la_70403",
+      "dealer_name": "Hammond Mobile Homes, LLC",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "hammondhomes@hotmail.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_henchs_country_livin_homes_of_calera_cale_ok_74730",
+      "dealer_name": "HENCHS COUNTRY LIVIN HOMES OF CALERA",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "sales.calera@henchs.com",
+          "austin.rupp@henchs.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_mid_state_manufactured_housing_corp_purcell_ok_73080",
+      "dealer_name": "Mid-State Manufactured Housing Corp",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "jonl@midstatehousing.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_universal_mobile_homes_ok_city_ok_73129",
+      "dealer_name": "Universal Mobile Homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "johnpaul.e.sumo@gmail.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_republic_homes_ok_city_ok_73149",
+      "dealer_name": "Republic Homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "tyler@republic-homes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_aiken_housing_aiken_sc_29801",
+      "dealer_name": "AIKEN HOUSING",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_dinkins_home_center_paris_tn_38242",
+      "dealer_name": "Dinkins Home Center",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "wendi@dinkinshomecenter.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_meadows_homes_cookeville_tn_38501",
+      "dealer_name": "MEADOWS HOMES",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "donny@meadowshomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_preferred_living_homes_knoxville_tn_37912",
+      "dealer_name": "Preferred Living Homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "rtaylorplh@gmail.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_hobbs_manufactured_homes_texarkana_tx_75501",
+      "dealer_name": "Hobbs Manufactured Homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "phobbs@hobbsmanufacturedhomes.com",
+          "drowe@hobbsmanufacturedhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_manufactured_housing_consultants_von_or_tx_78073",
+      "dealer_name": "Manufactured Housing Consultants",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_smart_choice_mfg_hms_atascosa_tx_78002",
+      "dealer_name": "Smart Choice Mfg Hms",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "jespinoza@smartchoicemh.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_pratt_homes_tyler_tx_75702",
+      "dealer_name": "Pratt Homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "cconklin@lpratthomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_texas_built_mobile_homes_seguin_tx_75155",
+      "dealer_name": "Texas Built Mobile Homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "seth@texasbuilthomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_fayette_country_homes_schulenberg_tx_78956",
+      "dealer_name": "Fayette Country Homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "gary@fayettecountryhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_texas_built_mobile_homes_seguin_tx_78155",
+      "dealer_name": "Texas Built Mobile Homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "nathan@txmh.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_rvp_clayton_retail_maryville_tn_37804",
+      "dealer_name": "RVP Clayton Retail",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "eric.boehm@claytonhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_wayne_frier_home_center_live_oak_fl_32060",
+      "dealer_name": "Wayne Frier Home Center",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "mfrier12@gmail.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_effingham_homes_effingham_il_62401",
+      "dealer_name": "Effingham Homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "homes@effingham-homes.com",
+          "sthoele@effingham-homes.com",
+          "owner@effingham-homes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_republic_homes_somerset_ky_42501",
+      "dealer_name": "Republic homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "jennifer@republic-homes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_portland_tn_37148",
+      "dealer_name": "Clayton Homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "stacey.mingua@claytonhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_elkins_wv_26241",
+      "dealer_name": "Clayton Homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "ryan.rider@claytonhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_corbin_ky_40701",
+      "dealer_name": "Clayton homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "melvin.cox@claytonhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_williamsburg_ky_40769",
+      "dealer_name": "Clayton Homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "brandon.hedrick@claytonhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_london_ky_40741",
+      "dealer_name": "Clayton Homes",
+      "status": "active",
+      "tier": "top50",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "claude.gilbert@claytonhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_brindlee_mtn_home_sales_lacey_springs_al_35754",
+      "dealer_name": "Brindlee Mtn Home Sales",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "bmh@brindleemtnhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_clanton_clanton_al_35046",
+      "dealer_name": "Clayton Homes - Clanton",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "r819@claytonhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_clayton_jonesboro_jonesboro_ar_72404",
+      "dealer_name": "Clayton - Jonesboro",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "kimberly.adams@claytonhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_clayton_fort_smith_fort_smith_ar_72908",
+      "dealer_name": "Clayton - Fort Smith",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "kirk.freeman@claytonhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_nobility_homes_oca_fl_34474",
+      "dealer_name": "NOBILITY HOMES",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "tom@nobilityhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_wayne_frier_macclenny_macclenny_fl_32063",
+      "dealer_name": "Wayne Frier - MacClenny",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "jm_martin23@yahoo.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_freedom_home_center_milton_fl_32853",
+      "dealer_name": "Freedom Home center",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "wesley.lawler@claytonhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_wayne_frier_home_ctrs_midway_fl_32343",
+      "dealer_name": "Wayne Frier Home Ctrs",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_uncle_roy_s_mobile_home_sales_oca_fl_34475",
+      "dealer_name": "Uncle Roy's Mobile Home Sales",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "charlie@cbooinc.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_ocala_oca_fl_34480",
+      "dealer_name": "Clayton Homes - Ocala",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "hc119@claytonhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_head_mobile_homes_punta_gorda_fl_33955",
+      "dealer_name": "Head Mobile Homes",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "drillhead3434@gmail.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_c_g_mobile_homes_lake_city_fl_32056",
+      "dealer_name": "C & G Mobile Homes",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "mikecollinsjr@yahoo.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_jacobsen_homes_lake_city_lake_city_fl_32055",
+      "dealer_name": "Jacobsen Homes -Lake City",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "chrislinton17@yahoo.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_corbett_s_mobile_home_center_live_oak_fl_32064",
+      "dealer_name": "Corbett's Mobile Home Center",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "robert@bobbycorbetts.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_award_mobile_homes_jasper_ga_30143",
+      "dealer_name": "AWARD MOBILE HoMES",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "scurry@awardmobilehomes.net"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_vivians_baldwin_ga_30531",
+      "dealer_name": "VIVIANS",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_yurezz_home_center_baxley_ga_31513",
+      "dealer_name": "Yurezz Home Center",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "baxleysales@yurezz.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_clayton_gonzales_gonzales_la_70737",
+      "dealer_name": "Clayton - Gonzales",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "charlie.yawn@claytonhomes.com",
+          "jennifer.braud@claytonhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_greg_tilley_s_repo_new_homes_shreveport_la_71118",
+      "dealer_name": "Greg Tilley's Repo - New Homes",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "christilley14@yahoo.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_gulf_coast_modular_new_iberia_la_70560",
+      "dealer_name": "Gulf Coast Modular",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "ctabor810@netzero.com",
+          "travistaborgulfcoast@yahoo.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_jim_tatman_s_mobile_opelousas_la_70570",
+      "dealer_name": "Jim Tatman's Mobile",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "cammieb@jimtatmans.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_regional_home_sales12_35_flowood_ms_39232",
+      "dealer_name": "Regional Home Sales12:35",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "landhome@regionalhomes.net",
+          "bmilligan@regionalhomes.net"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_yancey_homes_inc_burnsville_nc_28714",
+      "dealer_name": "Yancey Homes, Inc",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "yanceyhomesales@gmail.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_aspen_homes_tulsa_ok_74116",
+      "dealer_name": "Aspen Homes",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "aspenhomes@sbcglobal.net"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_freedom_home_center_ok_city_ok_73149",
+      "dealer_name": "Freedom Home center",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "cody.dunn@freedom-homes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_don_s_mobile_homes_sallisaw_ok_74955",
+      "dealer_name": "Don's Mobile Homes",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "tony@donsmobilehomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_carolina_home_outlet_llc_newberry_sc_29108",
+      "dealer_name": "CAROLINA HOME OUTLET, LLC",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_clayton_lexington_lexington_tn_38351",
+      "dealer_name": "Clayton Lexington",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "betty.davis@clayton.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_tennessee_home_center_three_way_tn_38343",
+      "dealer_name": "Tennessee Home Center",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "ryan@tennesseehomecenter.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_mcdonald_mobile_homes_jasper_tx_75951",
+      "dealer_name": "McDonald Mobile Homes",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_palm_harbor_homes_addison_tx_75001",
+      "dealer_name": "Palm Harbor Homes",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_rvp_palm_harbor_caddo_mills_tx_75135",
+      "dealer_name": "RVP Palm Harbor",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "ssexton@palmharbor.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_hench_s_country_livin_homes_sherman_tx_75092",
+      "dealer_name": "Hench's Country Livin Homes",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_today_homes_corsicana_tx_75110",
+      "dealer_name": "Today Homes",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "rtaylor@todayhomes.net"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_marshall_mobile_homes_marshall_tx_75672",
+      "dealer_name": "Marshall Mobile Homes",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "marshallmobilehomesales@gmail.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_wright_s_manufactured_homes_vidor_tx_77662",
+      "dealer_name": "Wright's Manufactured Homes",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "curtiswmh@yahoo.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_zone_mgr_clayton_retail_maryville_tn_37804",
+      "dealer_name": "Zone Mgr Clayton Retail",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "bobby.alberts@claytonhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_modlife_homes_adg_llc_rogersville_al_35652",
+      "dealer_name": "Modlife Homes/ADG LLC",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "nita@modlifehomes.com",
+          "kevin@modlifehomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "home_nation",
+      "dealer_name": "Home Nation",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": "Default fallback dealer for all leads",
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "sam@homenation.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 1000,
+        "exclusive_zips_allowed": false
+      }
+    },
+    {
+      "dealer_id": "dlr_next_step_san_antonio_tx_78216",
+      "dealer_name": "Next Step",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "steven@nxstep.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_brine_development_services_tampa_fl_33605",
+      "dealer_name": "Brine Development Services",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "erin.williams@brinedevelopment.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_vision_homes_fayetteville_nc_28306",
+      "dealer_name": "Vision Homes",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "admin@vhvisionhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_red_gate_manufactured_homes_lafayette_ga_30728",
+      "dealer_name": "Red Gate Manufactured homes",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "parker@redgatehomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_gifford_homes_inc_farmington_mo_63640",
+      "dealer_name": "Gifford Homes, Inc.",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "caitlin@giffordhomesinc.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_elite_modular_homes_frisco_tx_75033",
+      "dealer_name": "Elite Modular Homes",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "elitemodular.us@gmail.com",
+          "sumanatteti@gmail.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_faithfully_home_neoga_il_62447",
+      "dealer_name": "Faithfully Home",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "ali@faithfullyhome.net"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_kingdom_keys_home_solutions_louisville_ky_40258",
+      "dealer_name": "Kingdom Keys Home Solutions",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "gracefulcontractingllc@gmail.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_red_rock_home_center_london_ky_40741",
+      "dealer_name": "Red Rock Home Center",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "jason@redrockhomecenter.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_heartland_mobile_home_carrollton_ky_41008",
+      "dealer_name": "Heartland Mobile Home",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "sales@myheartlandhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_dream_maker_realty_mt_sterling_ky_40353",
+      "dealer_name": "Dream Maker Realty",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_thorne_homes_bedford_in_47421",
+      "dealer_name": "Thorne Homes",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "info@thorneshomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_of_louisville_louisville_ky_40272",
+      "dealer_name": "Clayton homes of Louisville",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "kevin.fulton@claytonhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_adam_s_affordable_homes_pikeville_ky_41501",
+      "dealer_name": "Adam's Affordable Homes",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "firefighter2152@yahoo.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_dry_ridge_ky_41035",
+      "dealer_name": "Clayton Homes",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "cameron.hodges@claytonhomes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_home_retailer_russell_springs_ky_42642",
+      "dealer_name": "Home Retailer",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "simplificorp@gmail.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_a1_housing_llc_monroe_nc_28110",
+      "dealer_name": "A1 Housing LLC",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "therealstevenmitchell@gmail.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_harrell_homes_solsberry_in_47459",
+      "dealer_name": "Harrell homes",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "donnaw@harrellhomes.us"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_route_21_homes_carmichaels_pa_15320",
+      "dealer_name": "Route 21 Homes",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "info@route21homes.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_traillhead_homes_indianapolis_in_46240",
+      "dealer_name": "Traillhead Homes",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "dougj@trailhh.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_high_tech_housing_inc_oakdale_pa_15071",
+      "dealer_name": "High Tech Housing Inc.",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "sales@hightechhousinginc.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_youngs_colonial_acres_freemont_oh_43420",
+      "dealer_name": "Youngs Colonial Acres",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    },
+    {
+      "dealer_id": "dlr_piedmont_homes_of_burlington_burlington_nc_27217",
+      "dealer_name": "Piedmont Homes of Burlington",
+      "status": "active",
+      "tier": "standard",
+      "website_url": null,
+      "notes": null,
+      "delivery_prefs": {
+        "dealer_delivery_enabled": true,
+        "delivery_mode": "email",
+        "email_to": [
+          "mobileandhomesupply@yahoo.com"
+        ],
+        "email_cc": [],
+        "webhook_url": null,
+        "allow_lead_cap": false,
+        "daily_lead_cap": null
+      },
+      "routing_prefs": {
+        "priority_weight": 100,
+        "exclusive_zips_allowed": true
+      }
+    }
+  ],
+  "locations": [
+    {
+      "dealer_id": "dlr_regional_home_sales_cullman_al_35055",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "660 County Road 437",
+      "address2": null,
+      "city": "Cullman",
+      "state": "AL",
+      "zip5": "35055",
+      "phone_e164": "+12567758794",
+      "email": "bmoye@regionalhomes.net",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_corky_s_homes_prattville_al_36066",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "1691 S. Memorial Drive",
+      "address2": null,
+      "city": "Prattville",
+      "state": "AL",
+      "zip5": "36066",
+      "phone_e164": "+13343584258",
+      "email": "corkysloans@aol.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_jaco_sales_llc_montgomery_al_36110",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "3711 North Wetumpka Highway",
+      "address2": null,
+      "city": "Montgomery",
+      "state": "AL",
+      "zip5": "36110",
+      "phone_e164": "+13342831017",
+      "email": "ljmoore1973@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_timberline_homes_inc_tuscaloosa_al_35405",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "6201 Highway 69 South",
+      "address2": null,
+      "city": "Tuscaloosa",
+      "state": "AL",
+      "zip5": "35405",
+      "phone_e164": "+12054638021",
+      "email": "astronge@timberlinehomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_sanders_manufactured_housing_pensacola_al_32534",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "10300 Pensacola Blvd",
+      "address2": null,
+      "city": "Pensacola",
+      "state": "AL",
+      "zip5": "32534",
+      "phone_e164": "+18504740261",
+      "email": "trent@sandershousing.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_sue_white_homes_fort_smith_ar_72903",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "9210 Rogers Ave",
+      "address2": null,
+      "city": "Fort Smith",
+      "state": "AR",
+      "zip5": "72903",
+      "phone_e164": "+14794526045",
+      "email": "derekbladedellinger@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_el_dorado_homes_el_dorado_ar_71730",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "4607 Junction City Hwy",
+      "address2": null,
+      "city": "El Dorado",
+      "state": "AR",
+      "zip5": "71730",
+      "phone_e164": "+18708625785",
+      "email": "lword@eldohomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_wayne_frier_home_ctrs_live_oak_fl_32060",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "12788 US Hwy 90",
+      "address2": null,
+      "city": "Live Oak",
+      "state": "FL",
+      "zip5": "32060",
+      "phone_e164": "+13863626306",
+      "email": "mfrier12@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_affordable_homes_crestview_crestview_fl_32536",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "5250 South Ferdon Blvd",
+      "address2": null,
+      "city": "Crestview",
+      "state": "FL",
+      "zip5": "32536",
+      "phone_e164": "+18503985685",
+      "email": "affordablehomescrestview@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_all_star_manufactured_housing_inc_oca_fl_34480",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "5325 South Pine Avenue",
+      "address2": null,
+      "city": "Oca",
+      "state": "FL",
+      "zip5": "34480",
+      "phone_e164": "+13526229910",
+      "email": "gdk63@aol.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_prestige_home_centers_oca_fl_34480",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "4300 South Pine Avenue",
+      "address2": null,
+      "city": "Oca",
+      "state": "FL",
+      "zip5": "34480",
+      "phone_e164": "+13526226324",
+      "email": "ocala@prestigehomecenters.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_jacobsen_homes_plant_city_plant_city_fl_33565",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "303 South Frontage Road",
+      "address2": null,
+      "city": "Plant City",
+      "state": "FL",
+      "zip5": "33565",
+      "phone_e164": "+18444663734",
+      "email": "tom@jacobsenplantcity.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_leecorp_homes_estero_fl_33928",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "20251 Tamiami Trail",
+      "address2": null,
+      "city": "Estero",
+      "state": "FL",
+      "zip5": "33928",
+      "phone_e164": "+12394982220",
+      "email": "chris@leecorpinc.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_central_mobile_homes_labelle_fl_33935",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "930 West Hickpochee Ave",
+      "address2": null,
+      "city": "LaBelle",
+      "state": "FL",
+      "zip5": "33935",
+      "phone_e164": "+18636758888",
+      "email": "kenkinneyjr@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_quality_homes_jacksonville_fl_32221",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "8649 Normandy Blvd",
+      "address2": null,
+      "city": "Jacksonville",
+      "state": "FL",
+      "zip5": "32221",
+      "phone_e164": "+19046191462",
+      "email": "katieseybert@thequalityhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_bob_s_family_housing_inc_dahlonega_ga_30533",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "2530 BURNT STAND RD",
+      "address2": null,
+      "city": "Dahlonega",
+      "state": "GA",
+      "zip5": "30533",
+      "phone_e164": "+17068648665",
+      "email": "robert-bobshousing@windstream.net",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_hartwell_home_mart_hartwell_ga_30643",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "3269 Anderson Hwy",
+      "address2": null,
+      "city": "Hartwell",
+      "state": "GA",
+      "zip5": "30643",
+      "phone_e164": "+17063762244",
+      "email": "hartwellhomemart@ymail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_jesup_housing_outlet_llc_jesup_ga_31545",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "2452 Savannah Hwy",
+      "address2": null,
+      "city": "Jesup",
+      "state": "GA",
+      "zip5": "31545",
+      "phone_e164": "+19124273535",
+      "email": "jesuphousing@bellsouth.net",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_brewer_quality_homes_bossier_city_la_71111",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "3830 E Texas St.",
+      "address2": null,
+      "city": "Bossier City",
+      "state": "LA",
+      "zip5": "71111",
+      "phone_e164": "+13187411222",
+      "email": "donnie@brewerqualityhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_new_iberia_new_iberia_la_70560",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "8304-90W",
+      "address2": null,
+      "city": "New Iberia",
+      "state": "LA",
+      "zip5": "70560",
+      "phone_e164": "+13373391961",
+      "email": "susan.leblanc@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_houma_houma_la_70360",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "3936 LA-311",
+      "address2": null,
+      "city": "Houma",
+      "state": "LA",
+      "zip5": "70360",
+      "phone_e164": "+19858722850",
+      "email": "anthony.zeringue@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_fleur_de_lis_hammond_la_70403",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "15012 E. Yellow Water Rd",
+      "address2": null,
+      "city": "Hammond",
+      "state": "LA",
+      "zip5": "70403",
+      "phone_e164": "+19853287677",
+      "email": "fdlhomecenter@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_greg_tilley_s_bossier_mobile_homes_inc_bossier_city_la_71111",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "4302 E. Texas St.",
+      "address2": null,
+      "city": "Bossier City",
+      "state": "LA",
+      "zip5": "71111",
+      "phone_e164": "+13187477600",
+      "email": "kevin@tilleyhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_gulf_south_homes_houma_la_70361",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "1986 Hwy 182 / 214 S HOLLYWOOD RD",
+      "address2": null,
+      "city": "Houma",
+      "state": "LA",
+      "zip5": "70361",
+      "phone_e164": "+19858760222",
+      "email": "stephanie@gulfsouthhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_jim_tatman_s_mobile_carencro_la_70520",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "4000 NE Evangeline Thruway",
+      "address2": null,
+      "city": "Carencro",
+      "state": "LA",
+      "zip5": "70520",
+      "phone_e164": "+13375965660",
+      "email": "jamiet@jimtatmans.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_hammond_mobile_homes_llc_hammond_la_70403",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "42286 I-55 Service Road",
+      "address2": null,
+      "city": "Hammond",
+      "state": "LA",
+      "zip5": "70403",
+      "phone_e164": "+19853457070",
+      "email": "hammondhomes@hotmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_henchs_country_livin_homes_of_calera_cale_ok_74730",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "23 Freda Cir (75)",
+      "address2": null,
+      "city": "Cale",
+      "state": "OK",
+      "zip5": "74730",
+      "phone_e164": "+15802962222",
+      "email": "sales.calera@henchs.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_mid_state_manufactured_housing_corp_purcell_ok_73080",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "1020 South Green Ave",
+      "address2": null,
+      "city": "Purcell",
+      "state": "OK",
+      "zip5": "73080",
+      "phone_e164": "+14055275669",
+      "email": "jonl@midstatehousing.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_universal_mobile_homes_ok_city_ok_73129",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "5817 S. Shields Blvd",
+      "address2": null,
+      "city": "OK City",
+      "state": "OK",
+      "zip5": "73129",
+      "phone_e164": "+14056313639",
+      "email": "johnpaul.e.sumo@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_republic_homes_ok_city_ok_73149",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "8200 S. Shields Blvd",
+      "address2": null,
+      "city": "OK City",
+      "state": "OK",
+      "zip5": "73149",
+      "phone_e164": "+14053235355",
+      "email": "tyler@republic-homes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_aiken_housing_aiken_sc_29801",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "190 OLD WAGENER RD",
+      "address2": null,
+      "city": "Aiken",
+      "state": "SC",
+      "zip5": "29801",
+      "phone_e164": "+18036491603",
+      "email": null,
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_dinkins_home_center_paris_tn_38242",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "2427 East Wood Street",
+      "address2": null,
+      "city": "Paris",
+      "state": "TN",
+      "zip5": "38242",
+      "phone_e164": "+17316424891",
+      "email": "wendi@dinkinshomecenter.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_meadows_homes_cookeville_tn_38501",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "124 South Dixie Ave",
+      "address2": null,
+      "city": "Cookeville",
+      "state": "TN",
+      "zip5": "38501",
+      "phone_e164": "+19316687300",
+      "email": "donny@meadowshomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_preferred_living_homes_knoxville_tn_37912",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "6221 Clinton Hwy",
+      "address2": null,
+      "city": "Knoxville",
+      "state": "TN",
+      "zip5": "37912",
+      "phone_e164": "+18652197171",
+      "email": "rtaylorplh@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_hobbs_manufactured_homes_texarkana_tx_75501",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "1800 Piney Rd",
+      "address2": null,
+      "city": "Texarkana",
+      "state": "TX",
+      "zip5": "75501",
+      "phone_e164": "+19037359921",
+      "email": "phobbs@hobbsmanufacturedhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_manufactured_housing_consultants_von_or_tx_78073",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "13930 IH 35 South",
+      "address2": null,
+      "city": "Von Or",
+      "state": "TX",
+      "zip5": "78073",
+      "phone_e164": "+12106233356",
+      "email": null,
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_smart_choice_mfg_hms_atascosa_tx_78002",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "15712 Buck Rd",
+      "address2": null,
+      "city": "Atascosa",
+      "state": "TX",
+      "zip5": "78002",
+      "phone_e164": "+12108892158",
+      "email": "jespinoza@smartchoicemh.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_pratt_homes_tyler_tx_75702",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "310A SSE Loop 323",
+      "address2": null,
+      "city": "Tyler",
+      "state": "TX",
+      "zip5": "75702",
+      "phone_e164": "+19035967333",
+      "email": "cconklin@lpratthomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_texas_built_mobile_homes_seguin_tx_75155",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "6245 IH 10W",
+      "address2": null,
+      "city": "Seguin",
+      "state": "TX",
+      "zip5": "75155",
+      "phone_e164": "+18308889702",
+      "email": "seth@texasbuilthomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_fayette_country_homes_schulenberg_tx_78956",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "751 Huser Blvd",
+      "address2": null,
+      "city": "Schulenberg",
+      "state": "TX",
+      "zip5": "78956",
+      "phone_e164": "+19797436192",
+      "email": "gary@fayettecountryhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_texas_built_mobile_homes_seguin_tx_78155",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "6245 IH 10W",
+      "address2": null,
+      "city": "Seguin",
+      "state": "TX",
+      "zip5": "78155",
+      "phone_e164": "+18308889701",
+      "email": "nathan@txmh.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_rvp_clayton_retail_maryville_tn_37804",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "5000 Clayton Road",
+      "address2": null,
+      "city": "Maryville",
+      "state": "TN",
+      "zip5": "37804",
+      "phone_e164": null,
+      "email": "eric.boehm@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_wayne_frier_home_center_live_oak_fl_32060",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "Hwy US-90 west",
+      "address2": null,
+      "city": "Live Oak",
+      "state": "FL",
+      "zip5": "32060",
+      "phone_e164": null,
+      "email": "mfrier12@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_effingham_homes_effingham_il_62401",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "17962 US 45",
+      "address2": null,
+      "city": "Effingham",
+      "state": "IL",
+      "zip5": "62401",
+      "phone_e164": "+12173475868",
+      "email": "homes@effingham-homes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_republic_homes_somerset_ky_42501",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "5351 S. Hwy 27",
+      "address2": null,
+      "city": "Somerset",
+      "state": "KY",
+      "zip5": "42501",
+      "phone_e164": "+16063411110",
+      "email": "jennifer@republic-homes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_portland_tn_37148",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "764 Hwy 52E",
+      "address2": null,
+      "city": "Portland",
+      "state": "TN",
+      "zip5": "37148",
+      "phone_e164": null,
+      "email": "stacey.mingua@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_elkins_wv_26241",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "314 Midway Loop",
+      "address2": null,
+      "city": "Elkins",
+      "state": "WV",
+      "zip5": "26241",
+      "phone_e164": "+17403425331",
+      "email": "ryan.rider@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_corbin_ky_40701",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "22 Park Hill Road",
+      "address2": null,
+      "city": "Corbin",
+      "state": "KY",
+      "zip5": "40701",
+      "phone_e164": null,
+      "email": "melvin.cox@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_williamsburg_ky_40769",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "725 Happy Hollow Road",
+      "address2": null,
+      "city": "Williamsburg",
+      "state": "KY",
+      "zip5": "40769",
+      "phone_e164": "+16065495223",
+      "email": "brandon.hedrick@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_london_ky_40741",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "1600 E Hal Rogers Pkwy",
+      "address2": null,
+      "city": "London",
+      "state": "KY",
+      "zip5": "40741",
+      "phone_e164": "+16068787055",
+      "email": "claude.gilbert@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_brindlee_mtn_home_sales_lacey_springs_al_35754",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "4059 Hwy 231",
+      "address2": null,
+      "city": "Lacey Springs",
+      "state": "AL",
+      "zip5": "35754",
+      "phone_e164": "+12569470018",
+      "email": "bmh@brindleemtnhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_clanton_clanton_al_35046",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "2101 Holiday Inn Drive",
+      "address2": null,
+      "city": "Clanton",
+      "state": "AL",
+      "zip5": "35046",
+      "phone_e164": "+12057554023",
+      "email": "r819@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_jonesboro_jonesboro_ar_72404",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "3920 Stadium Blvd",
+      "address2": null,
+      "city": "Jonesboro",
+      "state": "AR",
+      "zip5": "72404",
+      "phone_e164": "+18709351700",
+      "email": "kimberly.adams@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_fort_smith_fort_smith_ar_72908",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "6700 Hwy 71 South",
+      "address2": null,
+      "city": "Fort Smith",
+      "state": "AR",
+      "zip5": "72908",
+      "phone_e164": "+14796480070",
+      "email": "kirk.freeman@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_nobility_homes_oca_fl_34474",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "3741 SW 7TH ST",
+      "address2": null,
+      "city": "Oca",
+      "state": "FL",
+      "zip5": "34474",
+      "phone_e164": "+13527325157",
+      "email": "tom@nobilityhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_wayne_frier_macclenny_macclenny_fl_32063",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "8981 St Rt228",
+      "address2": null,
+      "city": "MacClenny",
+      "state": "FL",
+      "zip5": "32063",
+      "phone_e164": "+19042594663",
+      "email": "jm_martin23@yahoo.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_freedom_home_center_milton_fl_32853",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "8206 Highway 87 South",
+      "address2": null,
+      "city": "Milton",
+      "state": "FL",
+      "zip5": "32853",
+      "phone_e164": "+18509819100",
+      "email": "wesley.lawler@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_wayne_frier_home_ctrs_midway_fl_32343",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "33849 Blue Star Highway",
+      "address2": null,
+      "city": "Midway",
+      "state": "FL",
+      "zip5": "32343",
+      "phone_e164": "+18505763007",
+      "email": null,
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_uncle_roy_s_mobile_home_sales_oca_fl_34475",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "1301 North Pine Avenue",
+      "address2": null,
+      "city": "Oca",
+      "state": "FL",
+      "zip5": "34475",
+      "phone_e164": "+13523518514",
+      "email": "charlie@cbooinc.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_ocala_oca_fl_34480",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "6150 South Pine Avenue",
+      "address2": null,
+      "city": "Oca",
+      "state": "FL",
+      "zip5": "34480",
+      "phone_e164": "+13526291346",
+      "email": "hc119@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_head_mobile_homes_punta_gorda_fl_33955",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "11311 Tamiami Trail",
+      "address2": null,
+      "city": "Punta Gorda",
+      "state": "FL",
+      "zip5": "33955",
+      "phone_e164": "+19415051571",
+      "email": "drillhead3434@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_c_g_mobile_homes_lake_city_fl_32056",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "Hwy 90 West / PO Box 2736",
+      "address2": null,
+      "city": "Lake City",
+      "state": "FL",
+      "zip5": "32056",
+      "phone_e164": "+13867523743",
+      "email": "mikecollinsjr@yahoo.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_jacobsen_homes_lake_city_lake_city_fl_32055",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "3973 West US Highway 90",
+      "address2": null,
+      "city": "Lake City",
+      "state": "FL",
+      "zip5": "32055",
+      "phone_e164": "+13864388458",
+      "email": "chrislinton17@yahoo.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_corbett_s_mobile_home_center_live_oak_fl_32064",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "1126 Howard St",
+      "address2": null,
+      "city": "Live Oak",
+      "state": "FL",
+      "zip5": "32064",
+      "phone_e164": "+13868641340",
+      "email": "robert@bobbycorbetts.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_award_mobile_homes_jasper_ga_30143",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "1394 OLD PHILADELPHIA RD",
+      "address2": null,
+      "city": "Jasper",
+      "state": "GA",
+      "zip5": "30143",
+      "phone_e164": "+17066925817",
+      "email": "scurry@awardmobilehomes.net",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_vivians_baldwin_ga_30531",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "788 HWY 441 BYPASS",
+      "address2": null,
+      "city": "Baldwin",
+      "state": "GA",
+      "zip5": "30531",
+      "phone_e164": "+17067781688",
+      "email": null,
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_yurezz_home_center_baxley_ga_31513",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "2090 Golden Isles W",
+      "address2": null,
+      "city": "Baxley",
+      "state": "GA",
+      "zip5": "31513",
+      "phone_e164": "+19124240390",
+      "email": "baxleysales@yurezz.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_gonzales_gonzales_la_70737",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "13653 Airline Hwy",
+      "address2": null,
+      "city": "Gonzales",
+      "state": "LA",
+      "zip5": "70737",
+      "phone_e164": "+12256444663",
+      "email": "charlie.yawn@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_greg_tilley_s_repo_new_homes_shreveport_la_71118",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "9650 Mansfield Rd",
+      "address2": null,
+      "city": "Shreveport",
+      "state": "LA",
+      "zip5": "71118",
+      "phone_e164": "+13186861712",
+      "email": "christilley14@yahoo.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_gulf_coast_modular_new_iberia_la_70560",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "8017 Hwy 90 E",
+      "address2": null,
+      "city": "New Iberia",
+      "state": "LA",
+      "zip5": "70560",
+      "phone_e164": "+13372247556",
+      "email": "ctabor810@netzero.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_jim_tatman_s_mobile_opelousas_la_70570",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "15729 Hwy 190",
+      "address2": null,
+      "city": "Opelousas",
+      "state": "LA",
+      "zip5": "70570",
+      "phone_e164": "+13379483598",
+      "email": "cammieb@jimtatmans.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_regional_home_sales12_35_flowood_ms_39232",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "6451 Wirtz Rd",
+      "address2": null,
+      "city": "Flowood",
+      "state": "MS",
+      "zip5": "39232",
+      "phone_e164": "+16014210437",
+      "email": "landhome@regionalhomes.net",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_yancey_homes_inc_burnsville_nc_28714",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "527 East Bypass",
+      "address2": null,
+      "city": "Burnsville",
+      "state": "NC",
+      "zip5": "28714",
+      "phone_e164": "+18286826175",
+      "email": "yanceyhomesales@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_aspen_homes_tulsa_ok_74116",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "11727 E Admiral Place",
+      "address2": null,
+      "city": "Tulsa",
+      "state": "OK",
+      "zip5": "74116",
+      "phone_e164": "+19184385224",
+      "email": "aspenhomes@sbcglobal.net",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_freedom_home_center_ok_city_ok_73149",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "6329 S. Shields Blvd",
+      "address2": null,
+      "city": "OK City",
+      "state": "OK",
+      "zip5": "73149",
+      "phone_e164": "+15722211209",
+      "email": "cody.dunn@freedom-homes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_don_s_mobile_homes_sallisaw_ok_74955",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "3020 W. Cherokee Avenue",
+      "address2": null,
+      "city": "Sallisaw",
+      "state": "OK",
+      "zip5": "74955",
+      "phone_e164": "+19187755581",
+      "email": "tony@donsmobilehomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_carolina_home_outlet_llc_newberry_sc_29108",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "2300 WILSON RD",
+      "address2": null,
+      "city": "Newberry",
+      "state": "SC",
+      "zip5": "29108",
+      "phone_e164": "+18032765788",
+      "email": null,
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_lexington_lexington_tn_38351",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "27 Flanagan Acres Road",
+      "address2": null,
+      "city": "Lexington",
+      "state": "TN",
+      "zip5": "38351",
+      "phone_e164": "+17319684937",
+      "email": "betty.davis@clayton.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_tennessee_home_center_three_way_tn_38343",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "14 U.S. Hwy45-E",
+      "address2": null,
+      "city": "Three Way",
+      "state": "TN",
+      "zip5": "38343",
+      "phone_e164": "+17317845033",
+      "email": "ryan@tennesseehomecenter.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_mcdonald_mobile_homes_jasper_tx_75951",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "1011 E Gibson",
+      "address2": null,
+      "city": "Jasper",
+      "state": "TX",
+      "zip5": "75951",
+      "phone_e164": "+14093847609",
+      "email": null,
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_palm_harbor_homes_addison_tx_75001",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "15301 Spectrum Dr",
+      "address2": null,
+      "city": "Addison",
+      "state": "TX",
+      "zip5": "75001",
+      "phone_e164": "+19727635042",
+      "email": null,
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_rvp_palm_harbor_caddo_mills_tx_75135",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "I-30 Frontage Rd",
+      "address2": null,
+      "city": "Caddo Mills",
+      "state": "TX",
+      "zip5": "75135",
+      "phone_e164": "+12144176674",
+      "email": "ssexton@palmharbor.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_hench_s_country_livin_homes_sherman_tx_75092",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "17245 State Hwy 56",
+      "address2": null,
+      "city": "Sherman",
+      "state": "TX",
+      "zip5": "75092",
+      "phone_e164": "+19038682877",
+      "email": null,
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_today_homes_corsicana_tx_75110",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "1131 West 7th Avenue",
+      "address2": null,
+      "city": "Corsicana",
+      "state": "TX",
+      "zip5": "75110",
+      "phone_e164": "+19038724847",
+      "email": "rtaylor@todayhomes.net",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_marshall_mobile_homes_marshall_tx_75672",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "4811 East End Blvd",
+      "address2": null,
+      "city": "Marshall",
+      "state": "TX",
+      "zip5": "75672",
+      "phone_e164": "+19039384774",
+      "email": "marshallmobilehomesales@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_wright_s_manufactured_homes_vidor_tx_77662",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "21338 IH 10",
+      "address2": null,
+      "city": "Vidor",
+      "state": "TX",
+      "zip5": "77662",
+      "phone_e164": "+14094220660",
+      "email": "curtiswmh@yahoo.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_zone_mgr_clayton_retail_maryville_tn_37804",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "5000 Clayton Road",
+      "address2": null,
+      "city": "Maryville",
+      "state": "TN",
+      "zip5": "37804",
+      "phone_e164": null,
+      "email": "bobby.alberts@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_modlife_homes_adg_llc_rogersville_al_35652",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "55 County Rd 55",
+      "address2": null,
+      "city": "Rogersville",
+      "state": "AL",
+      "zip5": "35652",
+      "phone_e164": "+12562065205",
+      "email": "nita@modlifehomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "home_nation",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": null,
+      "address2": null,
+      "city": null,
+      "state": null,
+      "zip5": null,
+      "phone_e164": null,
+      "email": "sam@homenation.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_next_step_san_antonio_tx_78216",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "100 Ne loop 10",
+      "address2": null,
+      "city": "San Antonio",
+      "state": "TX",
+      "zip5": "78216",
+      "phone_e164": "+12106081335",
+      "email": "steven@nxstep.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_brine_development_services_tampa_fl_33605",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "1601 Sahlman Dr",
+      "address2": null,
+      "city": "Tampa",
+      "state": "FL",
+      "zip5": "33605",
+      "phone_e164": "+13612123746",
+      "email": "erin.williams@brinedevelopment.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_vision_homes_fayetteville_nc_28306",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "2965 Giillispie St",
+      "address2": null,
+      "city": "Fayetteville",
+      "state": "NC",
+      "zip5": "28306",
+      "phone_e164": "+19103238222",
+      "email": "admin@vhvisionhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_red_gate_manufactured_homes_lafayette_ga_30728",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "3709 US Hwy 27",
+      "address2": null,
+      "city": "Lafayette",
+      "state": "GA",
+      "zip5": "30728",
+      "phone_e164": "+17066396762",
+      "email": "parker@redgatehomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_gifford_homes_inc_farmington_mo_63640",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "2401 Hwy 67 S",
+      "address2": null,
+      "city": "Farmington",
+      "state": "MO",
+      "zip5": "63640",
+      "phone_e164": "+15737600011",
+      "email": "caitlin@giffordhomesinc.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_elite_modular_homes_frisco_tx_75033",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "4668 Addax Trail",
+      "address2": null,
+      "city": "Frisco",
+      "state": "TX",
+      "zip5": "75033",
+      "phone_e164": "+14699269715",
+      "email": "elitemodular.us@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_faithfully_home_neoga_il_62447",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "2745 US Hwy 45",
+      "address2": null,
+      "city": "Neoga",
+      "state": "IL",
+      "zip5": "62447",
+      "phone_e164": "+12178211631",
+      "email": "ali@faithfullyhome.net",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_kingdom_keys_home_solutions_louisville_ky_40258",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": null,
+      "address2": null,
+      "city": "Louisville",
+      "state": "KY",
+      "zip5": "40258",
+      "phone_e164": "+15027151771",
+      "email": "gracefulcontractingllc@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_red_rock_home_center_london_ky_40741",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "714 East Hal Rogers Pkwy",
+      "address2": null,
+      "city": "London",
+      "state": "KY",
+      "zip5": "40741",
+      "phone_e164": null,
+      "email": "jason@redrockhomecenter.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_heartland_mobile_home_carrollton_ky_41008",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "2424 KY 227",
+      "address2": null,
+      "city": "Carrollton",
+      "state": "KY",
+      "zip5": "41008",
+      "phone_e164": null,
+      "email": "sales@myheartlandhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_dream_maker_realty_mt_sterling_ky_40353",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "1901 Camargo Rd",
+      "address2": null,
+      "city": "Mt Sterling",
+      "state": "KY",
+      "zip5": "40353",
+      "phone_e164": "+18594043384",
+      "email": null,
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_thorne_homes_bedford_in_47421",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "3211 IN-37",
+      "address2": null,
+      "city": "Bedford",
+      "state": "IN",
+      "zip5": "47421",
+      "phone_e164": "+18122754656",
+      "email": "info@thorneshomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_of_louisville_louisville_ky_40272",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "12200 Dixie Hwy",
+      "address2": null,
+      "city": "Louisville",
+      "state": "KY",
+      "zip5": "40272",
+      "phone_e164": "+15029332900",
+      "email": "kevin.fulton@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_adam_s_affordable_homes_pikeville_ky_41501",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "2399 US 23 South",
+      "address2": null,
+      "city": "Pikeville",
+      "state": "KY",
+      "zip5": "41501",
+      "phone_e164": "+16062132818",
+      "email": "firefighter2152@yahoo.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_dry_ridge_ky_41035",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "1200 Fashion Ridge Road",
+      "address2": null,
+      "city": "Dry Ridge",
+      "state": "KY",
+      "zip5": "41035",
+      "phone_e164": "+18592427400",
+      "email": "cameron.hodges@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_home_retailer_russell_springs_ky_42642",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "67 Sambo Lane",
+      "address2": null,
+      "city": "Russell Springs",
+      "state": "KY",
+      "zip5": "42642",
+      "phone_e164": null,
+      "email": "simplificorp@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_a1_housing_llc_monroe_nc_28110",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "3509 Hwy 74 W",
+      "address2": null,
+      "city": "Monroe",
+      "state": "NC",
+      "zip5": "28110",
+      "phone_e164": null,
+      "email": "therealstevenmitchell@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_harrell_homes_solsberry_in_47459",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "1740 N. State Rd 45",
+      "address2": null,
+      "city": "Solsberry",
+      "state": "IN",
+      "zip5": "47459",
+      "phone_e164": "+18128250202",
+      "email": "donnaw@harrellhomes.us",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_route_21_homes_carmichaels_pa_15320",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "Carmichaels",
+      "address2": null,
+      "city": "Carmichaels",
+      "state": "PA",
+      "zip5": "15320",
+      "phone_e164": null,
+      "email": "info@route21homes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_traillhead_homes_indianapolis_in_46240",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "7850 Dean Road",
+      "address2": null,
+      "city": "Indianapolis",
+      "state": "IN",
+      "zip5": "46240",
+      "phone_e164": null,
+      "email": "dougj@trailhh.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_high_tech_housing_inc_oakdale_pa_15071",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "7876 Steubenville Pike",
+      "address2": null,
+      "city": "Oakdale",
+      "state": "PA",
+      "zip5": "15071",
+      "phone_e164": "+17246953900",
+      "email": "sales@hightechhousinginc.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_youngs_colonial_acres_freemont_oh_43420",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "1451 Oak Harbor Rd",
+      "address2": null,
+      "city": "Freemont",
+      "state": "OH",
+      "zip5": "43420",
+      "phone_e164": "+14193342648",
+      "email": null,
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_piedmont_homes_of_burlington_burlington_nc_27217",
+      "location_id": "loc_main",
+      "label": "main",
+      "address1": "778 S Graham Hopedale Rd",
+      "address2": null,
+      "city": "Burlington",
+      "state": "NC",
+      "zip5": "27217",
+      "phone_e164": "+13565709840",
+      "email": "mobileandhomesupply@yahoo.com",
+      "is_primary": true
+    }
+  ],
+  "contacts": [
+    {
+      "dealer_id": "dlr_regional_home_sales_cullman_al_35055",
+      "contact_id": "ctc_brian_moye",
+      "full_name": "Brian Moye",
+      "role": "sales",
+      "phone_e164": "+12567758794",
+      "email": "bmoye@regionalhomes.net",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_corky_s_homes_prattville_al_36066",
+      "contact_id": "ctc_jan_davis",
+      "full_name": "Jan Davis",
+      "role": "sales",
+      "phone_e164": "+13343584258",
+      "email": "corkysloans@aol.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_jaco_sales_llc_montgomery_al_36110",
+      "contact_id": "ctc_bubba_moore",
+      "full_name": "Bubba Moore",
+      "role": "sales",
+      "phone_e164": "+13342831017",
+      "email": "ljmoore1973@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_timberline_homes_inc_tuscaloosa_al_35405",
+      "contact_id": "ctc_andrew_stronge",
+      "full_name": "Andrew Stronge",
+      "role": "sales",
+      "phone_e164": "+12054638021",
+      "email": "astronge@timberlinehomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_sanders_manufactured_housing_pensacola_al_32534",
+      "contact_id": "ctc_trent_sanders",
+      "full_name": "Trent Sanders",
+      "role": "sales",
+      "phone_e164": "+18504740261",
+      "email": "trent@sandershousing.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_sanders_manufactured_housing_pensacola_al_32534",
+      "contact_id": "ctc_jeff_sanders",
+      "full_name": "Jeff Sanders",
+      "role": "sales",
+      "phone_e164": "+18504740261",
+      "email": "jeff@sandershousing.com",
+      "is_primary": false
+    },
+    {
+      "dealer_id": "dlr_sue_white_homes_fort_smith_ar_72903",
+      "contact_id": "ctc_derek_dellinger",
+      "full_name": "Derek Dellinger",
+      "role": "sales",
+      "phone_e164": "+14794526045",
+      "email": "derekbladedellinger@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_el_dorado_homes_el_dorado_ar_71730",
+      "contact_id": "ctc_leslie_word",
+      "full_name": "Leslie Word",
+      "role": "sales",
+      "phone_e164": "+18708625785",
+      "email": "lword@eldohomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_wayne_frier_home_ctrs_live_oak_fl_32060",
+      "contact_id": "ctc_matt_frier",
+      "full_name": "Matt Frier",
+      "role": "sales",
+      "phone_e164": "+13863626306",
+      "email": "mfrier12@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_affordable_homes_crestview_crestview_fl_32536",
+      "contact_id": "ctc_brandon_holland_ceo",
+      "full_name": "Brandon Holland - CEO",
+      "role": "sales",
+      "phone_e164": "+18503985685",
+      "email": "affordablehomescrestview@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_affordable_homes_crestview_crestview_fl_32536",
+      "contact_id": "ctc_randall_bracewell_coo",
+      "full_name": "Randall Bracewell - COO",
+      "role": "sales",
+      "phone_e164": "+18503985685",
+      "email": "affordablehomescrestview@gmail.com",
+      "is_primary": false
+    },
+    {
+      "dealer_id": "dlr_all_star_manufactured_housing_inc_oca_fl_34480",
+      "contact_id": "ctc_greg_kinder",
+      "full_name": "Greg Kinder",
+      "role": "sales",
+      "phone_e164": "+13526229910",
+      "email": "gdk63@aol.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_prestige_home_centers_oca_fl_34480",
+      "contact_id": "ctc_angela_martinez",
+      "full_name": "Angela Martinez",
+      "role": "sales",
+      "phone_e164": "+13526226324",
+      "email": "ocala@prestigehomecenters.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_jacobsen_homes_plant_city_plant_city_fl_33565",
+      "contact_id": "ctc_thomas_malan",
+      "full_name": "Thomas Malan",
+      "role": "sales",
+      "phone_e164": "+18444663734",
+      "email": "tom@jacobsenplantcity.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_leecorp_homes_estero_fl_33928",
+      "contact_id": "ctc_christopher_lee",
+      "full_name": "Christopher Lee",
+      "role": "sales",
+      "phone_e164": "+12394982220",
+      "email": "chris@leecorpinc.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_central_mobile_homes_labelle_fl_33935",
+      "contact_id": "ctc_ken_kinney",
+      "full_name": "Ken Kinney",
+      "role": "sales",
+      "phone_e164": "+18636758888",
+      "email": "kenkinneyjr@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_quality_homes_jacksonville_fl_32221",
+      "contact_id": "ctc_katie_seybert",
+      "full_name": "Katie Seybert",
+      "role": "sales",
+      "phone_e164": "+19046191462",
+      "email": "katieseybert@thequalityhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_bob_s_family_housing_inc_dahlonega_ga_30533",
+      "contact_id": "ctc_robert_jackson",
+      "full_name": "Robert Jackson",
+      "role": "sales",
+      "phone_e164": "+17068648665",
+      "email": "robert-bobshousing@windstream.net",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_bob_s_family_housing_inc_dahlonega_ga_30533",
+      "contact_id": "ctc_andrew_jackson",
+      "full_name": "Andrew Jackson",
+      "role": "sales",
+      "phone_e164": "+17068648665",
+      "email": "andrew.bobshousing@gmail.com",
+      "is_primary": false
+    },
+    {
+      "dealer_id": "dlr_hartwell_home_mart_hartwell_ga_30643",
+      "contact_id": "ctc_michelle_morris",
+      "full_name": "Michelle Morris",
+      "role": "sales",
+      "phone_e164": "+17063762244",
+      "email": "hartwellhomemart@ymail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_jesup_housing_outlet_llc_jesup_ga_31545",
+      "contact_id": "ctc_charles_huffman",
+      "full_name": "Charles Huffman",
+      "role": "sales",
+      "phone_e164": "+19124273535",
+      "email": "jesuphousing@bellsouth.net",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_brewer_quality_homes_bossier_city_la_71111",
+      "contact_id": "ctc_donnie_brewer",
+      "full_name": "Donnie Brewer",
+      "role": "sales",
+      "phone_e164": "+13187411222",
+      "email": "donnie@brewerqualityhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_brewer_quality_homes_bossier_city_la_71111",
+      "contact_id": "ctc_matt_tilley_sm",
+      "full_name": "Matt Tilley - SM",
+      "role": "sales",
+      "phone_e164": "+13185606205",
+      "email": "mtilley@brewerhomecenter.com",
+      "is_primary": false
+    },
+    {
+      "dealer_id": "dlr_brewer_quality_homes_bossier_city_la_71111",
+      "contact_id": "ctc_chasiti_ferguson",
+      "full_name": "Chasiti Ferguson",
+      "role": "sales",
+      "phone_e164": "+13188205180",
+      "email": "cferguson@brewerhomecenter.com",
+      "is_primary": false
+    },
+    {
+      "dealer_id": "dlr_clayton_new_iberia_new_iberia_la_70560",
+      "contact_id": "ctc_sue_leblanc",
+      "full_name": "Sue Leblanc",
+      "role": "sales",
+      "phone_e164": "+13373391961",
+      "email": "susan.leblanc@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_houma_houma_la_70360",
+      "contact_id": "ctc_anthony_zeringue",
+      "full_name": "Anthony Zeringue",
+      "role": "sales",
+      "phone_e164": "+19858722850",
+      "email": "anthony.zeringue@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_fleur_de_lis_hammond_la_70403",
+      "contact_id": "ctc_ross_bourgeious",
+      "full_name": "Ross Bourgeious",
+      "role": "sales",
+      "phone_e164": "+19853287677",
+      "email": "fdlhomecenter@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_greg_tilley_s_bossier_mobile_homes_inc_bossier_city_la_71111",
+      "contact_id": "ctc_kevin_reed_finance_manger",
+      "full_name": "Kevin Reed Finance Manger",
+      "role": "sales",
+      "phone_e164": "+13187477600",
+      "email": "kevin@tilleyhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_gulf_south_homes_houma_la_70361",
+      "contact_id": "ctc_stephanie_duplantis",
+      "full_name": "Stephanie Duplantis",
+      "role": "sales",
+      "phone_e164": "+19858760222",
+      "email": "stephanie@gulfsouthhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_jim_tatman_s_mobile_carencro_la_70520",
+      "contact_id": "ctc_jamie_theriot",
+      "full_name": "Jamie Theriot",
+      "role": "sales",
+      "phone_e164": "+13375965660",
+      "email": "jamiet@jimtatmans.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_hammond_mobile_homes_llc_hammond_la_70403",
+      "contact_id": "ctc_troy_davis",
+      "full_name": "Troy Davis",
+      "role": "sales",
+      "phone_e164": "+19853457070",
+      "email": "hammondhomes@hotmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_hammond_mobile_homes_llc_hammond_la_70403",
+      "contact_id": "ctc_cindy_davis",
+      "full_name": "Cindy Davis",
+      "role": "sales",
+      "phone_e164": "+19853457070",
+      "email": "hammondhomes@hotmail.com",
+      "is_primary": false
+    },
+    {
+      "dealer_id": "dlr_henchs_country_livin_homes_of_calera_cale_ok_74730",
+      "contact_id": "ctc_meghan_roller",
+      "full_name": "MEGHAN ROLLER",
+      "role": "sales",
+      "phone_e164": "+15802962222",
+      "email": "sales.calera@henchs.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_henchs_country_livin_homes_of_calera_cale_ok_74730",
+      "contact_id": "ctc_casey_peacock",
+      "full_name": "CASEY PEACOCK",
+      "role": "sales",
+      "phone_e164": "+15802962222",
+      "email": "austin.rupp@henchs.com",
+      "is_primary": false
+    },
+    {
+      "dealer_id": "dlr_henchs_country_livin_homes_of_calera_cale_ok_74730",
+      "contact_id": "ctc_austin_rupp",
+      "full_name": "Austin Rupp",
+      "role": "sales",
+      "phone_e164": "+15802962222",
+      "email": null,
+      "is_primary": false
+    },
+    {
+      "dealer_id": "dlr_mid_state_manufactured_housing_corp_purcell_ok_73080",
+      "contact_id": "ctc_jon_lawson",
+      "full_name": "Jon Lawson",
+      "role": "sales",
+      "phone_e164": "+14055275669",
+      "email": "jonl@midstatehousing.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_universal_mobile_homes_ok_city_ok_73129",
+      "contact_id": "ctc_john_paul_sumo",
+      "full_name": "John Paul Sumo",
+      "role": "sales",
+      "phone_e164": "+14056313639",
+      "email": "johnpaul.e.sumo@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_republic_homes_ok_city_ok_73149",
+      "contact_id": "ctc_tyler_wells",
+      "full_name": "Tyler Wells",
+      "role": "sales",
+      "phone_e164": "+14053235355",
+      "email": "tyler@republic-homes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_dinkins_home_center_paris_tn_38242",
+      "contact_id": "ctc_wendi_harris",
+      "full_name": "Wendi Harris",
+      "role": "sales",
+      "phone_e164": "+17316424891",
+      "email": "wendi@dinkinshomecenter.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_meadows_homes_cookeville_tn_38501",
+      "contact_id": "ctc_donnie_meadows",
+      "full_name": "Donnie Meadows",
+      "role": "sales",
+      "phone_e164": "+19316687300",
+      "email": "donny@meadowshomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_preferred_living_homes_knoxville_tn_37912",
+      "contact_id": "ctc_robert_taylor",
+      "full_name": "Robert Taylor",
+      "role": "sales",
+      "phone_e164": "+18652197171",
+      "email": "rtaylorplh@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_hobbs_manufactured_homes_texarkana_tx_75501",
+      "contact_id": "ctc_pat_hobbs",
+      "full_name": "Pat Hobbs",
+      "role": "sales",
+      "phone_e164": "+19037359921",
+      "email": "phobbs@hobbsmanufacturedhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_manufactured_housing_consultants_von_or_tx_78073",
+      "contact_id": "ctc_mo_owner",
+      "full_name": "Mo - Owner",
+      "role": "sales",
+      "phone_e164": "+12106233356",
+      "email": null,
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_manufactured_housing_consultants_von_or_tx_78073",
+      "contact_id": "ctc_andy_tascado_finance_man",
+      "full_name": "Andy Tascado - Finance Man",
+      "role": "sales",
+      "phone_e164": "+12106233356",
+      "email": null,
+      "is_primary": false
+    },
+    {
+      "dealer_id": "dlr_smart_choice_mfg_hms_atascosa_tx_78002",
+      "contact_id": "ctc_jesse_espinoza",
+      "full_name": "Jesse Espinoza",
+      "role": "sales",
+      "phone_e164": "+12108892158",
+      "email": "jespinoza@smartchoicemh.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_pratt_homes_tyler_tx_75702",
+      "contact_id": "ctc_chuck_conklin_sm",
+      "full_name": "Chuck Conklin-SM",
+      "role": "sales",
+      "phone_e164": "+19035967333",
+      "email": "cconklin@lpratthomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_texas_built_mobile_homes_seguin_tx_75155",
+      "contact_id": "ctc_seth_roberts",
+      "full_name": "Seth Roberts",
+      "role": "sales",
+      "phone_e164": "+18308889702",
+      "email": "seth@texasbuilthomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_fayette_country_homes_schulenberg_tx_78956",
+      "contact_id": "ctc_gary_adamek",
+      "full_name": "Gary Adamek",
+      "role": "sales",
+      "phone_e164": "+19797436192",
+      "email": "gary@fayettecountryhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_texas_built_mobile_homes_seguin_tx_78155",
+      "contact_id": "ctc_nathan_skloss",
+      "full_name": "Nathan Skloss",
+      "role": "sales",
+      "phone_e164": "+18308889701",
+      "email": "nathan@txmh.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_rvp_clayton_retail_maryville_tn_37804",
+      "contact_id": "ctc_eric_boehm",
+      "full_name": "Eric Boehm",
+      "role": "sales",
+      "phone_e164": null,
+      "email": "eric.boehm@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_wayne_frier_home_center_live_oak_fl_32060",
+      "contact_id": "ctc_matt_frier",
+      "full_name": "Matt Frier",
+      "role": "sales",
+      "phone_e164": null,
+      "email": "mfrier12@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_effingham_homes_effingham_il_62401",
+      "contact_id": "ctc_jessica",
+      "full_name": "Jessica",
+      "role": "sales",
+      "phone_e164": "+12173475868",
+      "email": "homes@effingham-homes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_effingham_homes_effingham_il_62401",
+      "contact_id": "ctc_steve",
+      "full_name": "Steve",
+      "role": "sales",
+      "phone_e164": "+12173475868",
+      "email": "sthoele@effingham-homes.com",
+      "is_primary": false
+    },
+    {
+      "dealer_id": "dlr_effingham_homes_effingham_il_62401",
+      "contact_id": "ctc_ellen",
+      "full_name": "Ellen",
+      "role": "sales",
+      "phone_e164": "+12173475868",
+      "email": "owner@effingham-homes.com",
+      "is_primary": false
+    },
+    {
+      "dealer_id": "dlr_republic_homes_somerset_ky_42501",
+      "contact_id": "ctc_jennifer_caudill",
+      "full_name": "Jennifer Caudill",
+      "role": "sales",
+      "phone_e164": "+16063411110",
+      "email": "jennifer@republic-homes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_portland_tn_37148",
+      "contact_id": "ctc_stacey_mingua_diamond",
+      "full_name": "Stacey Mingua-Diamond",
+      "role": "sales",
+      "phone_e164": null,
+      "email": "stacey.mingua@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_elkins_wv_26241",
+      "contact_id": "ctc_ryan_rider",
+      "full_name": "Ryan Rider",
+      "role": "sales",
+      "phone_e164": "+17403425331",
+      "email": "ryan.rider@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_corbin_ky_40701",
+      "contact_id": "ctc_melvin_cox",
+      "full_name": "Melvin Cox",
+      "role": "sales",
+      "phone_e164": null,
+      "email": "melvin.cox@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_williamsburg_ky_40769",
+      "contact_id": "ctc_brandon_hedrick",
+      "full_name": "Brandon Hedrick",
+      "role": "sales",
+      "phone_e164": "+16065495223",
+      "email": "brandon.hedrick@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_london_ky_40741",
+      "contact_id": "ctc_claude_gilbert",
+      "full_name": "Claude Gilbert",
+      "role": "sales",
+      "phone_e164": "+16068787055",
+      "email": "claude.gilbert@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_brindlee_mtn_home_sales_lacey_springs_al_35754",
+      "contact_id": "ctc_billy",
+      "full_name": "Billy",
+      "role": "sales",
+      "phone_e164": "+12569470018",
+      "email": "bmh@brindleemtnhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_brindlee_mtn_home_sales_lacey_springs_al_35754",
+      "contact_id": "ctc_cyndi_griffin",
+      "full_name": "Cyndi Griffin",
+      "role": "sales",
+      "phone_e164": "+12569470020",
+      "email": "bmh@brindleemtnhomes.com",
+      "is_primary": false
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_clanton_clanton_al_35046",
+      "contact_id": "ctc_tim_slaney",
+      "full_name": "Tim Slaney",
+      "role": "sales",
+      "phone_e164": "+12057554023",
+      "email": "r819@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_jonesboro_jonesboro_ar_72404",
+      "contact_id": "ctc_kim_adams",
+      "full_name": "Kim Adams",
+      "role": "sales",
+      "phone_e164": "+18709351700",
+      "email": "kimberly.adams@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_fort_smith_fort_smith_ar_72908",
+      "contact_id": "ctc_kirk_freeman",
+      "full_name": "Kirk Freeman",
+      "role": "sales",
+      "phone_e164": "+14796480070",
+      "email": "kirk.freeman@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_nobility_homes_oca_fl_34474",
+      "contact_id": "ctc_tom_trexler",
+      "full_name": "TOM TREXLER",
+      "role": "sales",
+      "phone_e164": "+13527325157",
+      "email": "tom@nobilityhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_wayne_frier_macclenny_macclenny_fl_32063",
+      "contact_id": "ctc_jared_martin_386_288_2374",
+      "full_name": "Jared Martin 386-288-2374",
+      "role": "sales",
+      "phone_e164": "+19042594663",
+      "email": "jm_martin23@yahoo.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_freedom_home_center_milton_fl_32853",
+      "contact_id": "ctc_wes_lawler",
+      "full_name": "Wes Lawler",
+      "role": "sales",
+      "phone_e164": "+18509819100",
+      "email": "wesley.lawler@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_wayne_frier_home_ctrs_midway_fl_32343",
+      "contact_id": "ctc_randy_box",
+      "full_name": "Randy Box",
+      "role": "sales",
+      "phone_e164": "+18505763007",
+      "email": null,
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_uncle_roy_s_mobile_home_sales_oca_fl_34475",
+      "contact_id": "ctc_charlie_cox",
+      "full_name": "Charlie Cox",
+      "role": "sales",
+      "phone_e164": "+13523518514",
+      "email": "charlie@cbooinc.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_ocala_oca_fl_34480",
+      "contact_id": "ctc_chris_clemens",
+      "full_name": "Chris Clemens",
+      "role": "sales",
+      "phone_e164": "+13526291346",
+      "email": "hc119@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_head_mobile_homes_punta_gorda_fl_33955",
+      "contact_id": "ctc_john_w_head",
+      "full_name": "John W. Head",
+      "role": "sales",
+      "phone_e164": "+19415051571",
+      "email": "drillhead3434@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_c_g_mobile_homes_lake_city_fl_32056",
+      "contact_id": "ctc_mike_collins",
+      "full_name": "Mike Collins",
+      "role": "sales",
+      "phone_e164": "+13867523743",
+      "email": "mikecollinsjr@yahoo.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_jacobsen_homes_lake_city_lake_city_fl_32055",
+      "contact_id": "ctc_chris_linton",
+      "full_name": "Chris Linton",
+      "role": "sales",
+      "phone_e164": "+13864388458",
+      "email": "chrislinton17@yahoo.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_corbett_s_mobile_home_center_live_oak_fl_32064",
+      "contact_id": "ctc_robert_corbett",
+      "full_name": "Robert Corbett",
+      "role": "sales",
+      "phone_e164": "+13868641340",
+      "email": "robert@bobbycorbetts.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_award_mobile_homes_jasper_ga_30143",
+      "contact_id": "ctc_bryan_maloney",
+      "full_name": "Bryan Maloney",
+      "role": "sales",
+      "phone_e164": "+17066925817",
+      "email": "scurry@awardmobilehomes.net",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_award_mobile_homes_jasper_ga_30143",
+      "contact_id": "ctc_sandra_curry",
+      "full_name": "SANDRA Curry",
+      "role": "sales",
+      "phone_e164": "+17066925817",
+      "email": "scurry@awardmobilehomes.net",
+      "is_primary": false
+    },
+    {
+      "dealer_id": "dlr_vivians_baldwin_ga_30531",
+      "contact_id": "ctc_julie",
+      "full_name": "JULIE",
+      "role": "sales",
+      "phone_e164": "+17067781688",
+      "email": null,
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_yurezz_home_center_baxley_ga_31513",
+      "contact_id": "ctc_richie_altman",
+      "full_name": "Richie Altman",
+      "role": "sales",
+      "phone_e164": "+19124240390",
+      "email": "baxleysales@yurezz.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_gonzales_gonzales_la_70737",
+      "contact_id": "ctc_charlie_yawn_gm",
+      "full_name": "Charlie Yawn -GM",
+      "role": "sales",
+      "phone_e164": "+12256444663",
+      "email": "charlie.yawn@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_gonzales_gonzales_la_70737",
+      "contact_id": "ctc_jennifer_braud_sm",
+      "full_name": "Jennifer Braud - SM",
+      "role": "sales",
+      "phone_e164": "+12256444663",
+      "email": "jennifer.braud@claytonhomes.com",
+      "is_primary": false
+    },
+    {
+      "dealer_id": "dlr_greg_tilley_s_repo_new_homes_shreveport_la_71118",
+      "contact_id": "ctc_chris_tilley",
+      "full_name": "Chris Tilley",
+      "role": "sales",
+      "phone_e164": "+13186861712",
+      "email": "christilley14@yahoo.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_gulf_coast_modular_new_iberia_la_70560",
+      "contact_id": "ctc_chris_tabor",
+      "full_name": "Chris Tabor",
+      "role": "sales",
+      "phone_e164": "+13372247556",
+      "email": "ctabor810@netzero.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_gulf_coast_modular_new_iberia_la_70560",
+      "contact_id": "ctc_travis_tabor",
+      "full_name": "Travis Tabor",
+      "role": "sales",
+      "phone_e164": "+13373679226",
+      "email": "travistaborgulfcoast@yahoo.com",
+      "is_primary": false
+    },
+    {
+      "dealer_id": "dlr_jim_tatman_s_mobile_opelousas_la_70570",
+      "contact_id": "ctc_cammie_bullara",
+      "full_name": "Cammie Bullara",
+      "role": "sales",
+      "phone_e164": "+13379483598",
+      "email": "cammieb@jimtatmans.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_regional_home_sales12_35_flowood_ms_39232",
+      "contact_id": "ctc_ben_milligan_vp",
+      "full_name": "Ben Milligan - VP",
+      "role": "sales",
+      "phone_e164": "+16014210437",
+      "email": "landhome@regionalhomes.net",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_yancey_homes_inc_burnsville_nc_28714",
+      "contact_id": "ctc_larry_bodford",
+      "full_name": "Larry Bodford",
+      "role": "sales",
+      "phone_e164": "+18286826175",
+      "email": "yanceyhomesales@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_aspen_homes_tulsa_ok_74116",
+      "contact_id": "ctc_will_radley",
+      "full_name": "Will Radley",
+      "role": "sales",
+      "phone_e164": "+19184385224",
+      "email": "aspenhomes@sbcglobal.net",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_freedom_home_center_ok_city_ok_73149",
+      "contact_id": "ctc_cody_dunn",
+      "full_name": "Cody Dunn",
+      "role": "sales",
+      "phone_e164": "+15722211209",
+      "email": "cody.dunn@freedom-homes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_don_s_mobile_homes_sallisaw_ok_74955",
+      "contact_id": "ctc_tony_fiorentine",
+      "full_name": "Tony Fiorentine",
+      "role": "sales",
+      "phone_e164": "+19187755581",
+      "email": "tony@donsmobilehomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_lexington_lexington_tn_38351",
+      "contact_id": "ctc_betty_davis",
+      "full_name": "Betty Davis",
+      "role": "sales",
+      "phone_e164": "+17319684937",
+      "email": "betty.davis@clayton.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_tennessee_home_center_three_way_tn_38343",
+      "contact_id": "ctc_ryan_livingston_sm",
+      "full_name": "Ryan Livingston SM",
+      "role": "sales",
+      "phone_e164": "+17317845033",
+      "email": "ryan@tennesseehomecenter.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_mcdonald_mobile_homes_jasper_tx_75951",
+      "contact_id": "ctc_todd_mcdonald",
+      "full_name": "Todd McDonald",
+      "role": "sales",
+      "phone_e164": "+14093847609",
+      "email": null,
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_mcdonald_mobile_homes_jasper_tx_75951",
+      "contact_id": "ctc_dustin_orchosky",
+      "full_name": "Dustin Orchosky",
+      "role": "sales",
+      "phone_e164": "+14093842548",
+      "email": null,
+      "is_primary": false
+    },
+    {
+      "dealer_id": "dlr_palm_harbor_homes_addison_tx_75001",
+      "contact_id": "ctc_richard_peck",
+      "full_name": "Richard Peck",
+      "role": "sales",
+      "phone_e164": "+19727635042",
+      "email": null,
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_rvp_palm_harbor_caddo_mills_tx_75135",
+      "contact_id": "ctc_shawn_sexton",
+      "full_name": "Shawn Sexton",
+      "role": "sales",
+      "phone_e164": "+12144176674",
+      "email": "ssexton@palmharbor.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_hench_s_country_livin_homes_sherman_tx_75092",
+      "contact_id": "ctc_tracey_bennett",
+      "full_name": "Tracey Bennett",
+      "role": "sales",
+      "phone_e164": "+19038682877",
+      "email": null,
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_today_homes_corsicana_tx_75110",
+      "contact_id": "ctc_rick_taylor",
+      "full_name": "Rick Taylor",
+      "role": "sales",
+      "phone_e164": "+19038724847",
+      "email": "rtaylor@todayhomes.net",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_marshall_mobile_homes_marshall_tx_75672",
+      "contact_id": "ctc_larry_clevenger",
+      "full_name": "Larry Clevenger",
+      "role": "sales",
+      "phone_e164": "+19039384774",
+      "email": "marshallmobilehomesales@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_wright_s_manufactured_homes_vidor_tx_77662",
+      "contact_id": "ctc_curtis_wright",
+      "full_name": "Curtis Wright",
+      "role": "sales",
+      "phone_e164": "+14094220660",
+      "email": "curtiswmh@yahoo.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_zone_mgr_clayton_retail_maryville_tn_37804",
+      "contact_id": "ctc_bobby_alberts_zone_mgr",
+      "full_name": "Bobby Alberts - Zone Mgr",
+      "role": "sales",
+      "phone_e164": null,
+      "email": "bobby.alberts@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_modlife_homes_adg_llc_rogersville_al_35652",
+      "contact_id": "ctc_nita",
+      "full_name": "Nita",
+      "role": "sales",
+      "phone_e164": "+12562065205",
+      "email": "nita@modlifehomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_modlife_homes_adg_llc_rogersville_al_35652",
+      "contact_id": "ctc_kevin",
+      "full_name": "kevin",
+      "role": "sales",
+      "phone_e164": "+12562065205",
+      "email": "kevin@modlifehomes.com",
+      "is_primary": false
+    },
+    {
+      "dealer_id": "home_nation",
+      "contact_id": "ctc_sam_best",
+      "full_name": "Sam Best",
+      "role": "sales",
+      "phone_e164": null,
+      "email": "sam@homenation.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_next_step_san_antonio_tx_78216",
+      "contact_id": "ctc_steven_elder",
+      "full_name": "Steven Elder",
+      "role": "sales",
+      "phone_e164": "+12106081335",
+      "email": "steven@nxstep.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_brine_development_services_tampa_fl_33605",
+      "contact_id": "ctc_erin_williams",
+      "full_name": "Erin Williams",
+      "role": "sales",
+      "phone_e164": "+13612123746",
+      "email": "erin.williams@brinedevelopment.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_vision_homes_fayetteville_nc_28306",
+      "contact_id": "ctc_pam_fisher",
+      "full_name": "Pam Fisher",
+      "role": "sales",
+      "phone_e164": "+19103238222",
+      "email": "admin@vhvisionhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_red_gate_manufactured_homes_lafayette_ga_30728",
+      "contact_id": "ctc_parker_maloney",
+      "full_name": "Parker Maloney",
+      "role": "sales",
+      "phone_e164": "+17066396762",
+      "email": "parker@redgatehomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_gifford_homes_inc_farmington_mo_63640",
+      "contact_id": "ctc_caitlin_gifford",
+      "full_name": "Caitlin Gifford",
+      "role": "sales",
+      "phone_e164": "+15737600011",
+      "email": "caitlin@giffordhomesinc.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_elite_modular_homes_frisco_tx_75033",
+      "contact_id": "ctc_suman",
+      "full_name": "Suman",
+      "role": "sales",
+      "phone_e164": "+14699269715",
+      "email": "elitemodular.us@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_faithfully_home_neoga_il_62447",
+      "contact_id": "ctc_ali_landreth",
+      "full_name": "Ali Landreth",
+      "role": "sales",
+      "phone_e164": "+12178211631",
+      "email": "ali@faithfullyhome.net",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_kingdom_keys_home_solutions_louisville_ky_40258",
+      "contact_id": "ctc_caleb_smithson",
+      "full_name": "Caleb Smithson",
+      "role": "sales",
+      "phone_e164": "+15027151771",
+      "email": "gracefulcontractingllc@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_red_rock_home_center_london_ky_40741",
+      "contact_id": "ctc_jason_gambrell",
+      "full_name": "Jason Gambrell",
+      "role": "sales",
+      "phone_e164": null,
+      "email": "jason@redrockhomecenter.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_heartland_mobile_home_carrollton_ky_41008",
+      "contact_id": "ctc_darron",
+      "full_name": "Darron",
+      "role": "sales",
+      "phone_e164": null,
+      "email": "sales@myheartlandhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_heartland_mobile_home_carrollton_ky_41008",
+      "contact_id": "ctc_scott_hay",
+      "full_name": "Scott Hay",
+      "role": "sales",
+      "phone_e164": null,
+      "email": "sales@myheartlandhomes.com",
+      "is_primary": false
+    },
+    {
+      "dealer_id": "dlr_heartland_mobile_home_carrollton_ky_41008",
+      "contact_id": "ctc_hollingsworth",
+      "full_name": "Hollingsworth",
+      "role": "sales",
+      "phone_e164": null,
+      "email": "sales@myheartlandhomes.com",
+      "is_primary": false
+    },
+    {
+      "dealer_id": "dlr_dream_maker_realty_mt_sterling_ky_40353",
+      "contact_id": "ctc_christopher_riggsby",
+      "full_name": "Christopher Riggsby",
+      "role": "sales",
+      "phone_e164": "+18594043384",
+      "email": null,
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_thorne_homes_bedford_in_47421",
+      "contact_id": "ctc_amber_thorne",
+      "full_name": "Amber Thorne",
+      "role": "sales",
+      "phone_e164": "+18122754656",
+      "email": "info@thorneshomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_of_louisville_louisville_ky_40272",
+      "contact_id": "ctc_kevin_fulton",
+      "full_name": "Kevin Fulton",
+      "role": "sales",
+      "phone_e164": "+15029332900",
+      "email": "kevin.fulton@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_adam_s_affordable_homes_pikeville_ky_41501",
+      "contact_id": "ctc_ethan_bailey",
+      "full_name": "Ethan Bailey",
+      "role": "sales",
+      "phone_e164": "+16062132818",
+      "email": "firefighter2152@yahoo.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_dry_ridge_ky_41035",
+      "contact_id": "ctc_cameron_hodges",
+      "full_name": "Cameron Hodges",
+      "role": "sales",
+      "phone_e164": "+18592427400",
+      "email": "cameron.hodges@claytonhomes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_home_retailer_russell_springs_ky_42642",
+      "contact_id": "ctc_scott_wilkerson_lily_creek",
+      "full_name": "Scott Wilkerson,Lily Creek",
+      "role": "sales",
+      "phone_e164": null,
+      "email": "simplificorp@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_a1_housing_llc_monroe_nc_28110",
+      "contact_id": "ctc_steven_mitchell",
+      "full_name": "Steven Mitchell",
+      "role": "sales",
+      "phone_e164": null,
+      "email": "therealstevenmitchell@gmail.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_harrell_homes_solsberry_in_47459",
+      "contact_id": "ctc_donna_webb",
+      "full_name": "Donna Webb",
+      "role": "sales",
+      "phone_e164": "+18128250202",
+      "email": "donnaw@harrellhomes.us",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_route_21_homes_carmichaels_pa_15320",
+      "contact_id": "ctc_chris_garris",
+      "full_name": "Chris Garris",
+      "role": "sales",
+      "phone_e164": null,
+      "email": "info@route21homes.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_traillhead_homes_indianapolis_in_46240",
+      "contact_id": "ctc_doug_johnson",
+      "full_name": "Doug Johnson",
+      "role": "sales",
+      "phone_e164": null,
+      "email": "dougj@trailhh.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_high_tech_housing_inc_oakdale_pa_15071",
+      "contact_id": "ctc_tyler_hall",
+      "full_name": "Tyler Hall",
+      "role": "sales",
+      "phone_e164": "+17246953900",
+      "email": "sales@hightechhousinginc.com",
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_youngs_colonial_acres_freemont_oh_43420",
+      "contact_id": "ctc_david_you_ng",
+      "full_name": "David You ng",
+      "role": "sales",
+      "phone_e164": "+14193342648",
+      "email": null,
+      "is_primary": true
+    },
+    {
+      "dealer_id": "dlr_piedmont_homes_of_burlington_burlington_nc_27217",
+      "contact_id": "ctc_steve_jones",
+      "full_name": "Steve Jones",
+      "role": "sales",
+      "phone_e164": "+13565709840",
+      "email": "mobileandhomesupply@yahoo.com",
+      "is_primary": true
+    }
+  ]
+}

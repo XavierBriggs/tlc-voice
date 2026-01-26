@@ -1,2 +1,9 @@
+# Dependencies
 node_modules/
-*.local
+
+# Environment files
+.env
+.env.*
+
+# Logs
+*.log

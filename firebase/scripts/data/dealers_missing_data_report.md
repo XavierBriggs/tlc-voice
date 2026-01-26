@@ -1,0 +1,40 @@
+# Dealer Missing Data Report
+
+Generated: 2026-01-26T01:08:47.950Z
+
+Total dealers missing data: 23
+
+Missing field counts:
+- address1: 2
+- city: 1
+- contacts: 2
+- email: 10
+- phone_e164: 12
+- state: 1
+- zip5: 1
+
+| Dealer ID | Dealer Name | Address | City | State | Zip | Phone | Email | Contact Names | Missing Fields |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| home_nation | Home Nation |  |  |  |  |  | sam@homenation.com | Sam Best | address1, city, state, zip5, phone_e164 |
+| dlr_wayne_frier_home_center_live_oak_fl_32060 | Wayne Frier Home Center | Hwy US-90 west | Live Oak | FL | 32060 |  | mfrier12@gmail.com | Matt Frier | phone_e164 |
+| dlr_wayne_frier_home_ctrs_midway_fl_32343 | Wayne Frier Home Ctrs | 33849 Blue Star Highway | Midway | FL | 32343 | +18505763007 |  | Randy Box | email |
+| dlr_vivians_baldwin_ga_30531 | VIVIANS | 788 HWY 441 BYPASS | Baldwin | GA | 30531 | +17067781688 |  | JULIE | email |
+| dlr_traillhead_homes_indianapolis_in_46240 | Traillhead Homes | 7850 Dean Road | Indianapolis | IN | 46240 |  | dougj@trailhh.com | Doug Johnson | phone_e164 |
+| dlr_heartland_mobile_home_carrollton_ky_41008 | Heartland Mobile Home | 2424 KY 227 | Carrollton | KY | 41008 |  | sales@myheartlandhomes.com | Darron; Scott Hay; Hollingsworth | phone_e164 |
+| dlr_clayton_homes_corbin_ky_40701 | Clayton homes | 22 Park Hill Road | Corbin | KY | 40701 |  | melvin.cox@claytonhomes.com | Melvin Cox | phone_e164 |
+| dlr_red_rock_home_center_london_ky_40741 | Red Rock Home Center | 714 East Hal Rogers Pkwy | London | KY | 40741 |  | jason@redrockhomecenter.com | Jason Gambrell | phone_e164 |
+| dlr_kingdom_keys_home_solutions_louisville_ky_40258 | Kingdom Keys Home Solutions |  | Louisville | KY | 40258 | +15027151771 | gracefulcontractingllc@gmail.com | Caleb Smithson | address1 |
+| dlr_dream_maker_realty_mt_sterling_ky_40353 | Dream Maker Realty | 1901 Camargo Rd | Mt Sterling | KY | 40353 | +18594043384 |  | Christopher Riggsby | email |
+| dlr_home_retailer_russell_springs_ky_42642 | Home Retailer | 67 Sambo Lane | Russell Springs | KY | 42642 |  | simplificorp@gmail.com | Scott Wilkerson,Lily Creek | phone_e164 |
+| dlr_a1_housing_llc_monroe_nc_28110 | A1 Housing LLC | 3509 Hwy 74 W | Monroe | NC | 28110 |  | therealstevenmitchell@gmail.com | Steven Mitchell | phone_e164 |
+| dlr_youngs_colonial_acres_freemont_oh_43420 | Youngs Colonial Acres | 1451 Oak Harbor Rd | Freemont | OH | 43420 | +14193342648 |  | David You ng | email |
+| dlr_route_21_homes_carmichaels_pa_15320 | Route 21 Homes | Carmichaels | Carmichaels | PA | 15320 |  | info@route21homes.com | Chris Garris | phone_e164 |
+| dlr_aiken_housing_aiken_sc_29801 | AIKEN HOUSING | 190 OLD WAGENER RD | Aiken | SC | 29801 | +18036491603 |  |  | email, contacts |
+| dlr_carolina_home_outlet_llc_newberry_sc_29108 | CAROLINA HOME OUTLET, LLC | 2300 WILSON RD | Newberry | SC | 29108 | +18032765788 |  |  | email, contacts |
+| dlr_rvp_clayton_retail_maryville_tn_37804 | RVP Clayton Retail | 5000 Clayton Road | Maryville | TN | 37804 |  | eric.boehm@claytonhomes.com | Eric Boehm | phone_e164 |
+| dlr_zone_mgr_clayton_retail_maryville_tn_37804 | Zone Mgr Clayton Retail | 5000 Clayton Road | Maryville | TN | 37804 |  | bobby.alberts@claytonhomes.com | Bobby Alberts - Zone Mgr | phone_e164 |
+| dlr_clayton_homes_portland_tn_37148 | Clayton Homes | 764 Hwy 52E | Portland | TN | 37148 |  | stacey.mingua@claytonhomes.com | Stacey Mingua-Diamond | phone_e164 |
+| dlr_palm_harbor_homes_addison_tx_75001 | Palm Harbor Homes | 15301 Spectrum Dr | Addison | TX | 75001 | +19727635042 |  | Richard Peck | email |
+| dlr_mcdonald_mobile_homes_jasper_tx_75951 | McDonald Mobile Homes | 1011 E Gibson | Jasper | TX | 75951 | +14093847609 |  | Todd McDonald; Dustin Orchosky | email |
+| dlr_hench_s_country_livin_homes_sherman_tx_75092 | Hench's Country Livin Homes | 17245 State Hwy 56 | Sherman | TX | 75092 | +19038682877 |  | Tracey Bennett | email |
+| dlr_manufactured_housing_consultants_von_or_tx_78073 | Manufactured Housing Consultants | 13930 IH 35 South | Von Or | TX | 78073 | +12106233356 |  | Mo - Owner; Andy Tascado - Finance Man | email |

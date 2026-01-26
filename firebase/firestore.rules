@@ -1,0 +1,87 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ==========================================================================
+    // LEADS COLLECTION
+    // All access through Cloud Functions using Admin SDK
+    // ==========================================================================
+    match /leads/{leadId} {
+      allow read, write: if false;
+    }
+    
+    // ==========================================================================
+    // DEALERS COLLECTION
+    // Read by functions, write by admin
+    // ==========================================================================
+    match /dealers/{dealerId} {
+      allow read, write: if false;
+      
+      // Dealer locations subcollection
+      match /locations/{locationId} {
+        allow read, write: if false;
+      }
+      
+      // Dealer contacts subcollection
+      match /contacts/{contactId} {
+        allow read, write: if false;
+      }
+    }
+    
+    // ==========================================================================
+    // DEALER NUMBERS COLLECTION
+    // Maps phone numbers to dealers for attribution
+    // ==========================================================================
+    match /dealerNumbers/{phoneE164} {
+      allow read, write: if false;
+    }
+    
+    // ==========================================================================
+    // ZIP COVERAGE COLLECTION
+    // Maps state+zip to dealer candidates for geo routing
+    // ==========================================================================
+    match /zipCoverage/{stateZip} {
+      allow read, write: if false;
+    }
+    
+    // ==========================================================================
+    // DEALER ATTRIBUTION KEYS COLLECTION
+    // Optional mapping for dealer link attribution
+    // ==========================================================================
+    match /dealerAttributionKeys/{keyId} {
+      allow read, write: if false;
+    }
+    
+    // ==========================================================================
+    // DEALER CAPACITY COLLECTION
+    // Optional per-dealer caps and counters
+    // ==========================================================================
+    match /dealerCapacity/{dealerId} {
+      allow read, write: if false;
+    }
+    
+    // ==========================================================================
+    // USERS COLLECTION
+    // Internal TLC users (loan officers, ops, admin)
+    // ==========================================================================
+    match /users/{userId} {
+      allow read, write: if false;
+    }
+    
+    // ==========================================================================
+    // LEAD EVENTS COLLECTION
+    // Append-only audit log
+    // ==========================================================================
+    match /leadEvents/{eventId} {
+      allow read, write: if false;
+    }
+    
+    // ==========================================================================
+    // MAIL COLLECTION
+    // Used by Trigger Email extension
+    // ==========================================================================
+    match /mail/{mailId} {
+      allow read, write: if false;
+    }
+  }
+}

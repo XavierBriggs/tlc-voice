@@ -1,0 +1,846 @@
+{
+  "source_file": "/Users/xavierbriggs/development/tlc/hestia-voice/firebase/scripts/data/Dealers_Normalized_v1_data.csv",
+  "header_columns": 35,
+  "rows_total": 162,
+  "rows_used": 162,
+  "dealers_count": 112,
+  "locations_count": 112,
+  "contacts_count": 129,
+  "missing_fields": {
+    "company": 0,
+    "contact": 3,
+    "phone": 16,
+    "address": 2,
+    "city": 1,
+    "state": 1,
+    "zip": 1,
+    "email": 12,
+    "tier": 0
+  },
+  "missing_rows": [
+    {
+      "row": 32,
+      "company": "AIKEN HOUSING",
+      "city": "Aiken",
+      "state": "SC",
+      "zip": "29801",
+      "missing": [
+        "contact",
+        "email"
+      ]
+    },
+    {
+      "row": 37,
+      "company": "Manufactured Housing Consultants",
+      "city": "Von Or",
+      "state": "TX",
+      "zip": "78073",
+      "missing": [
+        "email"
+      ]
+    },
+    {
+      "row": 43,
+      "company": "RVP Clayton Retail",
+      "city": "Maryville",
+      "state": "TN",
+      "zip": "37804",
+      "missing": [
+        "phone"
+      ]
+    },
+    {
+      "row": 44,
+      "company": "Wayne Frier Home Center",
+      "city": "Live Oak",
+      "state": "FL",
+      "zip": "32060",
+      "missing": [
+        "phone"
+      ]
+    },
+    {
+      "row": 47,
+      "company": "Clayton Homes",
+      "city": "Portland",
+      "state": "TN",
+      "zip": "37148",
+      "missing": [
+        "phone"
+      ]
+    },
+    {
+      "row": 49,
+      "company": "Clayton homes",
+      "city": "Corbin",
+      "state": "KY",
+      "zip": "40701",
+      "missing": [
+        "phone"
+      ]
+    },
+    {
+      "row": 68,
+      "company": "Wayne Frier Home Ctrs",
+      "city": "Midway",
+      "state": "FL",
+      "zip": "32343",
+      "missing": [
+        "email"
+      ]
+    },
+    {
+      "row": 85,
+      "company": "VIVIANS",
+      "city": "Baldwin",
+      "state": "GA",
+      "zip": "30531",
+      "missing": [
+        "email"
+      ]
+    },
+    {
+      "row": 108,
+      "company": "AIKEN HOUSING",
+      "city": "Aiken",
+      "state": "SC",
+      "zip": "29801",
+      "missing": [
+        "contact",
+        "email"
+      ]
+    },
+    {
+      "row": 109,
+      "company": "CAROLINA HOME OUTLET, LLC",
+      "city": "Newberry",
+      "state": "SC",
+      "zip": "29108",
+      "missing": [
+        "contact",
+        "email"
+      ]
+    },
+    {
+      "row": 116,
+      "company": "Manufactured Housing Consultants",
+      "city": "Von Or",
+      "state": "TX",
+      "zip": "78073",
+      "missing": [
+        "email"
+      ]
+    },
+    {
+      "row": 117,
+      "company": "McDonald Mobile Homes",
+      "city": "Jasper",
+      "state": "TX",
+      "zip": "75951",
+      "missing": [
+        "email"
+      ]
+    },
+    {
+      "row": 118,
+      "company": "Palm Harbor Homes",
+      "city": "Addison",
+      "state": "TX",
+      "zip": "75001",
+      "missing": [
+        "email"
+      ]
+    },
+    {
+      "row": 121,
+      "company": "Hench's Country Livin Homes",
+      "city": "Sherman",
+      "state": "TX",
+      "zip": "75092",
+      "missing": [
+        "email"
+      ]
+    },
+    {
+      "row": 129,
+      "company": "RVP Clayton Retail",
+      "city": "Maryville",
+      "state": "TN",
+      "zip": "37804",
+      "missing": [
+        "phone"
+      ]
+    },
+    {
+      "row": 130,
+      "company": "Zone Mgr Clayton Retail",
+      "city": "Maryville",
+      "state": "TN",
+      "zip": "37804",
+      "missing": [
+        "phone"
+      ]
+    },
+    {
+      "row": 132,
+      "company": "Home Nation",
+      "city": null,
+      "state": null,
+      "zip": null,
+      "missing": [
+        "phone",
+        "address",
+        "city",
+        "state",
+        "zip"
+      ]
+    },
+    {
+      "row": 135,
+      "company": "Wayne Frier Home Center",
+      "city": "Live Oak",
+      "state": "FL",
+      "zip": "32060",
+      "missing": [
+        "phone"
+      ]
+    },
+    {
+      "row": 143,
+      "company": "Kingdom Keys Home Solutions",
+      "city": "Louisville",
+      "state": "KY",
+      "zip": "40258",
+      "missing": [
+        "address"
+      ]
+    },
+    {
+      "row": 144,
+      "company": "Clayton Homes",
+      "city": "Portland",
+      "state": "TN",
+      "zip": "37148",
+      "missing": [
+        "phone"
+      ]
+    },
+    {
+      "row": 145,
+      "company": "Red Rock Home Center",
+      "city": "London",
+      "state": "KY",
+      "zip": "40741",
+      "missing": [
+        "phone"
+      ]
+    },
+    {
+      "row": 146,
+      "company": "Heartland Mobile Home",
+      "city": "Carrollton",
+      "state": "KY",
+      "zip": "41008",
+      "missing": [
+        "phone"
+      ]
+    },
+    {
+      "row": 147,
+      "company": "Dream Maker Realty",
+      "city": "Mt Sterling",
+      "state": "KY",
+      "zip": "40353",
+      "missing": [
+        "email"
+      ]
+    },
+    {
+      "row": 150,
+      "company": "Clayton homes",
+      "city": "Corbin",
+      "state": "KY",
+      "zip": "40701",
+      "missing": [
+        "phone"
+      ]
+    },
+    {
+      "row": 156,
+      "company": "Home Retailer",
+      "city": "Russell Springs",
+      "state": "KY",
+      "zip": "42642",
+      "missing": [
+        "phone"
+      ]
+    },
+    {
+      "row": 157,
+      "company": "A1 Housing LLC",
+      "city": "Monroe",
+      "state": "NC",
+      "zip": "28110",
+      "missing": [
+        "phone"
+      ]
+    },
+    {
+      "row": 159,
+      "company": "Route 21 Homes",
+      "city": "Carmichaels",
+      "state": "PA",
+      "zip": "15320",
+      "missing": [
+        "phone"
+      ]
+    },
+    {
+      "row": 160,
+      "company": "Traillhead Homes",
+      "city": "Indianapolis",
+      "state": "IN",
+      "zip": "46240",
+      "missing": [
+        "phone"
+      ]
+    },
+    {
+      "row": 162,
+      "company": "Youngs Colonial Acres",
+      "city": "Freemont",
+      "state": "OH",
+      "zip": "43420",
+      "missing": [
+        "email"
+      ]
+    }
+  ],
+  "missing_by_dealer": [
+    {
+      "dealer_id": "dlr_aiken_housing_aiken_sc_29801",
+      "missing": [
+        "email",
+        "contacts"
+      ]
+    },
+    {
+      "dealer_id": "dlr_manufactured_housing_consultants_von_or_tx_78073",
+      "missing": [
+        "email"
+      ]
+    },
+    {
+      "dealer_id": "dlr_rvp_clayton_retail_maryville_tn_37804",
+      "missing": [
+        "phone_e164"
+      ]
+    },
+    {
+      "dealer_id": "dlr_wayne_frier_home_center_live_oak_fl_32060",
+      "missing": [
+        "phone_e164"
+      ]
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_portland_tn_37148",
+      "missing": [
+        "phone_e164"
+      ]
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_corbin_ky_40701",
+      "missing": [
+        "phone_e164"
+      ]
+    },
+    {
+      "dealer_id": "dlr_wayne_frier_home_ctrs_midway_fl_32343",
+      "missing": [
+        "email"
+      ]
+    },
+    {
+      "dealer_id": "dlr_vivians_baldwin_ga_30531",
+      "missing": [
+        "email"
+      ]
+    },
+    {
+      "dealer_id": "dlr_carolina_home_outlet_llc_newberry_sc_29108",
+      "missing": [
+        "email",
+        "contacts"
+      ]
+    },
+    {
+      "dealer_id": "dlr_mcdonald_mobile_homes_jasper_tx_75951",
+      "missing": [
+        "email"
+      ]
+    },
+    {
+      "dealer_id": "dlr_palm_harbor_homes_addison_tx_75001",
+      "missing": [
+        "email"
+      ]
+    },
+    {
+      "dealer_id": "dlr_hench_s_country_livin_homes_sherman_tx_75092",
+      "missing": [
+        "email"
+      ]
+    },
+    {
+      "dealer_id": "dlr_zone_mgr_clayton_retail_maryville_tn_37804",
+      "missing": [
+        "phone_e164"
+      ]
+    },
+    {
+      "dealer_id": "home_nation",
+      "missing": [
+        "address1",
+        "city",
+        "state",
+        "zip5",
+        "phone_e164"
+      ]
+    },
+    {
+      "dealer_id": "dlr_kingdom_keys_home_solutions_louisville_ky_40258",
+      "missing": [
+        "address1"
+      ]
+    },
+    {
+      "dealer_id": "dlr_red_rock_home_center_london_ky_40741",
+      "missing": [
+        "phone_e164"
+      ]
+    },
+    {
+      "dealer_id": "dlr_heartland_mobile_home_carrollton_ky_41008",
+      "missing": [
+        "phone_e164"
+      ]
+    },
+    {
+      "dealer_id": "dlr_dream_maker_realty_mt_sterling_ky_40353",
+      "missing": [
+        "email"
+      ]
+    },
+    {
+      "dealer_id": "dlr_home_retailer_russell_springs_ky_42642",
+      "missing": [
+        "phone_e164"
+      ]
+    },
+    {
+      "dealer_id": "dlr_a1_housing_llc_monroe_nc_28110",
+      "missing": [
+        "phone_e164"
+      ]
+    },
+    {
+      "dealer_id": "dlr_route_21_homes_carmichaels_pa_15320",
+      "missing": [
+        "phone_e164"
+      ]
+    },
+    {
+      "dealer_id": "dlr_traillhead_homes_indianapolis_in_46240",
+      "missing": [
+        "phone_e164"
+      ]
+    },
+    {
+      "dealer_id": "dlr_youngs_colonial_acres_freemont_oh_43420",
+      "missing": [
+        "email"
+      ]
+    }
+  ],
+  "invalid_emails": [
+    {
+      "row": 46,
+      "value": "jennifer@republic@homes.com"
+    }
+  ],
+  "invalid_phones": [
+    {
+      "row": 9,
+      "value": "Derrick"
+    },
+    {
+      "row": 65,
+      "value": "Derrick"
+    }
+  ],
+  "rows_with_extra_columns": [
+    {
+      "row": 132,
+      "values": [
+        "DEFAULT"
+      ]
+    }
+  ],
+  "rows_with_filled_city": [],
+  "duplicates_merged": [
+    {
+      "dealer_id": "dlr_regional_home_sales_cullman_al_35055",
+      "rows": [
+        2,
+        53
+      ]
+    },
+    {
+      "dealer_id": "dlr_corky_s_homes_prattville_al_36066",
+      "rows": [
+        3,
+        54
+      ]
+    },
+    {
+      "dealer_id": "dlr_jaco_sales_llc_montgomery_al_36110",
+      "rows": [
+        4,
+        55
+      ]
+    },
+    {
+      "dealer_id": "dlr_timberline_homes_inc_tuscaloosa_al_35405",
+      "rows": [
+        5,
+        56
+      ]
+    },
+    {
+      "dealer_id": "dlr_sanders_manufactured_housing_pensacola_al_32534",
+      "rows": [
+        6,
+        58
+      ]
+    },
+    {
+      "dealer_id": "dlr_sue_white_homes_fort_smith_ar_72903",
+      "rows": [
+        7,
+        61
+      ]
+    },
+    {
+      "dealer_id": "dlr_el_dorado_homes_el_dorado_ar_71730",
+      "rows": [
+        8,
+        62
+      ]
+    },
+    {
+      "dealer_id": "dlr_wayne_frier_home_ctrs_live_oak_fl_32060",
+      "rows": [
+        9,
+        65
+      ]
+    },
+    {
+      "dealer_id": "dlr_affordable_homes_crestview_crestview_fl_32536",
+      "rows": [
+        10,
+        67
+      ]
+    },
+    {
+      "dealer_id": "dlr_all_star_manufactured_housing_inc_oca_fl_34480",
+      "rows": [
+        11,
+        70
+      ]
+    },
+    {
+      "dealer_id": "dlr_prestige_home_centers_oca_fl_34480",
+      "rows": [
+        12,
+        71
+      ]
+    },
+    {
+      "dealer_id": "dlr_jacobsen_homes_plant_city_plant_city_fl_33565",
+      "rows": [
+        13,
+        73
+      ]
+    },
+    {
+      "dealer_id": "dlr_leecorp_homes_estero_fl_33928",
+      "rows": [
+        14,
+        75
+      ]
+    },
+    {
+      "dealer_id": "dlr_central_mobile_homes_labelle_fl_33935",
+      "rows": [
+        15,
+        76
+      ]
+    },
+    {
+      "dealer_id": "dlr_quality_homes_jacksonville_fl_32221",
+      "rows": [
+        16,
+        77
+      ]
+    },
+    {
+      "dealer_id": "dlr_bob_s_family_housing_inc_dahlonega_ga_30533",
+      "rows": [
+        17,
+        82
+      ]
+    },
+    {
+      "dealer_id": "dlr_hartwell_home_mart_hartwell_ga_30643",
+      "rows": [
+        18,
+        83
+      ]
+    },
+    {
+      "dealer_id": "dlr_jesup_housing_outlet_llc_jesup_ga_31545",
+      "rows": [
+        19,
+        84
+      ]
+    },
+    {
+      "dealer_id": "dlr_brewer_quality_homes_bossier_city_la_71111",
+      "rows": [
+        20,
+        87
+      ]
+    },
+    {
+      "dealer_id": "dlr_clayton_new_iberia_new_iberia_la_70560",
+      "rows": [
+        21,
+        89
+      ]
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_houma_houma_la_70360",
+      "rows": [
+        22,
+        90
+      ]
+    },
+    {
+      "dealer_id": "dlr_fleur_de_lis_hammond_la_70403",
+      "rows": [
+        23,
+        91
+      ]
+    },
+    {
+      "dealer_id": "dlr_greg_tilley_s_bossier_mobile_homes_inc_bossier_city_la_71111",
+      "rows": [
+        24,
+        92
+      ]
+    },
+    {
+      "dealer_id": "dlr_gulf_south_homes_houma_la_70361",
+      "rows": [
+        25,
+        95
+      ]
+    },
+    {
+      "dealer_id": "dlr_jim_tatman_s_mobile_carencro_la_70520",
+      "rows": [
+        26,
+        97
+      ]
+    },
+    {
+      "dealer_id": "dlr_hammond_mobile_homes_llc_hammond_la_70403",
+      "rows": [
+        27,
+        98
+      ]
+    },
+    {
+      "dealer_id": "dlr_henchs_country_livin_homes_of_calera_cale_ok_74730",
+      "rows": [
+        28,
+        101
+      ]
+    },
+    {
+      "dealer_id": "dlr_mid_state_manufactured_housing_corp_purcell_ok_73080",
+      "rows": [
+        29,
+        103
+      ]
+    },
+    {
+      "dealer_id": "dlr_universal_mobile_homes_ok_city_ok_73129",
+      "rows": [
+        30,
+        104
+      ]
+    },
+    {
+      "dealer_id": "dlr_republic_homes_ok_city_ok_73149",
+      "rows": [
+        31,
+        106
+      ]
+    },
+    {
+      "dealer_id": "dlr_aiken_housing_aiken_sc_29801",
+      "rows": [
+        32,
+        108
+      ]
+    },
+    {
+      "dealer_id": "dlr_dinkins_home_center_paris_tn_38242",
+      "rows": [
+        33,
+        110
+      ]
+    },
+    {
+      "dealer_id": "dlr_meadows_homes_cookeville_tn_38501",
+      "rows": [
+        34,
+        111
+      ]
+    },
+    {
+      "dealer_id": "dlr_preferred_living_homes_knoxville_tn_37912",
+      "rows": [
+        35,
+        114
+      ]
+    },
+    {
+      "dealer_id": "dlr_hobbs_manufactured_homes_texarkana_tx_75501",
+      "rows": [
+        36,
+        115
+      ]
+    },
+    {
+      "dealer_id": "dlr_manufactured_housing_consultants_von_or_tx_78073",
+      "rows": [
+        37,
+        116
+      ]
+    },
+    {
+      "dealer_id": "dlr_smart_choice_mfg_hms_atascosa_tx_78002",
+      "rows": [
+        38,
+        120
+      ]
+    },
+    {
+      "dealer_id": "dlr_pratt_homes_tyler_tx_75702",
+      "rows": [
+        39,
+        124
+      ]
+    },
+    {
+      "dealer_id": "dlr_texas_built_mobile_homes_seguin_tx_75155",
+      "rows": [
+        40,
+        126
+      ]
+    },
+    {
+      "dealer_id": "dlr_fayette_country_homes_schulenberg_tx_78956",
+      "rows": [
+        41,
+        127
+      ]
+    },
+    {
+      "dealer_id": "dlr_texas_built_mobile_homes_seguin_tx_78155",
+      "rows": [
+        42,
+        128
+      ]
+    },
+    {
+      "dealer_id": "dlr_rvp_clayton_retail_maryville_tn_37804",
+      "rows": [
+        43,
+        129
+      ]
+    },
+    {
+      "dealer_id": "dlr_wayne_frier_home_center_live_oak_fl_32060",
+      "rows": [
+        44,
+        135
+      ]
+    },
+    {
+      "dealer_id": "dlr_effingham_homes_effingham_il_62401",
+      "rows": [
+        45,
+        139
+      ]
+    },
+    {
+      "dealer_id": "dlr_republic_homes_somerset_ky_42501",
+      "rows": [
+        46,
+        142
+      ]
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_portland_tn_37148",
+      "rows": [
+        47,
+        144
+      ]
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_elkins_wv_26241",
+      "rows": [
+        48,
+        149
+      ]
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_corbin_ky_40701",
+      "rows": [
+        49,
+        150
+      ]
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_williamsburg_ky_40769",
+      "rows": [
+        50,
+        151
+      ]
+    },
+    {
+      "dealer_id": "dlr_clayton_homes_london_ky_40741",
+      "rows": [
+        51,
+        153
+      ]
+    }
+  ],
+  "tier_overrides": [],
+  "home_nation": {
+    "row": 132
+  }
+}

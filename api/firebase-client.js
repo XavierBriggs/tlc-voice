@@ -1,14 +1,23 @@
-// api/firebase-client.js
+/**
+ * Firestore Hestia API Client
+ * 
+ * Firestore implementation using TLC Firestore Schemas V1.
+ * Uses snake_case field names for Firestore compatibility.
+ */
+
 import { initializeApp, cert, getApps } from 'firebase-admin/app';
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-import { buildLeadPayload } from '../lib/state-machine.js';
+import { buildLeadPayload, buildLeadUpdatePayload } from '../lib/state-machine.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// Initialize Firebase Admin (only once)
+// =============================================================================
+// FIREBASE INITIALIZATION
+// =============================================================================
+
 if (getApps().length === 0) {
   if (process.env.FIREBASE_SERVICE_ACCOUNT) {
     // Production: JSON string in env var
@@ -18,14 +27,26 @@ if (getApps().length === 0) {
   } else {
     // Local dev: JSON file in project root
     const serviceAccountPath = join(__dirname, '..', 'hestia-service-account.json');
-    const serviceAccount = JSON.parse(readFileSync(serviceAccountPath, 'utf8'));
-    initializeApp({
-      credential: cert(serviceAccount),
-    });
+    if (existsSync(serviceAccountPath)) {
+      const serviceAccount = JSON.parse(readFileSync(serviceAccountPath, 'utf8'));
+      initializeApp({
+        credential: cert(serviceAccount),
+      });
+    } else {
+      // Initialize without credentials (will use default credentials in cloud)
+      initializeApp();
+    }
   }
 }
 
 const db = getFirestore();
+
+// Default dealer for fallback routing
+const DEFAULT_DEALER_ID = 'home_nation';
+
+// =============================================================================
+// HELPERS
+// =============================================================================
 
 function generateId(prefix = 'lead') {
   const timestamp = Date.now().toString(36);
@@ -35,8 +56,6 @@ function generateId(prefix = 'lead') {
 
 /**
  * Recursively convert undefined values to null for Firestore compatibility.
- * This preserves the intent that a field exists but has no value,
- * rather than silently dropping undefined fields. UPDATE TO SOMETHING MORE DESCRIPTIVE like NOT_PROVIDED or EMPTY.
  */
 function sanitizeForFirestore(obj) {
   if (obj === undefined) return null;
@@ -54,6 +73,10 @@ function sanitizeForFirestore(obj) {
   return result;
 }
 
+// =============================================================================
+// CLIENT CLASS
+// =============================================================================
+
 export class FirestoreHestiaClient {
   constructor(options = {}) {
     this.verbose = options.verbose ?? true;
@@ -69,13 +92,16 @@ export class FirestoreHestiaClient {
   // LEAD OPERATIONS
   // ===========================================================================
 
+  /**
+   * Create a new lead using TLC Firestore Schemas V1
+   */
   async createLead(state) {
     const payload = buildLeadPayload(state);
-    const idempotencyKey = payload.idempotency_key;
+    const idempotencyKey = `voice_${state.callSid}`;
 
     // Check for existing lead with same idempotency key
     const existing = await db.collection('leads')
-      .where('idempotencyKey', '==', idempotencyKey)
+      .where('_idempotency_key', '==', idempotencyKey)
       .limit(1)
       .get();
 
@@ -89,226 +115,321 @@ export class FirestoreHestiaClient {
       };
     }
 
-    // Create new lead
+    // Create new lead with full schema
     const leadId = generateId('lead');
+    
     const lead = {
-      idempotencyKey,
-      createdAt: FieldValue.serverTimestamp(),
-      updatedAt: FieldValue.serverTimestamp(),
-      status: 'new',
-
-      // Source
-      source: {
-        channel: payload.source.channel,
-        entrypoint: payload.source.entrypoint,
-        sessionId: payload.source.session_id,
-        tracking: payload.source.tracking || null,
-      },
-
-      // Assignment (null until routed)
-      assignedDealerId: null,
-      assignmentType: null,
-      routedAt: null,
-
-      // Delivery
-      dealerDeliveryStatus: 'pending',
-
-      // Data
-      applicant: payload.applicant,
-      homeAndSite: payload.home_and_site,
-      financial: payload.financial_snapshot,
-      notes: payload.notes,
+      lead_id: leadId,
+      _idempotency_key: idempotencyKey,
+      created_at: FieldValue.serverTimestamp(),
+      updated_at: FieldValue.serverTimestamp(),
+      ...payload,
     };
 
     await db.collection('leads').doc(leadId).set(sanitizeForFirestore(lead));
     
-    // Log creation event
+    // Log creation event to top-level leadEvents collection
     await this.logEvent(leadId, {
-      event_type: 'lead_created',
-      actor_type: 'ai',
-      payload_json: { source: payload.source },
+      event_type: 'created',
+      actor_type: 'system',
+      details: {
+        channel: payload.source.channel,
+        entrypoint: payload.source.entrypoint,
+      },
     });
 
-    this._log('createLead (new)', { lead_id: leadId });
-    return { lead_id: leadId, status: 'new', created: true };
+    this._log('createLead (new)', { lead_id: leadId, status: lead.status });
+    return { lead_id: leadId, status: lead.status, created: true };
   }
 
+  /**
+   * Update an existing lead with progressive enrichment
+   */
   async updateLead(leadId, state) {
-    const payload = buildLeadPayload(state);
+    const updates = buildLeadUpdatePayload(state);
     const docRef = db.collection('leads').doc(leadId);
 
-    // Firestore merge update
     await docRef.update(sanitizeForFirestore({
-      updatedAt: FieldValue.serverTimestamp(),
-      applicant: payload.applicant,
-      homeAndSite: payload.home_and_site,
-      financial: payload.financial_snapshot,
-      notes: payload.notes,
+      updated_at: FieldValue.serverTimestamp(),
+      ...updates,
     }));
-
-    await this.logEvent(leadId, {
-      event_type: 'lead_updated',
-      actor_type: 'ai',
-      payload_json: { fields_updated: Object.keys(payload) },
-    });
 
     this._log('updateLead', { lead_id: leadId });
     return { success: true };
   }
 
+  /**
+   * Get a lead by ID
+   */
   async getLead(leadId) {
     const doc = await db.collection('leads').doc(leadId).get();
     if (!doc.exists) {
       throw new Error(`Lead not found: ${leadId}`);
     }
-    return { lead_id: doc.id, ...doc.data() };
+    return doc.data();
   }
 
-  async setStatus(leadId, status, reason = null) {
+  /**
+   * Set lead status with optional reason
+   */
+  async setStatus(leadId, status, statusReason = null) {
     const docRef = db.collection('leads').doc(leadId);
     const doc = await docRef.get();
     const previousStatus = doc.data()?.status;
 
     await docRef.update(sanitizeForFirestore({
-      status,
-      statusReason: reason,
-      updatedAt: FieldValue.serverTimestamp(),
+      status: status,
+      status_reason: statusReason,
+      updated_at: FieldValue.serverTimestamp(),
     }));
 
     await this.logEvent(leadId, {
       event_type: 'status_changed',
-      actor_type: 'ai',
-      payload_json: { previous_status: previousStatus, new_status: status, reason },
+      actor_type: 'system',
+      details: {
+        old_status: previousStatus,
+        new_status: status,
+        reason: statusReason,
+      },
     });
 
     this._log('setStatus', { lead_id: leadId, status });
     return { success: true, previous_status: previousStatus };
   }
 
+  /**
+   * Route a lead to a dealer
+   * Note: In production, this is handled by the routeLeadIfNeeded Cloud Function
+   */
   async routeLead(leadId) {
     const doc = await db.collection('leads').doc(leadId).get();
     const lead = doc.data();
 
-    if (lead.assignedDealerId) {
-      return { success: true, assigned_dealer_id: lead.assignedDealerId, already_routed: true };
+    // Already routed?
+    if (lead.assignment?.routed_at) {
+      return {
+        success: true,
+        assigned_dealer_id: lead.assignment.assigned_dealer_id,
+        assignment_type: lead.assignment.assignment_type,
+        already_routed: true,
+      };
     }
 
-    // Check attribution-based routing
-    if (lead.source?.tracking?.dealer_id) {
-      const dealerId = lead.source.tracking.dealer_id;
+    let assignedDealerId = null;
+    let assignmentType = null;
+    let assignmentReason = null;
+
+    // Rule 1: Check for dealer lock
+    const lockedDealerId = lead.source?.attribution?.locked_dealer_id;
+    if (lockedDealerId) {
+      const dealerDoc = await db.collection('dealers').doc(lockedDealerId).get();
+      if (dealerDoc.exists && dealerDoc.data().status === 'active') {
+        assignedDealerId = lockedDealerId;
+        assignmentType = 'dealer_sourced';
+        assignmentReason = lead.source.attribution.locked_reason === 'dealer_phone'
+          ? 'dealer_number'
+          : 'referral_lock';
+      }
+    }
+
+    // Rule 2: Zip coverage lookup
+    if (!assignedDealerId) {
+      const state = lead.home_and_site?.property_state;
+      const zip = lead.home_and_site?.property_zip;
       
-      await db.collection('leads').doc(leadId).update(sanitizeForFirestore({
-        assignedDealerId: dealerId,
-        assignmentType: 'dealer_sourced',
-        routedAt: FieldValue.serverTimestamp(),
-        status: 'routed',
-        updatedAt: FieldValue.serverTimestamp(),
-      }));
-
-      await this.logEvent(leadId, {
-        event_type: 'dealer_assignment_created',
-        actor_type: 'system',
-        payload_json: { dealer_id: dealerId, assignment_type: 'dealer_sourced' },
-      });
-
-      this._log('routeLead', { lead_id: leadId, dealer_id: dealerId });
-      return { success: true, assigned_dealer_id: dealerId, assignment_type: 'dealer_sourced' };
+      if (state && zip) {
+        const coverageId = `${state}_${zip}`;
+        const coverageDoc = await db.collection('zipCoverage').doc(coverageId).get();
+        
+        if (coverageDoc.exists) {
+          const candidates = coverageDoc.data().candidates || [];
+          const sortedCandidates = [...candidates].sort((a, b) => a.priority - b.priority);
+          
+          for (const candidate of sortedCandidates) {
+            const dealerDoc = await db.collection('dealers').doc(candidate.dealer_id).get();
+            if (dealerDoc.exists && dealerDoc.data().status === 'active') {
+              assignedDealerId = candidate.dealer_id;
+              assignmentType = 'geo_routed';
+              assignmentReason = 'zip_match';
+              break;
+            }
+          }
+        }
+      }
     }
 
-    // Geo routing would go here - for now just return needs routing
-    return { success: false, error: 'Geo routing not implemented - needs dealer coverage setup' };
+    // Rule 3: Fallback
+    if (!assignedDealerId) {
+      assignedDealerId = DEFAULT_DEALER_ID;
+      assignmentType = 'geo_routed';
+      assignmentReason = 'fallback';
+    }
+
+    // Update lead using dot notation for nested fields
+    await db.collection('leads').doc(leadId).update({
+      'assignment.assigned_dealer_id': assignedDealerId,
+      'assignment.assignment_type': assignmentType,
+      'assignment.assignment_reason': assignmentReason,
+      'assignment.routed_at': FieldValue.serverTimestamp(),
+      'assignment.routing_attempt_count': FieldValue.increment(1),
+      'assignment.routing_last_attempt_at': FieldValue.serverTimestamp(),
+      'updated_at': FieldValue.serverTimestamp(),
+    });
+
+    await this.logEvent(leadId, {
+      event_type: 'routed',
+      actor_type: 'system',
+      details: {
+        assigned_dealer_id: assignedDealerId,
+        assignment_type: assignmentType,
+        assignment_reason: assignmentReason,
+      },
+    });
+
+    this._log('routeLead', { lead_id: leadId, dealer_id: assignedDealerId });
+    return {
+      success: true,
+      assigned_dealer_id: assignedDealerId,
+      assignment_type: assignmentType,
+      assignment_reason: assignmentReason,
+    };
   }
 
+  /**
+   * Deliver a lead (send notifications)
+   * Note: In production, this is handled by the deliverLeadIfNeeded Cloud Function
+   */
   async deliverLead(leadId) {
     const doc = await db.collection('leads').doc(leadId).get();
     const lead = doc.data();
 
-    if (!lead.assignedDealerId) {
+    if (!lead.assignment?.assigned_dealer_id) {
       return { success: false, error: 'No dealer assigned' };
     }
 
-    if (lead.dealerDeliveryStatus === 'delivered') {
+    if (lead.delivery?.delivered_at) {
       return { success: true, already_delivered: true };
     }
 
-    await db.collection('leads').doc(leadId).update(sanitizeForFirestore({
-      dealerDeliveryStatus: 'delivered',
-      dealerDeliveredAt: FieldValue.serverTimestamp(),
-      updatedAt: FieldValue.serverTimestamp(),
-    }));
+    const dealerId = lead.assignment.assigned_dealer_id;
+    const dealerDoc = await db.collection('dealers').doc(dealerId).get();
+    const dealer = dealerDoc.exists ? dealerDoc.data() : null;
 
-    await this.logEvent(leadId, {
-      event_type: 'dealer_delivery_succeeded',
-      actor_type: 'system',
-      payload_json: { dealer_id: lead.assignedDealerId },
+    await db.collection('leads').doc(leadId).update({
+      'delivery.status': 'delivered',
+      'delivery.delivered_at': FieldValue.serverTimestamp(),
+      'delivery.tlc_team_notified': true,
+      'delivery.dealer_delivery_enabled': dealer?.delivery_prefs?.dealer_delivery_enabled || false,
+      'delivery.attempts': FieldValue.increment(1),
+      'delivery.last_attempt_at': FieldValue.serverTimestamp(),
+      'updated_at': FieldValue.serverTimestamp(),
     });
 
-    this._log('deliverLead', { lead_id: leadId });
-    return { success: true, dealer_id: lead.assignedDealerId };
-  }
+    await this.logEvent(leadId, {
+      event_type: 'delivered',
+      actor_type: 'system',
+      details: {
+        dealer_id: dealerId,
+        tlc_notified: true,
+        dealer_notified: dealer?.delivery_prefs?.dealer_delivery_enabled || false,
+      },
+    });
 
-  // ===========================================================================
-  // EVENT OPERATIONS
-  // ===========================================================================
-
-  async logEvent(leadId, eventData) {
-    const eventId = generateId('evt');
-    const event = {
-      eventId,
-      leadId,
-      eventType: eventData.event_type,
-      eventAt: FieldValue.serverTimestamp(),
-      actorType: eventData.actor_type || 'system',
-      payload: eventData.payload_json || {},
-    };
-
-    await db.collection('leads').doc(leadId)
-      .collection('events').doc(eventId).set(sanitizeForFirestore(event));
-
-    return { event_id: eventId };
-  }
-
-  async getEvents(leadId) {
-    const snapshot = await db.collection('leads').doc(leadId)
-      .collection('events')
-      .orderBy('eventAt', 'asc')
-      .get();
-
-    return snapshot.docs.map(doc => doc.data());
+    this._log('deliverLead', { lead_id: leadId, dealer_id: dealerId });
+    return { success: true, dealer_id: dealerId };
   }
 
   // ===========================================================================
   // DEALER OPERATIONS
   // ===========================================================================
 
-  async lookupDealerByTrackingNumber(dialedNumber) {
-    const snapshot = await db.collection('dealerTrackingNumbers')
-      .where('trackingNumber', '==', dialedNumber)
-      .where('status', '==', 'active')
-      .limit(1)
-      .get();
-
-    if (snapshot.empty) return null;
-
-    const tracking = snapshot.docs[0].data();
-    const dealerDoc = await db.collection('dealers').doc(tracking.dealerId).get();
+  /**
+   * Look up dealer by tracking phone number (dealerNumbers collection)
+   */
+  async lookupDealerByTrackingNumber(phoneE164) {
+    const doc = await db.collection('dealerNumbers').doc(phoneE164).get();
     
-    if (!dealerDoc.exists) return null;
+    if (!doc.exists || !doc.data().active) {
+      return null;
+    }
+
+    const dealerId = doc.data().dealer_id;
+    const dealerDoc = await db.collection('dealers').doc(dealerId).get();
+    
+    if (!dealerDoc.exists || dealerDoc.data().status !== 'active') {
+      return null;
+    }
 
     return {
-      dealer_id: tracking.dealerId,
-      dealer_name: dealerDoc.data().dealerName,
-      tracking_number: dialedNumber,
+      dealer_id: dealerId,
+      dealer_name: dealerDoc.data().dealer_name,
     };
   }
 
+  /**
+   * Get zip coverage for routing
+   */
+  async getZipCoverage(state, zip) {
+    const coverageId = `${state}_${zip}`;
+    const doc = await db.collection('zipCoverage').doc(coverageId).get();
+    return doc.exists ? doc.data() : null;
+  }
+
+  /**
+   * Get a dealer by ID
+   */
+  async getDealer(dealerId) {
+    const doc = await db.collection('dealers').doc(dealerId).get();
+    return doc.exists ? doc.data() : null;
+  }
+
   // ===========================================================================
-  // DEBUG (for parity with mock)
+  // EVENT OPERATIONS
   // ===========================================================================
 
-  async getAllLeads() {
-    const snapshot = await db.collection('leads').orderBy('createdAt', 'desc').limit(50).get();
-    return snapshot.docs.map(doc => ({ lead_id: doc.id, ...doc.data() }));
+  /**
+   * Log an event to top-level leadEvents collection
+   */
+  async logEvent(leadId, eventData) {
+    const eventId = generateId('evt');
+    
+    const event = {
+      event_id: eventId,
+      lead_id: leadId,
+      event_type: eventData.event_type,
+      actor_type: eventData.actor_type || 'system',
+      actor_id: eventData.actor_id || null,
+      details: eventData.details || {},
+      created_at: FieldValue.serverTimestamp(),
+    };
+
+    await db.collection('leadEvents').doc(eventId).set(sanitizeForFirestore(event));
+
+    return { event_id: eventId };
+  }
+
+  /**
+   * Get all events for a lead
+   */
+  async getEvents(leadId) {
+    const snapshot = await db.collection('leadEvents')
+      .where('lead_id', '==', leadId)
+      .orderBy('created_at', 'asc')
+      .get();
+
+    return snapshot.docs.map(doc => doc.data());
+  }
+
+  // ===========================================================================
+  // UTILITIES
+  // ===========================================================================
+
+  async getAllLeads(limit = 50) {
+    const snapshot = await db.collection('leads')
+      .orderBy('created_at', 'desc')
+      .limit(limit)
+      .get();
+    return snapshot.docs.map(doc => doc.data());
   }
 
   async getStats() {

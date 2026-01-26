@@ -1,72 +1,162 @@
 /**
  * Mock Hestia API Client
  * 
- * In-memory implementation of the Hestia V2 API for testing without a backend.
- * Mirrors the real API endpoints and stores data locally.
+ * In-memory implementation for testing without a backend.
+ * Implements TLC Firestore Schemas V1.
  */
 
-import { buildLeadPayload } from '../lib/state-machine.js';
+import { buildLeadPayload, buildLeadUpdatePayload } from '../lib/state-machine.js';
 
-// In-memory storage
+// =============================================================================
+// IN-MEMORY STORAGE
+// =============================================================================
+
 const leads = new Map();
-const events = new Map();
+const leadEvents = new Map();
 const dealers = new Map();
-const dealerTrackingNumbers = new Map();
+const dealerNumbers = new Map();
+const zipCoverage = new Map();
 
-// Initialize some test dealer data
+// =============================================================================
+// INITIALIZE TEST DATA
+// =============================================================================
+
 function initializeTestData() {
-  // Sample dealers
+  // Sample dealers with new schema
+  dealers.set('home_nation', {
+    dealer_id: 'home_nation',
+    schema_version: 1,
+    dealer_name: 'Home Nation',
+    status: 'active',
+    tier: 'top50',
+    website_url: 'https://www.homenation.com',
+    notes: 'Default fallback dealer',
+    delivery_prefs: {
+      dealer_delivery_enabled: true,
+      delivery_mode: 'email',
+      email_to: ['leads@homenation.com'],
+      email_cc: [],
+      webhook_url: null,
+      allow_lead_cap: false,
+      daily_lead_cap: null,
+    },
+    routing_prefs: {
+      priority_weight: 1000,
+      exclusive_zips_allowed: false,
+    },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  });
+  
   dealers.set('dlr_12345', {
     dealer_id: 'dlr_12345',
+    schema_version: 1,
     dealer_name: 'ABC Homes of Missouri',
     status: 'active',
-    primary_contact_email: 'sales@abchomes.example.com',
-    primary_contact_phone: '+13145551000',
-    lead_delivery_method: 'email',
-    daily_lead_cap: 10,
-    priority_weight: 100,
+    tier: 'standard',
+    website_url: 'https://www.abchomes.example.com',
+    notes: null,
+    delivery_prefs: {
+      dealer_delivery_enabled: true,
+      delivery_mode: 'email',
+      email_to: ['sales@abchomes.example.com'],
+      email_cc: [],
+      webhook_url: null,
+      allow_lead_cap: false,
+      daily_lead_cap: 10,
+    },
+    routing_prefs: {
+      priority_weight: 100,
+      exclusive_zips_allowed: true,
+    },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
   });
   
   dealers.set('dlr_67890', {
     dealer_id: 'dlr_67890',
+    schema_version: 1,
     dealer_name: 'Texas Mobile Homes',
     status: 'active',
-    primary_contact_email: 'leads@txmobile.example.com',
-    primary_contact_phone: '+12145552000',
-    lead_delivery_method: 'webhook',
-    daily_lead_cap: 15,
-    priority_weight: 80,
+    tier: 'standard',
+    website_url: 'https://www.txmobile.example.com',
+    notes: null,
+    delivery_prefs: {
+      dealer_delivery_enabled: true,
+      delivery_mode: 'email',
+      email_to: ['leads@txmobile.example.com'],
+      email_cc: [],
+      webhook_url: null,
+      allow_lead_cap: false,
+      daily_lead_cap: 15,
+    },
+    routing_prefs: {
+      priority_weight: 80,
+      exclusive_zips_allowed: true,
+    },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
   });
   
-  // Sample tracking numbers
-  dealerTrackingNumbers.set('+18005551234', {
-    tracking_number_e164: '+18005551234',
+  // Sample dealer numbers for attribution
+  dealerNumbers.set('+18005551234', {
+    phone_e164: '+18005551234',
     dealer_id: 'dlr_12345',
-    status: 'active',
+    label: 'ABC Homes Main',
+    active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
   });
   
-  dealerTrackingNumbers.set('+18005555678', {
-    tracking_number_e164: '+18005555678',
+  dealerNumbers.set('+18005555678', {
+    phone_e164: '+18005555678',
     dealer_id: 'dlr_67890',
-    status: 'active',
+    label: 'Texas Mobile Homes Main',
+    active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  });
+  
+  // Sample zip coverage
+  zipCoverage.set('MO_63101', {
+    state: 'MO',
+    zip5: '63101',
+    candidates: [
+      { dealer_id: 'dlr_12345', priority: 10, exclusive: false },
+    ],
+    updated_at: new Date().toISOString(),
+  });
+  
+  zipCoverage.set('TX_75201', {
+    state: 'TX',
+    zip5: '75201',
+    candidates: [
+      { dealer_id: 'dlr_67890', priority: 10, exclusive: false },
+    ],
+    updated_at: new Date().toISOString(),
   });
 }
 
-// Initialize test data on module load
+// Initialize on module load
 initializeTestData();
 
-/**
- * Generate a unique ID
- */
+// =============================================================================
+// HELPERS
+// =============================================================================
+
 function generateId(prefix = 'lead') {
   const timestamp = Date.now().toString(36);
   const random = Math.random().toString(36).substring(2, 8);
   return `${prefix}_${timestamp}${random}`;
 }
 
-/**
- * Mock Hestia API Client Class
- */
+// Default dealer for fallback
+const DEFAULT_DEALER_ID = 'home_nation';
+
+// =============================================================================
+// MOCK CLIENT CLASS
+// =============================================================================
+
 export class MockHestiaClient {
   constructor(options = {}) {
     this.verbose = options.verbose ?? true;
@@ -74,18 +164,12 @@ export class MockHestiaClient {
     this.latencyMs = options.latencyMs ?? 50;
   }
   
-  /**
-   * Simulate network latency if enabled
-   */
   async _maybeDelay() {
     if (this.simulateLatency) {
       await new Promise(resolve => setTimeout(resolve, this.latencyMs));
     }
   }
   
-  /**
-   * Log operations if verbose mode is enabled
-   */
   _log(operation, data) {
     if (this.verbose) {
       console.log(`[MOCK-HESTIA] ${operation}:`, JSON.stringify(data, null, 2));
@@ -97,99 +181,61 @@ export class MockHestiaClient {
   // ===========================================================================
   
   /**
-   * POST /v2/leads:intake
-   * Create a new lead or return existing if idempotency key matches
+   * Create a new lead using TLC Firestore Schemas V1
    */
   async createLead(state) {
     await this._maybeDelay();
     
     const payload = buildLeadPayload(state);
-    const idempotencyKey = payload.idempotency_key;
+    const idempotencyKey = `voice_${state.callSid}`;
     
     // Check for existing lead with same idempotency key
     for (const [leadId, lead] of leads) {
-      if (lead.idempotency_key === idempotencyKey) {
+      if (lead._idempotency_key === idempotencyKey) {
         this._log('createLead (existing)', { lead_id: leadId });
         return {
           lead_id: leadId,
           status: lead.status,
-          assigned_dealer_id: lead.assigned_dealer_id,
-          dealer_delivery_status: lead.dealer_delivery_status,
           created: false,
         };
       }
     }
     
-    // Create new lead
+    // Create new lead with full schema
     const leadId = generateId('lead');
     const now = new Date().toISOString();
     
     const lead = {
       lead_id: leadId,
-      idempotency_key: idempotencyKey,
+      _idempotency_key: idempotencyKey,
       created_at: now,
       updated_at: now,
-      status: 'new',
-      status_reason: null,
-      
-      // Source
-      source_channel: payload.source.channel,
-      source_entrypoint: payload.source.entrypoint,
-      referrer_url: null,
-      campaign_id: payload.source.tracking?.campaign_id || null,
-      session_id: payload.source.session_id,
-      
-      // Assignment
-      assigned_dealer_id: null,
-      assignment_type: null,
-      assignment_reason: null,
-      routed_at: null,
-      
-      // Delivery
-      dealer_delivery_status: 'pending',
-      dealer_delivered_at: null,
-      dealer_delivery_error: null,
-      dealer_delivery_attempts: 0,
-      
-      // Related data
-      applicant: payload.applicant,
-      home_and_site: payload.home_and_site,
-      financial_snapshot: payload.financial_snapshot,
-      notes: payload.notes,
-      consents: payload.applicant.consents,
-      attribution: payload.source.tracking ? {
-        dealer_id: payload.source.tracking.dealer_id,
-        attribution_token: payload.source.tracking.attribution_token,
-        locked: true,
-      } : null,
+      ...payload,
     };
     
     leads.set(leadId, lead);
     
     // Log creation event
     await this.logEvent(leadId, {
-      event_type: 'lead_created',
-      actor_type: 'ai',
-      payload_json: {
-        source: payload.source,
+      event_type: 'created',
+      actor_type: 'system',
+      details: {
         channel: payload.source.channel,
+        entrypoint: payload.source.entrypoint,
       },
     });
     
-    this._log('createLead (new)', { lead_id: leadId, status: 'new' });
+    this._log('createLead (new)', { lead_id: leadId, status: lead.status });
     
     return {
       lead_id: leadId,
-      status: 'new',
-      assigned_dealer_id: null,
-      dealer_delivery_status: 'pending',
+      status: lead.status,
       created: true,
     };
   }
   
   /**
-   * PATCH /v2/leads/{lead_id}
-   * Update lead with new data (progressive enrichment)
+   * Update an existing lead with progressive enrichment
    */
   async updateLead(leadId, state) {
     await this._maybeDelay();
@@ -199,29 +245,20 @@ export class MockHestiaClient {
       throw new Error(`Lead not found: ${leadId}`);
     }
     
-    const payload = buildLeadPayload(state);
+    const updates = buildLeadUpdatePayload(state);
+    const now = new Date().toISOString();
     
-    // Merge updated data
-    lead.updated_at = new Date().toISOString();
-    lead.applicant = { ...lead.applicant, ...payload.applicant };
-    lead.home_and_site = { ...lead.home_and_site, ...payload.home_and_site };
-    lead.financial_snapshot = { ...lead.financial_snapshot, ...payload.financial_snapshot };
-    lead.notes = { ...lead.notes, ...payload.notes };
-    
-    if (payload.applicant.consents) {
-      lead.consents = { ...lead.consents, ...payload.applicant.consents };
+    // Deep merge updates
+    for (const [key, value] of Object.entries(updates)) {
+      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+        lead[key] = { ...lead[key], ...value };
+      } else {
+        lead[key] = value;
+      }
     }
     
+    lead.updated_at = now;
     leads.set(leadId, lead);
-    
-    // Log update event
-    await this.logEvent(leadId, {
-      event_type: 'lead_updated',
-      actor_type: 'ai',
-      payload_json: {
-        fields_updated: Object.keys(payload),
-      },
-    });
     
     this._log('updateLead', { lead_id: leadId });
     
@@ -229,8 +266,7 @@ export class MockHestiaClient {
   }
   
   /**
-   * GET /v2/leads/{lead_id}
-   * Retrieve a lead by ID
+   * Get a lead by ID
    */
   async getLead(leadId) {
     await this._maybeDelay();
@@ -244,10 +280,9 @@ export class MockHestiaClient {
   }
   
   /**
-   * POST /v2/leads/{lead_id}/status
-   * Update lead status
+   * Set lead status with optional reason
    */
-  async setStatus(leadId, status, reason = null) {
+  async setStatus(leadId, status, statusReason = null) {
     await this._maybeDelay();
     
     const lead = leads.get(leadId);
@@ -257,19 +292,18 @@ export class MockHestiaClient {
     
     const previousStatus = lead.status;
     lead.status = status;
-    lead.status_reason = reason;
+    lead.status_reason = statusReason;
     lead.updated_at = new Date().toISOString();
     
     leads.set(leadId, lead);
     
-    // Log status change event
     await this.logEvent(leadId, {
       event_type: 'status_changed',
-      actor_type: 'ai',
-      payload_json: {
-        previous_status: previousStatus,
+      actor_type: 'system',
+      details: {
+        old_status: previousStatus,
         new_status: status,
-        reason,
+        reason: statusReason,
       },
     });
     
@@ -279,8 +313,8 @@ export class MockHestiaClient {
   }
   
   /**
-   * POST /v2/leads/{lead_id}/route
-   * Trigger dealer routing for a lead
+   * Route a lead to a dealer
+   * Implements routing logic from TLC System Flow Diagram V1
    */
   async routeLead(leadId) {
     await this._maybeDelay();
@@ -290,98 +324,103 @@ export class MockHestiaClient {
       throw new Error(`Lead not found: ${leadId}`);
     }
     
-    // Skip if already routed
-    if (lead.assigned_dealer_id) {
+    // Already routed?
+    if (lead.assignment?.routed_at) {
       return {
         success: true,
-        assigned_dealer_id: lead.assigned_dealer_id,
-        assignment_type: lead.assignment_type,
+        assigned_dealer_id: lead.assignment.assigned_dealer_id,
+        assignment_type: lead.assignment.assignment_type,
         already_routed: true,
       };
     }
     
-    // Check for attribution-based routing
-    if (lead.attribution?.dealer_id) {
-      const dealer = dealers.get(lead.attribution.dealer_id);
+    const now = new Date().toISOString();
+    let assignedDealerId = null;
+    let assignmentType = null;
+    let assignmentReason = null;
+    
+    // Rule 1: Check for dealer lock
+    const lockedDealerId = lead.source?.attribution?.locked_dealer_id;
+    if (lockedDealerId) {
+      const dealer = dealers.get(lockedDealerId);
       if (dealer && dealer.status === 'active') {
-        lead.assigned_dealer_id = dealer.dealer_id;
-        lead.assignment_type = 'dealer_sourced';
-        lead.assignment_reason = 'Attributed to dealer via tracking number';
-        lead.routed_at = new Date().toISOString();
-        lead.status = 'routed';
-        
-        leads.set(leadId, lead);
-        
-        await this.logEvent(leadId, {
-          event_type: 'dealer_assignment_created',
-          actor_type: 'system',
-          payload_json: {
-            dealer_id: dealer.dealer_id,
-            assignment_type: 'dealer_sourced',
-            reason: 'Attribution locked to dealer',
-          },
-        });
-        
-        this._log('routeLead', { lead_id: leadId, dealer_id: dealer.dealer_id, type: 'dealer_sourced' });
-        
-        return {
-          success: true,
-          assigned_dealer_id: dealer.dealer_id,
-          assignment_type: 'dealer_sourced',
-        };
+        assignedDealerId = lockedDealerId;
+        assignmentType = 'dealer_sourced';
+        assignmentReason = lead.source.attribution.locked_reason === 'dealer_phone' 
+          ? 'dealer_number' 
+          : 'referral_lock';
       }
     }
     
-    // Geo-routing: find dealer by ZIP (simplified mock)
-    // In real implementation, this would query dealer_coverage table
-    const zip = lead.home_and_site?.property_zip;
-    if (!zip) {
-      return {
-        success: false,
-        error: 'Cannot route: missing property ZIP',
-      };
-    }
-    
-    // Mock: just assign to first active dealer
-    for (const [dealerId, dealer] of dealers) {
-      if (dealer.status === 'active') {
-        lead.assigned_dealer_id = dealerId;
-        lead.assignment_type = 'geo_routed';
-        lead.assignment_reason = `Routed by ZIP ${zip}`;
-        lead.routed_at = new Date().toISOString();
-        lead.status = 'routed';
+    // Rule 2: Zip coverage lookup
+    if (!assignedDealerId) {
+      const state = lead.home_and_site?.property_state;
+      const zip = lead.home_and_site?.property_zip;
+      
+      if (state && zip) {
+        const coverageId = `${state}_${zip}`;
+        const coverage = zipCoverage.get(coverageId);
         
-        leads.set(leadId, lead);
-        
-        await this.logEvent(leadId, {
-          event_type: 'dealer_assignment_created',
-          actor_type: 'system',
-          payload_json: {
-            dealer_id: dealerId,
-            assignment_type: 'geo_routed',
-            zip,
-          },
-        });
-        
-        this._log('routeLead', { lead_id: leadId, dealer_id: dealerId, type: 'geo_routed' });
-        
-        return {
-          success: true,
-          assigned_dealer_id: dealerId,
-          assignment_type: 'geo_routed',
-        };
+        if (coverage && coverage.candidates?.length > 0) {
+          // Sort by priority and find first active dealer
+          const sortedCandidates = [...coverage.candidates].sort((a, b) => a.priority - b.priority);
+          
+          for (const candidate of sortedCandidates) {
+            const dealer = dealers.get(candidate.dealer_id);
+            if (dealer && dealer.status === 'active') {
+              assignedDealerId = candidate.dealer_id;
+              assignmentType = 'geo_routed';
+              assignmentReason = 'zip_match';
+              break;
+            }
+          }
+        }
       }
     }
+    
+    // Rule 3: Fallback to default dealer
+    if (!assignedDealerId) {
+      assignedDealerId = DEFAULT_DEALER_ID;
+      assignmentType = 'geo_routed';
+      assignmentReason = 'fallback';
+    }
+    
+    // Update lead assignment
+    lead.assignment = {
+      ...lead.assignment,
+      assigned_dealer_id: assignedDealerId,
+      assignment_type: assignmentType,
+      assignment_reason: assignmentReason,
+      routed_at: now,
+      routing_attempt_count: (lead.assignment?.routing_attempt_count || 0) + 1,
+      routing_last_attempt_at: now,
+    };
+    lead.updated_at = now;
+    
+    leads.set(leadId, lead);
+    
+    await this.logEvent(leadId, {
+      event_type: 'routed',
+      actor_type: 'system',
+      details: {
+        assigned_dealer_id: assignedDealerId,
+        assignment_type: assignmentType,
+        assignment_reason: assignmentReason,
+      },
+    });
+    
+    this._log('routeLead', { lead_id: leadId, dealer_id: assignedDealerId, type: assignmentType });
     
     return {
-      success: false,
-      error: 'No active dealers available',
+      success: true,
+      assigned_dealer_id: assignedDealerId,
+      assignment_type: assignmentType,
+      assignment_reason: assignmentReason,
     };
   }
   
   /**
-   * POST /v2/leads/{lead_id}/deliver
-   * Deliver lead to assigned dealer
+   * Deliver a lead (send notifications)
    */
   async deliverLead(leadId) {
     await this._maybeDelay();
@@ -391,42 +430,92 @@ export class MockHestiaClient {
       throw new Error(`Lead not found: ${leadId}`);
     }
     
-    if (!lead.assigned_dealer_id) {
-      return {
-        success: false,
-        error: 'Cannot deliver: no dealer assigned',
-      };
+    if (!lead.assignment?.assigned_dealer_id) {
+      return { success: false, error: 'Cannot deliver: no dealer assigned' };
     }
     
-    if (lead.dealer_delivery_status === 'delivered') {
-      return {
-        success: true,
-        already_delivered: true,
-      };
+    if (lead.delivery?.delivered_at) {
+      return { success: true, already_delivered: true };
     }
     
-    // Mock: simulate successful delivery
-    lead.dealer_delivery_status = 'delivered';
-    lead.dealer_delivered_at = new Date().toISOString();
-    lead.dealer_delivery_attempts += 1;
+    const now = new Date().toISOString();
+    const dealerId = lead.assignment.assigned_dealer_id;
+    const dealer = dealers.get(dealerId);
+    
+    // Update delivery status
+    lead.delivery = {
+      ...lead.delivery,
+      status: 'delivered',
+      delivered_at: now,
+      tlc_team_notified: true,
+      dealer_delivery_enabled: dealer?.delivery_prefs?.dealer_delivery_enabled || false,
+      attempts: (lead.delivery?.attempts || 0) + 1,
+      last_attempt_at: now,
+    };
+    lead.updated_at = now;
     
     leads.set(leadId, lead);
     
     await this.logEvent(leadId, {
-      event_type: 'dealer_delivery_succeeded',
+      event_type: 'delivered',
       actor_type: 'system',
-      payload_json: {
-        dealer_id: lead.assigned_dealer_id,
-        delivery_method: 'mock',
+      details: {
+        dealer_id: dealerId,
+        tlc_notified: true,
+        dealer_notified: lead.delivery.dealer_delivery_enabled,
       },
     });
     
-    this._log('deliverLead', { lead_id: leadId, dealer_id: lead.assigned_dealer_id });
+    this._log('deliverLead', { lead_id: leadId, dealer_id: dealerId });
     
     return {
       success: true,
-      dealer_id: lead.assigned_dealer_id,
+      dealer_id: dealerId,
     };
+  }
+  
+  // ===========================================================================
+  // DEALER OPERATIONS
+  // ===========================================================================
+  
+  /**
+   * Look up dealer by tracking phone number (dealerNumbers collection)
+   */
+  async lookupDealerByTrackingNumber(phoneE164) {
+    await this._maybeDelay();
+    
+    const numberDoc = dealerNumbers.get(phoneE164);
+    if (!numberDoc || !numberDoc.active) {
+      return null;
+    }
+    
+    const dealer = dealers.get(numberDoc.dealer_id);
+    if (!dealer || dealer.status !== 'active') {
+      return null;
+    }
+    
+    return {
+      dealer_id: dealer.dealer_id,
+      dealer_name: dealer.dealer_name,
+    };
+  }
+  
+  /**
+   * Get zip coverage for routing
+   */
+  async getZipCoverage(state, zip) {
+    await this._maybeDelay();
+    
+    const coverageId = `${state}_${zip}`;
+    return zipCoverage.get(coverageId) || null;
+  }
+  
+  /**
+   * Get a dealer by ID
+   */
+  async getDealer(dealerId) {
+    await this._maybeDelay();
+    return dealers.get(dealerId) || null;
   }
   
   // ===========================================================================
@@ -434,8 +523,7 @@ export class MockHestiaClient {
   // ===========================================================================
   
   /**
-   * POST /v2/leads/{lead_id}/events
-   * Log an event for a lead
+   * Log an event to leadEvents collection
    */
   async logEvent(leadId, eventData) {
     await this._maybeDelay();
@@ -445,117 +533,70 @@ export class MockHestiaClient {
       event_id: eventId,
       lead_id: leadId,
       event_type: eventData.event_type,
-      event_at: new Date().toISOString(),
       actor_type: eventData.actor_type || 'system',
       actor_id: eventData.actor_id || null,
-      request_id: eventData.request_id || null,
-      correlation_id: eventData.correlation_id || null,
-      payload_json: eventData.payload_json || {},
+      details: eventData.details || {},
+      created_at: new Date().toISOString(),
     };
     
-    // Store event
-    if (!events.has(leadId)) {
-      events.set(leadId, []);
+    if (!leadEvents.has(leadId)) {
+      leadEvents.set(leadId, []);
     }
-    events.get(leadId).push(event);
-    
-    if (this.verbose && eventData.event_type !== 'lead_updated') {
-      this._log('logEvent', { event_id: eventId, type: eventData.event_type });
-    }
+    leadEvents.get(leadId).push(event);
     
     return { event_id: eventId };
   }
   
   /**
-   * GET /v2/leads/{lead_id}/events
    * Get all events for a lead
    */
   async getEvents(leadId) {
     await this._maybeDelay();
-    
-    return events.get(leadId) || [];
+    return leadEvents.get(leadId) || [];
   }
   
   // ===========================================================================
-  // DEALER OPERATIONS
+  // TEST UTILITIES
   // ===========================================================================
   
-  /**
-   * Look up dealer attribution from dialed number
-   */
-  async lookupDealerByTrackingNumber(dialedNumber) {
-    await this._maybeDelay();
-    
-    const tracking = dealerTrackingNumbers.get(dialedNumber);
-    if (!tracking || tracking.status !== 'active') {
-      return null;
-    }
-    
-    const dealer = dealers.get(tracking.dealer_id);
-    if (!dealer || dealer.status !== 'active') {
-      return null;
-    }
-    
-    return {
-      dealer_id: dealer.dealer_id,
-      dealer_name: dealer.dealer_name,
-      tracking_number: dialedNumber,
-    };
-  }
-  
-  /**
-   * Get a dealer by ID
-   */
-  async getDealer(dealerId) {
-    await this._maybeDelay();
-    
-    return dealers.get(dealerId) || null;
-  }
-  
-  // ===========================================================================
-  // DEBUG/TEST UTILITIES
-  // ===========================================================================
-  
-  /**
-   * Get all leads (for debugging)
-   */
   getAllLeads() {
     return Array.from(leads.values());
   }
   
-  /**
-   * Get all events (for debugging)
-   */
   getAllEvents() {
-    const allEvents = [];
-    for (const leadEvents of events.values()) {
-      allEvents.push(...leadEvents);
+    const all = [];
+    for (const events of leadEvents.values()) {
+      all.push(...events);
     }
-    return allEvents.sort((a, b) => new Date(a.event_at) - new Date(b.event_at));
+    return all.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
   }
   
-  /**
-   * Clear all data (for testing)
-   */
   clearAll() {
     leads.clear();
-    events.clear();
+    leadEvents.clear();
   }
   
-  /**
-   * Add a test dealer tracking number
-   */
-  addTrackingNumber(phoneNumber, dealerId) {
-    dealerTrackingNumbers.set(phoneNumber, {
-      tracking_number_e164: phoneNumber,
+  addDealerNumber(phoneE164, dealerId, label = 'Test') {
+    dealerNumbers.set(phoneE164, {
+      phone_e164: phoneE164,
       dealer_id: dealerId,
-      status: 'active',
+      label: label,
+      active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
     });
   }
   
-  /**
-   * Get statistics
-   */
+  addZipCoverage(state, zip, candidates) {
+    const coverageId = `${state}_${zip}`;
+    zipCoverage.set(coverageId, {
+      state: state,
+      zip5: zip,
+      candidates: candidates,
+      updated_at: new Date().toISOString(),
+    });
+  }
+  
   getStats() {
     const leadsByStatus = {};
     for (const lead of leads.values()) {
@@ -566,15 +607,14 @@ export class MockHestiaClient {
       total_leads: leads.size,
       total_events: this.getAllEvents().length,
       total_dealers: dealers.size,
-      total_tracking_numbers: dealerTrackingNumbers.size,
+      total_dealer_numbers: dealerNumbers.size,
+      total_zip_coverage: zipCoverage.size,
       leads_by_status: leadsByStatus,
     };
   }
 }
 
-/**
- * Create a singleton instance for use across the application
- */
+// Singleton instance
 export const hestiaClient = new MockHestiaClient({ verbose: true });
 
 export default hestiaClient;

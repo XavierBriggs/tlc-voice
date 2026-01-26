@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-01-26T00:23:16.026Z",
+  "radius_miles": 60,
+  "same_state_only": false,
+  "dealers_total": 112,
+  "dealers_skipped_missing_zip": [],
+  "dealers_skipped_missing_location": [],
+  "dealers_skipped_zip_not_found": [],
+  "dealers_processed": 111,
+  "zip_docs": 10679,
+  "candidate_entries": 24876
+}
