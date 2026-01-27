@@ -16,6 +16,8 @@ const COMMANDS = {
   'coverage-generate': 'coverage/generate-zip-coverage.js',
   'coverage-seed': 'coverage/seed-zip-coverage-generated.js',
   'dealers-seed': 'seed-dealers-normalized.js',
+  'dealer-keys-generate': 'generate-dealer-attribution-keys.js',
+  'dealer-keys-seed': 'seed-dealer-attribution-keys.js',
 };
 
 function showHelp() {
@@ -23,11 +25,13 @@ function showHelp() {
   node scripts/cli.js <command> [options]
 
 Commands:
-  normalize          Normalize CSV into dealers JSON
-  missing-report     Generate missing-data report
-  coverage-generate  Generate zipCoverage JSON
-  coverage-seed      Seed zipCoverage into Firestore
-  dealers-seed       Seed dealers/locations/contacts into Firestore
+  normalize            Normalize CSV into dealers JSON
+  missing-report       Generate missing-data report
+  coverage-generate    Generate zipCoverage JSON
+  coverage-seed        Seed zipCoverage into Firestore
+  dealers-seed         Seed dealers/locations/contacts into Firestore
+  dealer-keys-generate Generate attribution keys JSON from dealers
+  dealer-keys-seed     Seed dealerAttributionKeys into Firestore
 
 Examples:
   node scripts/cli.js normalize
@@ -35,6 +39,8 @@ Examples:
   node scripts/cli.js coverage-generate --radius 60
   node scripts/cli.js coverage-seed --merge
   node scripts/cli.js dealers-seed --merge
+  node scripts/cli.js dealer-keys-generate
+  node scripts/cli.js dealer-keys-seed --file scripts/data/dealer_attribution_keys_v1.json --allow-generate --write-back --merge
 `);
 }
 

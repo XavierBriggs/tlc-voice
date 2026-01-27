@@ -49,6 +49,11 @@ Seed zip coverage:
 node scripts/cli.js coverage-seed --merge
 ```
 
+Seed dealer attribution keys (hashed ref links):
+```bash
+node scripts/cli.js dealer-keys-seed --file scripts/data/dealer_attribution_keys_v1.json --allow-generate --write-back --merge
+```
+
 ## What each tool does
 
 - `scripts/normalize/normalize-dealers-csv.js`
@@ -79,6 +84,11 @@ node scripts/cli.js coverage-seed --merge
   - Writes dealers, locations, and contacts into Firestore
   - Use `--merge` to update missing fields safely
 
+- `scripts/seed-dealer-attribution-keys.js`
+  - Seeds `dealerAttributionKeys/{key_hash}` for public `?ref=` URLs
+  - Use `--allow-generate` to create `key_hash` values when missing
+  - Use `--write-back` to persist generated keys to the JSON file
+
 ## Routing behavior (important)
 
 Routing order (per docs and `functions/lib/routing.js`):
@@ -104,6 +114,8 @@ This means proximity is used as a tie-breaker, not the primary driver.
 5) Seed updates:
    - `node scripts/cli.js dealers-seed --merge`
    - `node scripts/cli.js coverage-seed --merge`
+6) Create or update dealer attribution keys:
+   - `node scripts/cli.js dealer-keys-seed --file scripts/data/dealer_attribution_keys_v1.json --allow-generate --write-back --merge`
 
 ## Updating existing dealers
 
@@ -133,4 +145,5 @@ npm --prefix scripts run missing-report
 npm --prefix scripts run coverage-generate
 npm --prefix scripts run dealers-seed
 npm --prefix scripts run coverage-seed
+npm --prefix scripts run dealer-keys-seed
 ```

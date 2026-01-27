@@ -106,8 +106,9 @@ Write behavior:
 ## 2.3 Web intake from a dealer link
 
 Example:
-1. Borrower clicks a dealer website apply link with dealer_id in query params
-2. Intake sets a lock using the dealer_id
+1. Borrower clicks a dealer website apply link with `?ref=<key_hash>`
+2. Intake resolves `dealerAttributionKeys/{key_hash}` to get dealer_id
+3. Intake sets a lock using the resolved dealer_id
 
 Write behavior:
 1. Create lead with `source.entrypoint = dealer_link`

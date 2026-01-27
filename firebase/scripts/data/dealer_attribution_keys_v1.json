@@ -1,0 +1,1131 @@
+{
+  "meta": {
+    "generated_at": "2026-01-26T19:30:26.585Z",
+    "source_file": "scripts/data/dealers_normalized_v1.json",
+    "key_type": "referral_code",
+    "key_label": "web_default",
+    "total_keys": 112
+  },
+  "keys": [
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_regional_home_sales_cullman_al_35055",
+      "dealer_name": "Regional Home Sales",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Regional Home Sales",
+      "key_hash": "b50bfa88487bd312"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_corky_s_homes_prattville_al_36066",
+      "dealer_name": "Corky's Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Corky's Homes",
+      "key_hash": "b6bf569ff4bb1d22"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_jaco_sales_llc_montgomery_al_36110",
+      "dealer_name": "Jaco Sales LLC",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Jaco Sales LLC",
+      "key_hash": "ff7d60457dbb96d7"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_timberline_homes_inc_tuscaloosa_al_35405",
+      "dealer_name": "Timberline Homes Inc",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Timberline Homes Inc",
+      "key_hash": "846c57b142c2357c"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_sanders_manufactured_housing_pensacola_al_32534",
+      "dealer_name": "Sanders Manufactured Housing",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Sanders Manufactured Housing",
+      "key_hash": "06385a88313caaef"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_sue_white_homes_fort_smith_ar_72903",
+      "dealer_name": "Sue White Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Sue White Homes",
+      "key_hash": "313814503156a006"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_el_dorado_homes_el_dorado_ar_71730",
+      "dealer_name": "El Dorado Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for El Dorado Homes",
+      "key_hash": "c453c7fbf51ac5eb"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_wayne_frier_home_ctrs_live_oak_fl_32060",
+      "dealer_name": "Wayne Frier Home Ctrs",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Wayne Frier Home Ctrs",
+      "key_hash": "0b5b73c8e987d8ba"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_affordable_homes_crestview_crestview_fl_32536",
+      "dealer_name": "Affordable Homes - Crestview",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Affordable Homes - Crestview",
+      "key_hash": "43d869536e2fabe6"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_all_star_manufactured_housing_inc_oca_fl_34480",
+      "dealer_name": "All Star Manufactured Housing, Inc",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for All Star Manufactured Housing, Inc",
+      "key_hash": "113c91c52af91eb3"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_prestige_home_centers_oca_fl_34480",
+      "dealer_name": "Prestige Home Centers",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Prestige Home Centers",
+      "key_hash": "d376a1923ae9db93"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_jacobsen_homes_plant_city_plant_city_fl_33565",
+      "dealer_name": "Jacobsen Homes - Plant City",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Jacobsen Homes - Plant City",
+      "key_hash": "6410207842338b6c"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_leecorp_homes_estero_fl_33928",
+      "dealer_name": "LeeCorp Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for LeeCorp Homes",
+      "key_hash": "6b064b60b4018144"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_central_mobile_homes_labelle_fl_33935",
+      "dealer_name": "Central Mobile Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Central Mobile Homes",
+      "key_hash": "91bbada37ad71872"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_quality_homes_jacksonville_fl_32221",
+      "dealer_name": "Quality Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Quality Homes",
+      "key_hash": "e3c6f01525d46e76"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_bob_s_family_housing_inc_dahlonega_ga_30533",
+      "dealer_name": "BOB'S FAMILY HOUSING, INC.",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for BOB'S FAMILY HOUSING, INC.",
+      "key_hash": "4efb061c7ac1f2ee"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_hartwell_home_mart_hartwell_ga_30643",
+      "dealer_name": "Hartwell Home Mart",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Hartwell Home Mart",
+      "key_hash": "e76ef4d66f5b27fb"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_jesup_housing_outlet_llc_jesup_ga_31545",
+      "dealer_name": "Jesup Housing Outlet, LLC",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Jesup Housing Outlet, LLC",
+      "key_hash": "13ce9ccc0ca7d0b2"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_brewer_quality_homes_bossier_city_la_71111",
+      "dealer_name": "Brewer Quality homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Brewer Quality homes",
+      "key_hash": "382db452347724b3"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_clayton_new_iberia_new_iberia_la_70560",
+      "dealer_name": "Clayton - New Iberia",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Clayton - New Iberia",
+      "key_hash": "2c6d121085b407f1"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_clayton_homes_houma_houma_la_70360",
+      "dealer_name": "Clayton Homes - Houma",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Clayton Homes - Houma",
+      "key_hash": "278f2392d7a82bb1"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_fleur_de_lis_hammond_la_70403",
+      "dealer_name": "Fleur De Lis",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Fleur De Lis",
+      "key_hash": "b05a9fdf2986e91e"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_greg_tilley_s_bossier_mobile_homes_inc_bossier_city_la_71111",
+      "dealer_name": "Greg Tilley's Bossier Mobile Homes Inc",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Greg Tilley's Bossier Mobile Homes Inc",
+      "key_hash": "e9085b061e07ccb1"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_gulf_south_homes_houma_la_70361",
+      "dealer_name": "Gulf South homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Gulf South homes",
+      "key_hash": "c7b17a839d1597bb"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_jim_tatman_s_mobile_carencro_la_70520",
+      "dealer_name": "Jim Tatman's Mobile",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Jim Tatman's Mobile",
+      "key_hash": "0e32de5426b30d3b"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_hammond_mobile_homes_llc_hammond_la_70403",
+      "dealer_name": "Hammond Mobile Homes, LLC",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Hammond Mobile Homes, LLC",
+      "key_hash": "97caf947c1beef3d"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_henchs_country_livin_homes_of_calera_cale_ok_74730",
+      "dealer_name": "HENCHS COUNTRY LIVIN HOMES OF CALERA",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for HENCHS COUNTRY LIVIN HOMES OF CALERA",
+      "key_hash": "d37d2bf2f0b162e2"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_mid_state_manufactured_housing_corp_purcell_ok_73080",
+      "dealer_name": "Mid-State Manufactured Housing Corp",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Mid-State Manufactured Housing Corp",
+      "key_hash": "a127d39dc0b77c42"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_universal_mobile_homes_ok_city_ok_73129",
+      "dealer_name": "Universal Mobile Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Universal Mobile Homes",
+      "key_hash": "1d29dc6488c3ab69"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_republic_homes_ok_city_ok_73149",
+      "dealer_name": "Republic Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Republic Homes",
+      "key_hash": "b56d4f11fd1a078c"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_aiken_housing_aiken_sc_29801",
+      "dealer_name": "AIKEN HOUSING",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for AIKEN HOUSING",
+      "key_hash": "9d2e056148da4aad"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_dinkins_home_center_paris_tn_38242",
+      "dealer_name": "Dinkins Home Center",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Dinkins Home Center",
+      "key_hash": "c5fe0a1ee67e4713"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_meadows_homes_cookeville_tn_38501",
+      "dealer_name": "MEADOWS HOMES",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for MEADOWS HOMES",
+      "key_hash": "a30d2ef38b534eaf"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_preferred_living_homes_knoxville_tn_37912",
+      "dealer_name": "Preferred Living Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Preferred Living Homes",
+      "key_hash": "6a966bc132e30ea1"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_hobbs_manufactured_homes_texarkana_tx_75501",
+      "dealer_name": "Hobbs Manufactured Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Hobbs Manufactured Homes",
+      "key_hash": "0cd1c309182ffaf2"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_manufactured_housing_consultants_von_or_tx_78073",
+      "dealer_name": "Manufactured Housing Consultants",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Manufactured Housing Consultants",
+      "key_hash": "2980cf3d11139629"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_smart_choice_mfg_hms_atascosa_tx_78002",
+      "dealer_name": "Smart Choice Mfg Hms",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Smart Choice Mfg Hms",
+      "key_hash": "d2824f19395e16de"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_pratt_homes_tyler_tx_75702",
+      "dealer_name": "Pratt Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Pratt Homes",
+      "key_hash": "d1c2cb0c0b1b3803"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_texas_built_mobile_homes_seguin_tx_75155",
+      "dealer_name": "Texas Built Mobile Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Texas Built Mobile Homes",
+      "key_hash": "fe49475a56f28564"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_fayette_country_homes_schulenberg_tx_78956",
+      "dealer_name": "Fayette Country Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Fayette Country Homes",
+      "key_hash": "f2887ca451cfcd30"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_texas_built_mobile_homes_seguin_tx_78155",
+      "dealer_name": "Texas Built Mobile Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Texas Built Mobile Homes",
+      "key_hash": "28429ce17c7266c6"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_rvp_clayton_retail_maryville_tn_37804",
+      "dealer_name": "RVP Clayton Retail",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for RVP Clayton Retail",
+      "key_hash": "aedd410c235ade21"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_wayne_frier_home_center_live_oak_fl_32060",
+      "dealer_name": "Wayne Frier Home Center",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Wayne Frier Home Center",
+      "key_hash": "2461fd9efd97b5ca"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_effingham_homes_effingham_il_62401",
+      "dealer_name": "Effingham Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Effingham Homes",
+      "key_hash": "75819080eae9e4a6"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_republic_homes_somerset_ky_42501",
+      "dealer_name": "Republic homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Republic homes",
+      "key_hash": "ebaf9ee673ad26f5"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_clayton_homes_portland_tn_37148",
+      "dealer_name": "Clayton Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Clayton Homes",
+      "key_hash": "b785fce5a3bc8bec"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_clayton_homes_elkins_wv_26241",
+      "dealer_name": "Clayton Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Clayton Homes",
+      "key_hash": "e5c001f07110b8b5"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_clayton_homes_corbin_ky_40701",
+      "dealer_name": "Clayton homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Clayton homes",
+      "key_hash": "19e9f5b6c2be7ef3"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_clayton_homes_williamsburg_ky_40769",
+      "dealer_name": "Clayton Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Clayton Homes",
+      "key_hash": "399a7f9dfcba688b"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_clayton_homes_london_ky_40741",
+      "dealer_name": "Clayton Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Clayton Homes",
+      "key_hash": "13e483a7457309b2"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_brindlee_mtn_home_sales_lacey_springs_al_35754",
+      "dealer_name": "Brindlee Mtn Home Sales",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Brindlee Mtn Home Sales",
+      "key_hash": "03324c0d91db7325"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_clayton_homes_clanton_clanton_al_35046",
+      "dealer_name": "Clayton Homes - Clanton",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Clayton Homes - Clanton",
+      "key_hash": "c271511e50b20890"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_clayton_jonesboro_jonesboro_ar_72404",
+      "dealer_name": "Clayton - Jonesboro",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Clayton - Jonesboro",
+      "key_hash": "279d1a642fe13690"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_clayton_fort_smith_fort_smith_ar_72908",
+      "dealer_name": "Clayton - Fort Smith",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Clayton - Fort Smith",
+      "key_hash": "b8a696eb365b6950"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_nobility_homes_oca_fl_34474",
+      "dealer_name": "NOBILITY HOMES",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for NOBILITY HOMES",
+      "key_hash": "7f7dc6e59d7818b1"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_wayne_frier_macclenny_macclenny_fl_32063",
+      "dealer_name": "Wayne Frier - MacClenny",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Wayne Frier - MacClenny",
+      "key_hash": "9c2af1468727d3e9"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_freedom_home_center_milton_fl_32853",
+      "dealer_name": "Freedom Home center",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Freedom Home center",
+      "key_hash": "0797b5322d8f1ccd"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_wayne_frier_home_ctrs_midway_fl_32343",
+      "dealer_name": "Wayne Frier Home Ctrs",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Wayne Frier Home Ctrs",
+      "key_hash": "da9d508a45f73440"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_uncle_roy_s_mobile_home_sales_oca_fl_34475",
+      "dealer_name": "Uncle Roy's Mobile Home Sales",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Uncle Roy's Mobile Home Sales",
+      "key_hash": "0dfc2a2f84b96654"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_clayton_homes_ocala_oca_fl_34480",
+      "dealer_name": "Clayton Homes - Ocala",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Clayton Homes - Ocala",
+      "key_hash": "8dae996cdc8a281f"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_head_mobile_homes_punta_gorda_fl_33955",
+      "dealer_name": "Head Mobile Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Head Mobile Homes",
+      "key_hash": "1ce9f01d9335bfb4"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_c_g_mobile_homes_lake_city_fl_32056",
+      "dealer_name": "C & G Mobile Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for C & G Mobile Homes",
+      "key_hash": "974db59e9414d5ae"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_jacobsen_homes_lake_city_lake_city_fl_32055",
+      "dealer_name": "Jacobsen Homes -Lake City",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Jacobsen Homes -Lake City",
+      "key_hash": "e3d675da6b43f811"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_corbett_s_mobile_home_center_live_oak_fl_32064",
+      "dealer_name": "Corbett's Mobile Home Center",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Corbett's Mobile Home Center",
+      "key_hash": "e6cf980b97337967"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_award_mobile_homes_jasper_ga_30143",
+      "dealer_name": "AWARD MOBILE HoMES",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for AWARD MOBILE HoMES",
+      "key_hash": "864a552bf049c3e0"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_vivians_baldwin_ga_30531",
+      "dealer_name": "VIVIANS",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for VIVIANS",
+      "key_hash": "3eaf9b20b28cac9d"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_yurezz_home_center_baxley_ga_31513",
+      "dealer_name": "Yurezz Home Center",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Yurezz Home Center",
+      "key_hash": "f71a411bc0857d2f"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_clayton_gonzales_gonzales_la_70737",
+      "dealer_name": "Clayton - Gonzales",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Clayton - Gonzales",
+      "key_hash": "56d233fad8d0377d"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_greg_tilley_s_repo_new_homes_shreveport_la_71118",
+      "dealer_name": "Greg Tilley's Repo - New Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Greg Tilley's Repo - New Homes",
+      "key_hash": "21d3f944b6cfc9af"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_gulf_coast_modular_new_iberia_la_70560",
+      "dealer_name": "Gulf Coast Modular",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Gulf Coast Modular",
+      "key_hash": "c18196c27d930472"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_jim_tatman_s_mobile_opelousas_la_70570",
+      "dealer_name": "Jim Tatman's Mobile",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Jim Tatman's Mobile",
+      "key_hash": "8f8bb024abad8537"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_regional_home_sales12_35_flowood_ms_39232",
+      "dealer_name": "Regional Home Sales12:35",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Regional Home Sales12:35",
+      "key_hash": "15d274c7c06dad9d"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_yancey_homes_inc_burnsville_nc_28714",
+      "dealer_name": "Yancey Homes, Inc",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Yancey Homes, Inc",
+      "key_hash": "27c8ec8a0bcc807d"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_aspen_homes_tulsa_ok_74116",
+      "dealer_name": "Aspen Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Aspen Homes",
+      "key_hash": "f5bd3ab1fbe91867"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_freedom_home_center_ok_city_ok_73149",
+      "dealer_name": "Freedom Home center",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Freedom Home center",
+      "key_hash": "e44d09981abeacc0"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_don_s_mobile_homes_sallisaw_ok_74955",
+      "dealer_name": "Don's Mobile Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Don's Mobile Homes",
+      "key_hash": "201c9b98d8c34dab"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_carolina_home_outlet_llc_newberry_sc_29108",
+      "dealer_name": "CAROLINA HOME OUTLET, LLC",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for CAROLINA HOME OUTLET, LLC",
+      "key_hash": "cfcd8a1c376d320d"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_clayton_lexington_lexington_tn_38351",
+      "dealer_name": "Clayton Lexington",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Clayton Lexington",
+      "key_hash": "3eb30f29fdf94e14"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_tennessee_home_center_three_way_tn_38343",
+      "dealer_name": "Tennessee Home Center",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Tennessee Home Center",
+      "key_hash": "2aa4e75d1c981055"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_mcdonald_mobile_homes_jasper_tx_75951",
+      "dealer_name": "McDonald Mobile Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for McDonald Mobile Homes",
+      "key_hash": "84693bf2ab536c0b"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_palm_harbor_homes_addison_tx_75001",
+      "dealer_name": "Palm Harbor Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Palm Harbor Homes",
+      "key_hash": "e9d34465d79ca4da"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_rvp_palm_harbor_caddo_mills_tx_75135",
+      "dealer_name": "RVP Palm Harbor",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for RVP Palm Harbor",
+      "key_hash": "2741cb25580245a1"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_hench_s_country_livin_homes_sherman_tx_75092",
+      "dealer_name": "Hench's Country Livin Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Hench's Country Livin Homes",
+      "key_hash": "8b081e4dab20e121"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_today_homes_corsicana_tx_75110",
+      "dealer_name": "Today Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Today Homes",
+      "key_hash": "c7ac4c07363a3101"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_marshall_mobile_homes_marshall_tx_75672",
+      "dealer_name": "Marshall Mobile Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Marshall Mobile Homes",
+      "key_hash": "d12a1a0cc3478473"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_wright_s_manufactured_homes_vidor_tx_77662",
+      "dealer_name": "Wright's Manufactured Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Wright's Manufactured Homes",
+      "key_hash": "6984c0bbae73a371"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_zone_mgr_clayton_retail_maryville_tn_37804",
+      "dealer_name": "Zone Mgr Clayton Retail",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Zone Mgr Clayton Retail",
+      "key_hash": "4e8e214daac19bd6"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_modlife_homes_adg_llc_rogersville_al_35652",
+      "dealer_name": "Modlife Homes/ADG LLC",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Modlife Homes/ADG LLC",
+      "key_hash": "efe0dd5e2ae6209d"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "home_nation",
+      "dealer_name": "Home Nation",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Home Nation",
+      "key_hash": "2564c3748f18a04c"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_next_step_san_antonio_tx_78216",
+      "dealer_name": "Next Step",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Next Step",
+      "key_hash": "1b632cee85b0ae6b"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_brine_development_services_tampa_fl_33605",
+      "dealer_name": "Brine Development Services",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Brine Development Services",
+      "key_hash": "76b96eb720670bf8"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_vision_homes_fayetteville_nc_28306",
+      "dealer_name": "Vision Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Vision Homes",
+      "key_hash": "8098cd7db01a4c1b"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_red_gate_manufactured_homes_lafayette_ga_30728",
+      "dealer_name": "Red Gate Manufactured homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Red Gate Manufactured homes",
+      "key_hash": "a90982c1efe9d2b7"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_gifford_homes_inc_farmington_mo_63640",
+      "dealer_name": "Gifford Homes, Inc.",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Gifford Homes, Inc.",
+      "key_hash": "c64058079b01c7b3"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_elite_modular_homes_frisco_tx_75033",
+      "dealer_name": "Elite Modular Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Elite Modular Homes",
+      "key_hash": "04060314609ad7aa"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_faithfully_home_neoga_il_62447",
+      "dealer_name": "Faithfully Home",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Faithfully Home",
+      "key_hash": "9878ea81c624d49f"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_kingdom_keys_home_solutions_louisville_ky_40258",
+      "dealer_name": "Kingdom Keys Home Solutions",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Kingdom Keys Home Solutions",
+      "key_hash": "223bbdeea5062377"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_red_rock_home_center_london_ky_40741",
+      "dealer_name": "Red Rock Home Center",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Red Rock Home Center",
+      "key_hash": "7f3d23d0403eb13f"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_heartland_mobile_home_carrollton_ky_41008",
+      "dealer_name": "Heartland Mobile Home",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Heartland Mobile Home",
+      "key_hash": "e0f5e232da64d2b4"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_dream_maker_realty_mt_sterling_ky_40353",
+      "dealer_name": "Dream Maker Realty",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Dream Maker Realty",
+      "key_hash": "be2de5c4290d8045"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_thorne_homes_bedford_in_47421",
+      "dealer_name": "Thorne Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Thorne Homes",
+      "key_hash": "819ae3f82e75d0df"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_clayton_homes_of_louisville_louisville_ky_40272",
+      "dealer_name": "Clayton homes of Louisville",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Clayton homes of Louisville",
+      "key_hash": "0e6f0c3ff60a52fe"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_adam_s_affordable_homes_pikeville_ky_41501",
+      "dealer_name": "Adam's Affordable Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Adam's Affordable Homes",
+      "key_hash": "1df1fa28b791105b"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_clayton_homes_dry_ridge_ky_41035",
+      "dealer_name": "Clayton Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Clayton Homes",
+      "key_hash": "a2d60b6306db1050"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_home_retailer_russell_springs_ky_42642",
+      "dealer_name": "Home Retailer",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Home Retailer",
+      "key_hash": "d5530b0025ed8221"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_a1_housing_llc_monroe_nc_28110",
+      "dealer_name": "A1 Housing LLC",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for A1 Housing LLC",
+      "key_hash": "30a610364ddce35b"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_harrell_homes_solsberry_in_47459",
+      "dealer_name": "Harrell homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Harrell homes",
+      "key_hash": "408ef7a70cbb17be"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_route_21_homes_carmichaels_pa_15320",
+      "dealer_name": "Route 21 Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Route 21 Homes",
+      "key_hash": "6334bf89d9751c37"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_traillhead_homes_indianapolis_in_46240",
+      "dealer_name": "Traillhead Homes",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Traillhead Homes",
+      "key_hash": "9d40ced968322567"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_high_tech_housing_inc_oakdale_pa_15071",
+      "dealer_name": "High Tech Housing Inc.",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for High Tech Housing Inc.",
+      "key_hash": "3b994072bceff94f"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_youngs_colonial_acres_freemont_oh_43420",
+      "dealer_name": "Youngs Colonial Acres",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Youngs Colonial Acres",
+      "key_hash": "5a08bbe54b3a1454"
+    },
+    {
+      "key_label": "web_default",
+      "dealer_id": "dlr_piedmont_homes_of_burlington_burlington_nc_27217",
+      "dealer_name": "Piedmont Homes of Burlington",
+      "key_type": "referral_code",
+      "active": true,
+      "expires_at": null,
+      "notes": "Auto-generated web_default for Piedmont Homes of Burlington",
+      "key_hash": "ea3ddeadb74c8552"
+    }
+  ]
+}
